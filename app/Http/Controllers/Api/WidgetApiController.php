@@ -71,7 +71,7 @@ class WidgetApiController extends Controller
     }
 
     /**
-     * Handle chat message sending via RAG workflow.
+     * Handle chat message sending via RAG workflow with token balance enforcement.
      */
     public function chat(Request $request): JsonResponse
     {
@@ -95,6 +95,14 @@ class WidgetApiController extends Controller
                 'user_agent' => substr($request->header('User-Agent'), 0, 200),
                 'ip_address' => $request->ip(),
             ]);
+        }
+
+        // Check token balance of bot owner
+        if ($bot->user && $bot->user->token_balance <= 0) {
+            return response()->json([
+                'answer' => "AI support is temporarily paused because the account token balance is depleted. Please top up tokens in your Zeltrionix dashboard or contact support.",
+                'session_token' => $session->session_token,
+            ])->header('Access-Control-Allow-Origin', '*');
         }
 
         $answer = $this->ragEngine->ask($bot, $session, $validated['question']);

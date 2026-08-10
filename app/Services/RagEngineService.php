@@ -18,7 +18,7 @@ class RagEngineService
     }
 
     /**
-     * Answer user question using RAG workflow.
+     * Answer user question using RAG workflow and deduct consumed DeepSeek tokens from user account balance.
      */
     public function ask(Bot $bot, ChatSession $session, string $question): string
     {
@@ -32,7 +32,7 @@ class RagEngineService
         $queryEmbedding = $this->openAi->getEmbedding($question);
 
         // 3. Search vector store for relevant knowledge base context
-        $relevantChunks = $this->pinecone->querySimilarity($bot->uuid, $queryEmbedding, 4);
+        $relevantChunks = $this->pinecone->querySimilarity($bot->uuid, $queryEmbedding, 6);
 
         // 4. Retrieve recent chat history for context
         $recentMessages = $session->messages()
@@ -56,15 +56,24 @@ class RagEngineService
         $userPrompt = $bot->system_prompt ? $bot->system_prompt : "Answer questions accurately using the provided knowledge base context.";
         $systemPrompt = $identityGuardrail . "\n\nCUSTOM INSTRUCTIONS:\n" . $userPrompt;
 
-        // 6. Generate answer via DeepSeek / OpenAI
-        $aiAnswer = $this->openAi->generateAnswer($systemPrompt, $relevantChunks, $recentMessages, $question);
+        // 6. Generate answer via DeepSeek / OpenAI with exact token accounting
+        $aiResult = $this->openAi->generateAnswer($systemPrompt, $relevantChunks, $recentMessages, $question);
+        $aiAnswer = $aiResult['answer'];
+        $tokensUsed = (int) ($aiResult['tokens_used'] ?? 0);
 
-        // 7. Save assistant answer
+        // 7. Save assistant answer with tokens_used metadata
         $session->messages()->create([
             'sender' => 'assistant',
             'content' => $aiAnswer,
-            'tokens_used' => mb_strlen($aiAnswer) / 4,
+            'tokens_used' => $tokensUsed,
         ]);
+
+        // 8. Deduct tokens from bot owner's token balance & increment total_tokens_used
+        $user = $bot->user;
+        if ($user && $tokensUsed > 0) {
+            $user->decrement('token_balance', min($user->token_balance, $tokensUsed));
+            $user->increment('total_tokens_used', $tokensUsed);
+        }
 
         return $aiAnswer;
     }

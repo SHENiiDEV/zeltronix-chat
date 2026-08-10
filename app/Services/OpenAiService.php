@@ -57,12 +57,19 @@ class OpenAiService
     }
 
     /**
-     * Generate AI response using DeepSeek (deepseek-chat / deepseek-reasoner) or OpenAI based on RAG context.
+     * Generate AI response using DeepSeek or OpenAI and return content + exact tokens used from API usage payload.
+     * @return array{answer: string, tokens_used: int}
      */
-    public function generateAnswer(string $systemPrompt, array $contextChunks, array $chatHistory, string $userQuestion): string
+    public function generateAnswer(string $systemPrompt, array $contextChunks, array $chatHistory, string $userQuestion): array
     {
         if (empty($this->apiKey) || str_contains($this->apiKey, 'your-deepseek-api-key')) {
-            return $this->generateMockAnswer($contextChunks, $userQuestion);
+            $mockText = $this->generateMockAnswer($contextChunks, $userQuestion);
+            // Estimate tokens if offline / mock (approx 4 chars = 1 token)
+            $estimatedTokens = (int) ceil(mb_strlen($systemPrompt . $userQuestion . $mockText) / 4);
+            return [
+                'answer' => $mockText,
+                'tokens_used' => max(50, $estimatedTokens),
+            ];
         }
 
         $contextText = implode("\n\n---\n\n", $contextChunks);
@@ -87,9 +94,7 @@ class OpenAiService
         ];
 
         try {
-            $url = $this->provider === 'deepseek'
-                ? "{$this->baseUrl}/chat/completions"
-                : "{$this->baseUrl}/chat/completions";
+            $url = "{$this->baseUrl}/chat/completions";
 
             $response = Http::withToken($this->apiKey)
                 ->timeout(30)
@@ -101,7 +106,24 @@ class OpenAiService
                 ]);
 
             if ($response->successful()) {
-                return $response->json('choices.0.message.content', 'Error generating response.');
+                $content = $response->json('choices.0.message.content', 'Error generating response.');
+                
+                // Read exact tokens used from DeepSeek / OpenAI API response
+                $totalTokens = (int) $response->json('usage.total_tokens');
+                if ($totalTokens <= 0) {
+                    $promptTokens = (int) $response->json('usage.prompt_tokens', 0);
+                    $completionTokens = (int) $response->json('usage.completion_tokens', 0);
+                    $totalTokens = $promptTokens + $completionTokens;
+                }
+
+                if ($totalTokens <= 0) {
+                    $totalTokens = (int) ceil(mb_strlen($content . $userQuestion) / 4);
+                }
+
+                return [
+                    'answer' => $content,
+                    'tokens_used' => max(1, $totalTokens),
+                ];
             }
 
             Log::error("{$this->provider} Completion Error [Status {$response->status()}]", [
@@ -112,7 +134,11 @@ class OpenAiService
             Log::error("{$this->provider} Completion Exception: " . $e->getMessage());
         }
 
-        return $this->generateMockAnswer($contextChunks, $userQuestion);
+        $mockText = $this->generateMockAnswer($contextChunks, $userQuestion);
+        return [
+            'answer' => $mockText,
+            'tokens_used' => (int) ceil(mb_strlen($mockText) / 4),
+        ];
     }
 
     /**

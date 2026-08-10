@@ -53,7 +53,7 @@ class PineconeService
     /**
      * Search nearest K vector chunks for bot.
      */
-    public function querySimilarity(string $botUuid, array $queryVector, int $topK = 4): array
+    public function querySimilarity(string $botUuid, array $queryVector, int $topK = 6): array
     {
         if (empty($this->apiKey) || empty($this->host)) {
             return $this->localQuery($botUuid, $queryVector, $topK);
@@ -77,8 +77,9 @@ class PineconeService
                 $matches = $response->json('matches', []);
                 $results = [];
                 foreach ($matches as $match) {
-                    if (isset($match['metadata']['text'])) {
-                        $results[] = $match['metadata']['text'];
+                    $text = $match['metadata']['text'] ?? $match['text'] ?? null;
+                    if ($text) {
+                        $results[] = $text;
                     }
                 }
                 return $results;
@@ -109,9 +110,9 @@ class PineconeService
     }
 
     /**
-     * Cosine similarity matching over local store fallback.
+     * Cosine similarity matching over local store fallback with full context retrieval.
      */
-    protected function localQuery(string $botUuid, array $queryVector, int $topK = 4): array
+    protected function localQuery(string $botUuid, array $queryVector, int $topK = 6): array
     {
         $path = "vector_store/{$botUuid}.json";
         if (!Storage::exists($path)) {
@@ -122,9 +123,11 @@ class PineconeService
         $scored = [];
 
         foreach ($vectors as $item) {
-            $score = $this->cosineSimilarity($queryVector, $item['values'] ?? []);
-            $text = $item['metadata']['text'] ?? '';
+            $vectorValues = $item['values'] ?? $item['embedding'] ?? [];
+            $text = $item['metadata']['text'] ?? $item['text'] ?? '';
+
             if (!empty($text)) {
+                $score = !empty($vectorValues) ? $this->cosineSimilarity($queryVector, $vectorValues) : 0.0;
                 $scored[] = [
                     'score' => $score,
                     'text' => $text,
@@ -132,7 +135,18 @@ class PineconeService
             }
         }
 
+        if (empty($scored)) {
+            return [];
+        }
+
+        // Sort by similarity score descending
         usort($scored, fn($a, $b) => $b['score'] <=> $a['score']);
+
+        // If dataset has <= 10 chunks, provide full document context to LLM
+        if (count($scored) <= 10) {
+            return array_column($scored, 'text');
+        }
+
         return array_column(array_slice($scored, 0, $topK), 'text');
     }
 

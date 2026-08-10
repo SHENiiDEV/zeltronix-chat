@@ -42,14 +42,17 @@ class DocumentProcessorService
             // 4. Generate embeddings and store in Pinecone / Local Vector DB
             $vectorRecords = [];
             foreach ($chunks as $index => $chunkText) {
+                $embedding = $this->openAi->getEmbedding($chunkText);
                 $vectorRecords[] = [
                     'id' => "{$document->bot->uuid}-doc{$document->id}-chunk{$index}",
+                    'values' => $embedding,
+                    'embedding' => $embedding,
                     'text' => $chunkText,
-                    'embedding' => $this->openAi->getEmbedding($chunkText),
                     'metadata' => [
                         'document_id' => $document->id,
                         'filename' => $document->filename,
                         'chunk_index' => $index,
+                        'text' => $chunkText,
                     ],
                 ];
             }

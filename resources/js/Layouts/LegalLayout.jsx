@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
-import { ShieldCheck, FileText, Lock, Cookie, RefreshCw, ArrowLeft } from 'lucide-react';
+import { ShieldCheck, FileText, Lock, Cookie, RefreshCw, ArrowLeft, Download } from 'lucide-react';
 
 export default function LegalLayout({ title, subtitle, lastUpdated = "August 5, 2026", children, company }) {
     const { auth } = usePage().props;
@@ -44,15 +44,25 @@ export default function LegalLayout({ title, subtitle, lastUpdated = "August 5, 
 
             {/* Page Header */}
             <div className="bg-gradient-to-b from-slate-900 via-slate-900/80 to-slate-950 border-b border-slate-800/80 py-12 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto">
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-extrabold uppercase mb-4">
-                        <ShieldCheck className="w-4 h-4" /> Legal & Compliance
+                <div className="max-w-4xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                    <div>
+                        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-extrabold uppercase mb-4">
+                            <ShieldCheck className="w-4 h-4" /> Legal & Compliance
+                        </div>
+                        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
+                            {title}
+                        </h1>
+                        <p className="text-slate-400 text-sm sm:text-base">{subtitle}</p>
+                        <p className="text-xs text-slate-500 mt-4 font-mono">Last Updated: {lastUpdated}</p>
                     </div>
-                    <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
-                        {title}
-                    </h1>
-                    <p className="text-slate-400 text-sm sm:text-base">{subtitle}</p>
-                    <p className="text-xs text-slate-500 mt-4 font-mono">Last Updated: {lastUpdated}</p>
+
+                    <a
+                        href="/Zeltrionix_Official_Legal_and_Compliance_Policies.pdf"
+                        download
+                        className="self-start sm:self-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold text-xs px-5 py-3 rounded-xl transition-all shadow-lg shadow-blue-500/25 flex items-center gap-2 flex-shrink-0"
+                    >
+                        <Download className="w-4 h-4" /> Download Legal PDF
+                    </a>
                 </div>
             </div>
 
@@ -98,6 +108,16 @@ export default function LegalLayout({ title, subtitle, lastUpdated = "August 5, 
                         >
                             <RefreshCw className="w-4 h-4" /> Refund Policy
                         </Link>
+
+                        <div className="pt-4 mt-4 border-t border-slate-800">
+                            <a
+                                href="/Zeltrionix_Official_Legal_and_Compliance_Policies.pdf"
+                                download
+                                className="w-full text-center bg-slate-900 hover:bg-slate-800 border border-slate-800 text-blue-400 hover:text-blue-300 font-bold text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5"
+                            >
+                                <Download className="w-3.5 h-3.5" /> PDF Document
+                            </a>
+                        </div>
                     </div>
 
                     {/* Article Content */}

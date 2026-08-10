@@ -3,6 +3,12 @@ import { Head, Link } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import { Receipt, Download, FileText, CheckCircle2, ArrowRight, ExternalLink } from 'lucide-react';
 
+const SYMBOLS = {
+    EUR: '€',
+    USD: '$',
+    GBP: '£',
+};
+
 export default function Index({ invoices = [] }) {
     return (
         <AppLayout
@@ -45,40 +51,43 @@ export default function Index({ invoices = [] }) {
                     </div>
                 ) : (
                     <div className="divide-y divide-slate-800">
-                        {invoices.map((inv) => (
-                            <div key={inv.id} className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-800/40 transition-colors">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
-                                        <Receipt className="w-6 h-6" />
-                                    </div>
-                                    <div>
-                                        <div className="flex items-center gap-3">
-                                            <span className="font-mono font-bold text-white text-base">{inv.invoice_number}</span>
-                                            <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase flex items-center gap-1">
-                                                <CheckCircle2 className="w-3 h-3" /> PAID
-                                            </span>
+                        {invoices.map((inv) => {
+                            const symbol = SYMBOLS[inv.currency] || '€';
+                            return (
+                                <div key={inv.id} className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-800/40 transition-colors">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+                                            <Receipt className="w-6 h-6" />
                                         </div>
-                                        <p className="text-xs text-slate-400 mt-1">
-                                            {inv.description} • {new Date(inv.paid_at || inv.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-                                        </p>
+                                        <div>
+                                            <div className="flex items-center gap-3">
+                                                <span className="font-mono font-bold text-white text-base">{inv.invoice_number}</span>
+                                                <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase flex items-center gap-1">
+                                                    <CheckCircle2 className="w-3 h-3" /> PAID
+                                                </span>
+                                            </div>
+                                            <p className="text-xs text-slate-400 mt-1">
+                                                {inv.description} • {new Date(inv.paid_at || inv.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center gap-6">
+                                        <div className="text-right">
+                                            <span className="text-lg font-black text-white">{symbol}{parseFloat(inv.amount).toFixed(2)}</span>
+                                            <span className="text-xs text-slate-400 block font-semibold">{inv.currency || 'EUR'}</span>
+                                        </div>
+
+                                        <Link
+                                            href={route('invoices.show', inv.id)}
+                                            className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-4 py-2.5 rounded-xl border border-slate-700 transition-colors flex items-center gap-1.5"
+                                        >
+                                            View & Print <ExternalLink className="w-4 h-4 text-blue-400" />
+                                        </Link>
                                     </div>
                                 </div>
-
-                                <div className="flex items-center gap-6">
-                                    <div className="text-right">
-                                        <span className="text-lg font-black text-white">€{parseFloat(inv.amount).toFixed(2)}</span>
-                                        <span className="text-xs text-slate-400 block font-semibold">EUR</span>
-                                    </div>
-
-                                    <Link
-                                        href={route('invoices.show', inv.id)}
-                                        className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-4 py-2.5 rounded-xl border border-slate-700 transition-colors flex items-center gap-1.5"
-                                    >
-                                        View & Print <ExternalLink className="w-4 h-4 text-blue-400" />
-                                    </Link>
-                                </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 )}
             </div>

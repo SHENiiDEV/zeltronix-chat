@@ -9,10 +9,23 @@ import {
     Coins, Sliders
 } from 'lucide-react';
 
+const CURRENCIES = {
+    EUR: { code: 'EUR', symbol: '€', rate: 1.0, name: 'EUR (€)' },
+    USD: { code: 'USD', symbol: '$', rate: 1.09, name: 'USD ($)' },
+    GBP: { code: 'GBP', symbol: '£', rate: 0.86, name: 'GBP (£)' },
+};
+
 export default function Welcome({ auth }) {
-    // Custom token calculator (€0.60 per 1,000,000 tokens)
-    const [customTokens, setCustomTokens] = useState(10000000); // 10 Million Tokens
-    const calculatedEuro = ((customTokens / 1000000) * 0.60).toFixed(2);
+    const [selectedCurrency, setSelectedCurrency] = useState('EUR');
+    const [customTokens, setCustomTokens] = useState(5000); // 5,000 Tokens
+
+    const curr = CURRENCIES[selectedCurrency] || CURRENCIES.EUR;
+
+    // Rate: €10 per 1,000 AI tokens base
+    const calcPrice = (tokens) => {
+        const baseEur = (tokens / 1000) * 10.00;
+        return (baseEur * curr.rate).toFixed(2);
+    };
 
     return (
         <GuestLayout>
@@ -35,7 +48,7 @@ export default function Welcome({ auth }) {
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-extrabold tracking-widest uppercase mb-6 shadow-lg shadow-blue-500/10 backdrop-blur-md">
                             <Zap className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
-                            TRANSPARENT TOKEN-BASED MONETIZATION
+                            MULTI-CURRENCY SUPPORT: EUR • USD • GBP
                         </div>
 
                         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6">
@@ -43,11 +56,11 @@ export default function Welcome({ auth }) {
                             <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
                                 Our AI Agents.
                             </span> <br />
-                            Pay-Per-Token Precision.
+                            Zero Hallucinations.
                         </h1>
 
-                        <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 mb-8 font-normal leading-relaxed">
-                            Deploy autonomous AI support agents trained on your business docs. Pay strictly for the AI tokens your agents consume, top-up anytime with custom amounts, and save thousands on support costs.
+                        <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed mb-8">
+                            Empower your business with autonomous, 24/7 customer support widgets trained exclusively on your business documentation. Flexible token rates at <span className="text-white font-bold">{curr.symbol}{(10 * curr.rate).toFixed(2)} {curr.code} per 1,000 AI tokens</span>.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
@@ -70,14 +83,14 @@ export default function Welcome({ auth }) {
                                         href="#pricing"
                                         className="w-full sm:w-auto bg-slate-900/90 hover:bg-slate-800 text-slate-200 font-bold py-4 px-8 rounded-2xl transition-colors border border-slate-800 text-center"
                                     >
-                                        View Plans (€30 / €100)
+                                        View Token Rates ({curr.symbol}{(10 * curr.rate).toFixed(2)} / 1k tokens)
                                     </a>
                                 </>
                             )}
                         </div>
 
                         <div className="mt-10 flex items-center justify-center lg:justify-start gap-6 text-slate-400 text-xs font-semibold">
-                            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> Monthly Token Quota</span>
+                            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> Multi-Currency Support</span>
                             <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> Custom Top-Up Any Time</span>
                             <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-blue-400" /> SOC2 Compliant</span>
                         </div>
@@ -159,92 +172,124 @@ export default function Welcome({ auth }) {
                 </div>
             </section>
 
-            {/* 4. PRICING SECTION - PRO (€30 = 50M TOKENS) AND ENTERPRISE (€100 = 175M TOKENS) */}
+            {/* 4. PRICING & MULTI-CURRENCY CALCULATOR */}
             <section id="pricing" className="py-24 bg-slate-950 border-t border-slate-900">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Token-Based Plans</h2>
+                    <div className="text-center max-w-3xl mx-auto mb-12">
+                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Token Pricing & Multi-Currency</h2>
                         <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                            Transparent Plans & Flexible Token Top-Ups
+                            Transparent Token Pricing ({curr.symbol}{(10 * curr.rate).toFixed(2)} per 1,000 Tokens)
                         </p>
                         <p className="text-slate-400 text-sm mt-3">
-                            Each plan includes a massive monthly quota of AI tokens. Top-up any custom token amount anytime.
+                            Pay only for what you use. Choose your preferred currency below.
                         </p>
+
+                        {/* Multi-Currency Selector */}
+                        <div className="inline-flex items-center gap-2 mt-6 p-1.5 bg-slate-900 border border-slate-800 rounded-2xl">
+                            <Globe className="w-4 h-4 text-blue-400 ml-2" />
+                            <span className="text-xs text-slate-400 font-bold mr-2">Currency:</span>
+                            {Object.values(CURRENCIES).map((c) => (
+                                <button
+                                    key={c.code}
+                                    type="button"
+                                    onClick={() => setSelectedCurrency(c.code)}
+                                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+                                        selectedCurrency === c.code
+                                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25'
+                                            : 'text-slate-400 hover:text-white'
+                                    }`}
+                                >
+                                    {c.symbol} {c.code}
+                                </button>
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
-                        {/* PRO Plan - €30 */}
-                        <div className="bg-gradient-to-b from-slate-900 to-slate-950 p-10 rounded-3xl border border-slate-800 shadow-2xl flex flex-col justify-between relative hover:border-blue-500/50 transition-all">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+                        {/* 1,000 Tokens */}
+                        <div className="bg-slate-900/90 p-8 rounded-3xl border border-slate-800 shadow-xl flex flex-col justify-between hover:border-blue-500/40 transition-all">
                             <div>
-                                <div className="flex justify-between items-start mb-4">
-                                    <div>
-                                        <h3 className="text-2xl font-bold text-white mb-1">PRO Plan</h3>
-                                        <p className="text-slate-400 text-sm">Ideal for growing SaaS & stores</p>
-                                    </div>
-                                    <div className="w-10 h-10 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center">
-                                        <Coins className="w-5 h-5" />
-                                    </div>
+                                <h3 className="text-xl font-bold text-white mb-1">Starter Pack</h3>
+                                <p className="text-slate-400 text-xs mb-6">Ideal for small sites & testing</p>
+
+                                <div className="text-4xl font-black text-white mb-6">
+                                    {curr.symbol}{calcPrice(1000)} <span className="text-xs text-slate-400 font-semibold">{curr.code}</span>
                                 </div>
 
-                                <div className="text-5xl font-extrabold mb-8 text-white">€30<span className="text-base text-slate-400 font-normal"> / month</span></div>
-
-                                <div className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-4 mb-6 text-center">
-                                    <span className="text-xs text-blue-300 font-semibold block uppercase tracking-wider">Included Monthly Quota</span>
-                                    <span className="text-2xl font-black text-blue-400">50,000,000 AI Tokens</span>
+                                <div className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-3 mb-6 text-center">
+                                    <span className="text-xs text-blue-300 font-bold">1,000 AI Tokens</span>
                                 </div>
 
-                                <ul className="space-y-4 text-sm text-slate-200 mb-8">
-                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-blue-400" /> <span><strong>5 AI Support Agents</strong></span></li>
-                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-blue-400" /> <span>Up to 50 Knowledge Base Files & URLs</span></li>
-                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-blue-400" /> <span>Full Color & Design Customization</span></li>
-                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-blue-400" /> <span>Instant Token Top-Ups at wholesale rates</span></li>
-                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-blue-400" /> <span>Chat History & Token Telemetry</span></li>
+                                <ul className="space-y-3 text-xs text-slate-300 mb-6">
+                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> Full Knowledge Base RAG</li>
+                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> Dark & Light Theme Modes</li>
+                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> VAT Invoice Generation</li>
                                 </ul>
                             </div>
                             <Link
                                 href={route('register')}
-                                className="w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2"
+                                className="w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all"
                             >
-                                Choose PRO (€30/mo) <ArrowRight className="w-4 h-4" />
+                                Get Started
                             </Link>
                         </div>
 
-                        {/* ENTERPRISE Plan - €100 */}
-                        <div className="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 p-10 rounded-3xl border-2 border-purple-500 shadow-2xl shadow-purple-500/20 flex flex-col justify-between relative">
-                            <span className="absolute -top-3.5 right-8 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md flex items-center gap-1">
-                                <Star className="w-3.5 h-3.5 fill-white" /> Enterprise Grade
+                        {/* 5,000 Tokens */}
+                        <div className="bg-gradient-to-b from-slate-900 to-slate-950 p-8 rounded-3xl border-2 border-blue-500 shadow-2xl shadow-blue-500/10 flex flex-col justify-between relative">
+                            <span className="absolute -top-3 right-6 bg-blue-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                                Most Popular
                             </span>
                             <div>
-                                <div className="flex justify-between items-start mb-4">
-                                    <div>
-                                        <h3 className="text-2xl font-bold text-white mb-1">ENTERPRISE</h3>
-                                        <p className="text-purple-300 text-sm">For high-traffic operations & scale</p>
-                                    </div>
-                                    <div className="w-10 h-10 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center">
-                                        <Zap className="w-5 h-5" />
-                                    </div>
+                                <h3 className="text-xl font-bold text-white mb-1">Popular Pack</h3>
+                                <p className="text-slate-400 text-xs mb-6">For active customer support</p>
+
+                                <div className="text-4xl font-black text-white mb-6">
+                                    {curr.symbol}{calcPrice(5000)} <span className="text-xs text-slate-400 font-semibold">{curr.code}</span>
                                 </div>
 
-                                <div className="text-5xl font-extrabold mb-8 text-white">€100<span className="text-base text-purple-300 font-normal"> / month</span></div>
-
-                                <div className="bg-purple-500/10 border border-purple-500/20 rounded-2xl p-4 mb-6 text-center">
-                                    <span className="text-xs text-purple-300 font-semibold block uppercase tracking-wider">Included Monthly Quota</span>
-                                    <span className="text-2xl font-black text-purple-300">175,000,000 AI Tokens</span>
+                                <div className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-3 mb-6 text-center">
+                                    <span className="text-xs text-blue-300 font-bold">5,000 AI Tokens</span>
                                 </div>
 
-                                <ul className="space-y-4 text-sm text-slate-200 mb-8">
-                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-purple-400" /> <span><strong>Unlimited AI Agents</strong></span></li>
-                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-purple-400" /> <span>Unlimited Knowledge Documents & URLs</span></li>
-                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-purple-400" /> <span>Custom Token Top-Up Module (Any Amount)</span></li>
-                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-purple-400" /> <span>Dedicated Account Manager & SLA</span></li>
-                                    <li className="flex items-center gap-3"><Check className="w-4 h-4 text-purple-400" /> <span>Enterprise API Access & Webhooks</span></li>
+                                <ul className="space-y-3 text-xs text-slate-300 mb-6">
+                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> Unlimited AI Agents</li>
+                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> PDF, DOCX, TXT, CSV Uploads</li>
+                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> Human Escalation Trigger</li>
                                 </ul>
                             </div>
                             <Link
                                 href={route('register')}
-                                className="w-full text-center bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg shadow-purple-500/30 flex items-center justify-center gap-2"
+                                className="w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all shadow-lg shadow-blue-500/25"
                             >
-                                Choose ENTERPRISE (€100/mo) <ArrowRight className="w-4 h-4" />
+                                Get Started
+                            </Link>
+                        </div>
+
+                        {/* 10,000 Tokens */}
+                        <div className="bg-slate-900/90 p-8 rounded-3xl border border-purple-500/30 shadow-xl flex flex-col justify-between hover:border-purple-500 transition-all">
+                            <div>
+                                <h3 className="text-xl font-bold text-white mb-1">Pro Pack</h3>
+                                <p className="text-purple-300 text-xs mb-6">High volume customer support</p>
+
+                                <div className="text-4xl font-black text-white mb-6">
+                                    {curr.symbol}{calcPrice(10000)} <span className="text-xs text-slate-400 font-semibold">{curr.code}</span>
+                                </div>
+
+                                <div className="bg-purple-500/10 border border-purple-500/20 rounded-2xl p-3 mb-6 text-center">
+                                    <span className="text-xs text-purple-300 font-bold">10,000 AI Tokens</span>
+                                </div>
+
+                                <ul className="space-y-3 text-xs text-slate-300 mb-6">
+                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-purple-400" /> Priority Vector Store Retrieval</li>
+                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-purple-400" /> Dedicated Account Manager</li>
+                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-purple-400" /> Multi-Currency VAT Invoices</li>
+                                </ul>
+                            </div>
+                            <Link
+                                href={route('register')}
+                                className="w-full text-center bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all shadow-lg shadow-purple-500/25"
+                            >
+                                Get Started
                             </Link>
                         </div>
                     </div>
@@ -256,36 +301,36 @@ export default function Welcome({ auth }) {
                                 <Sliders className="w-5 h-5" />
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold text-white">Custom Token Top-Up Calculator</h3>
-                                <p className="text-xs text-slate-400">Need extra tokens? Calculate custom token top-ups instantly.</p>
+                                <h3 className="text-xl font-bold text-white">Interactive Token Calculator</h3>
+                                <p className="text-xs text-slate-400">Drag slider to calculate custom token package price in {curr.name}.</p>
                             </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mt-6">
                             <div className="md:col-span-8 space-y-4">
                                 <div className="flex justify-between text-xs font-bold text-slate-300">
-                                    <span>Top-Up Token Amount:</span>
+                                    <span>Token Package Size:</span>
                                     <span className="text-blue-400 text-sm font-black">{customTokens.toLocaleString()} Tokens</span>
                                 </div>
                                 <input
                                     type="range"
-                                    min="1000000"
-                                    max="100000000"
-                                    step="1000000"
+                                    min="1000"
+                                    max="100000"
+                                    step="1000"
                                     value={customTokens}
                                     onChange={(e) => setCustomTokens(Number(e.target.value))}
                                     className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500"
                                 />
                                 <div className="flex justify-between text-[11px] text-slate-500 font-mono">
-                                    <span>1,000,000 tokens</span>
-                                    <span>50,000,000 tokens</span>
-                                    <span>100,000,000 tokens</span>
+                                    <span>1,000 tokens</span>
+                                    <span>50,000 tokens</span>
+                                    <span>100,000 tokens</span>
                                 </div>
                             </div>
 
                             <div className="md:col-span-4 bg-slate-950 border border-slate-800 rounded-2xl p-6 text-center">
-                                <span className="text-xs text-slate-400 block font-semibold mb-1">Top-Up Price</span>
-                                <div className="text-3xl font-black text-white">€{calculatedEuro}</div>
+                                <span className="text-xs text-slate-400 block font-semibold mb-1">Total ({curr.code})</span>
+                                <div className="text-3xl font-black text-white">{curr.symbol}{calcPrice(customTokens)}</div>
                                 <span className="text-[10px] text-emerald-400 block mt-1">Instant Token Credit</span>
                             </div>
                         </div>
@@ -362,7 +407,7 @@ export default function Welcome({ auth }) {
                         Ready to Transform Your Customer Service?
                     </h2>
                     <p className="text-slate-300 text-lg max-w-2xl mx-auto mb-8">
-                        Join hundreds of forward-thinking businesses reducing costs and boosting satisfaction with Zeltrionix. Start with your PRO (€30) or ENTERPRISE (€100) token plan today.
+                        Join hundreds of forward-thinking businesses reducing costs and boosting satisfaction with Zeltrionix. Start building your custom AI Support Agent today.
                     </p>
                     <Link
                         href={route('register')}

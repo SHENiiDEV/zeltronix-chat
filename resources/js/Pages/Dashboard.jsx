@@ -1,21 +1,40 @@
 import React, { useState } from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
-import { Bot, FileText, Layers, MessageSquare, TrendingUp, ArrowUpRight, Plus, ChevronRight, Coins, Sliders } from 'lucide-react';
+import { Bot, FileText, Layers, MessageSquare, TrendingUp, ArrowUpRight, Plus, ChevronRight, Coins, Sliders, Globe } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { toast } from 'sonner';
 
+const CURRENCIES = {
+    EUR: { code: 'EUR', symbol: '€', rate: 1.0, name: 'Euro (€)' },
+    USD: { code: 'USD', symbol: '$', rate: 1.09, name: 'US Dollar ($)' },
+    GBP: { code: 'GBP', symbol: '£', rate: 0.86, name: 'British Pound (£)' },
+};
+
 export default function Dashboard({ stats, chartData = [], recentBots }) {
     const [showTopUpModal, setShowTopUpModal] = useState(false);
-    const [customTokenInput, setCustomTokenInput] = useState(10000000); // 10M tokens
+    const [selectedCurrency, setSelectedCurrency] = useState('EUR');
+    const [customTokenInput, setCustomTokenInput] = useState(5000); // 5,000 tokens
 
     const { post, processing } = useForm();
 
+    const curr = CURRENCIES[selectedCurrency] || CURRENCIES.EUR;
+
+    const calcPrice = (tokens) => {
+        const baseEur = (tokens / 1000) * 10.00; // €10 per 1,000 tokens
+        return (baseEur * curr.rate).toFixed(2);
+    };
+
     const handleTopUpSubmit = (amountTokens) => {
-        post(route('topup.store', { tokens: amountTokens }), {
+        const price = calcPrice(amountTokens);
+        post(route('topup.store', { 
+            tokens: amountTokens,
+            currency: curr.code,
+            amount: price
+        }), {
             onSuccess: () => {
                 setShowTopUpModal(false);
-                toast.success(`Successfully added ${amountTokens.toLocaleString()} tokens to your account!`);
+                toast.success(`Successfully added ${amountTokens.toLocaleString()} tokens (${curr.symbol}${price} ${curr.code})!`);
             }
         });
     };
@@ -200,60 +219,93 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                 )}
             </div>
 
-            {/* TOKEN TOP-UP MODAL */}
+            {/* MULTI-CURRENCY TOKEN TOP-UP MODAL */}
             {showTopUpModal && (
                 <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
                     <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-lg p-6 shadow-2xl">
-                        <div className="flex justify-between items-center mb-6">
+                        <div className="flex justify-between items-center mb-4">
                             <div className="flex items-center gap-2">
                                 <Coins className="w-6 h-6 text-amber-400" />
                                 <h3 className="text-xl font-bold text-white">Top-Up AI Tokens</h3>
                             </div>
                             <button
                                 onClick={() => setShowTopUpModal(false)}
-                                className="text-slate-400 hover:text-white"
+                                className="text-slate-400 hover:text-white text-lg font-bold"
                             >
                                 ✕
                             </button>
                         </div>
 
-                        <p className="text-xs text-slate-400 mb-6">
-                            Select a preset token package or enter a custom amount to instantly add AI tokens to your account balance.
+                        {/* Multi-Currency Selector */}
+                        <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800 mb-6 flex items-center justify-between">
+                            <span className="text-xs font-bold text-slate-400 flex items-center gap-1.5">
+                                <Globe className="w-4 h-4 text-blue-400" /> Payment Currency:
+                            </span>
+                            <div className="flex gap-1.5">
+                                {Object.values(CURRENCIES).map((c) => (
+                                    <button
+                                        key={c.code}
+                                        type="button"
+                                        onClick={() => setSelectedCurrency(c.code)}
+                                        className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                                            selectedCurrency === c.code
+                                                ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
+                                                : 'bg-slate-900 text-slate-400 hover:text-white'
+                                        }`}
+                                    >
+                                        {c.symbol} {c.code}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        <p className="text-xs text-slate-400 mb-4">
+                            Rate: <strong>{curr.symbol}{(10 * curr.rate).toFixed(2)} {curr.code} per 1,000 AI tokens</strong>
                         </p>
 
-                        <div className="grid grid-cols-2 gap-4 mb-6">
+                        <div className="grid grid-cols-3 gap-3 mb-6">
                             <button
                                 type="button"
-                                onClick={() => handleTopUpSubmit(10000000)}
-                                className="bg-slate-950 border border-slate-800 hover:border-amber-500/50 p-4 rounded-2xl text-left transition-all group"
+                                onClick={() => handleTopUpSubmit(1000)}
+                                className="bg-slate-950 border border-slate-800 hover:border-amber-500/50 p-3 rounded-2xl text-left transition-all group"
                             >
-                                <span className="text-xs text-amber-400 font-bold block mb-1">Standard Pack</span>
-                                <div className="text-lg font-black text-white">10,000,000 Tokens</div>
-                                <span className="text-xs text-slate-400 font-semibold mt-2 block">€6.00</span>
+                                <span className="text-[10px] text-amber-400 font-bold block mb-1">Starter Pack</span>
+                                <div className="text-base font-black text-white">1,000 Tokens</div>
+                                <span className="text-xs text-slate-400 font-semibold mt-1 block">{curr.symbol}{calcPrice(1000)}</span>
                             </button>
 
                             <button
                                 type="button"
-                                onClick={() => handleTopUpSubmit(50000000)}
-                                className="bg-slate-950 border border-amber-500/40 hover:border-amber-500 p-4 rounded-2xl text-left transition-all shadow-lg shadow-amber-500/5 group"
+                                onClick={() => handleTopUpSubmit(5000)}
+                                className="bg-slate-950 border border-amber-500/40 hover:border-amber-500 p-3 rounded-2xl text-left transition-all shadow-lg shadow-amber-500/5 group"
                             >
-                                <span className="text-xs text-amber-400 font-bold block mb-1">Mega Pack</span>
-                                <div className="text-lg font-black text-white">50,000,000 Tokens</div>
-                                <span className="text-xs text-slate-400 font-semibold mt-2 block">€30.00</span>
+                                <span className="text-[10px] text-amber-400 font-bold block mb-1">Popular Pack</span>
+                                <div className="text-base font-black text-white">5,000 Tokens</div>
+                                <span className="text-xs text-slate-400 font-semibold mt-1 block">{curr.symbol}{calcPrice(5000)}</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => handleTopUpSubmit(10000)}
+                                className="bg-slate-950 border border-purple-500/40 hover:border-purple-500 p-3 rounded-2xl text-left transition-all group"
+                            >
+                                <span className="text-[10px] text-purple-400 font-bold block mb-1">Pro Pack</span>
+                                <div className="text-base font-black text-white">10,000 Tokens</div>
+                                <span className="text-xs text-slate-400 font-semibold mt-1 block">{curr.symbol}{calcPrice(10000)}</span>
                             </button>
                         </div>
 
                         {/* Custom Token Input */}
                         <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 mb-6">
                             <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
-                                Custom Token Top-Up
+                                Custom Token Amount
                             </label>
                             <div className="flex gap-2">
                                 <input
                                     type="number"
-                                    min="1000000"
-                                    max="500000000"
-                                    step="1000000"
+                                    min="1000"
+                                    max="100000000"
+                                    step="1000"
                                     value={customTokenInput}
                                     onChange={(e) => setCustomTokenInput(Number(e.target.value))}
                                     className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-amber-500"
@@ -264,7 +316,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                                     disabled={processing}
                                     className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs px-5 py-2 rounded-xl transition-all shadow-md shadow-amber-500/20"
                                 >
-                                    Top Up (€{((customTokenInput / 1000000) * 0.60).toFixed(2)})
+                                    Top Up ({curr.symbol}{calcPrice(customTokenInput)})
                                 </button>
                             </div>
                         </div>

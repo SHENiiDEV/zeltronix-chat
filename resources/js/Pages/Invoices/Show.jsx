@@ -3,10 +3,18 @@ import { Head, Link } from '@inertiajs/react';
 import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
 import { Printer, ArrowLeft, CheckCircle2, ShieldCheck, Mail, Phone, MapPin } from 'lucide-react';
 
+const SYMBOLS = {
+    EUR: '€',
+    USD: '$',
+    GBP: '£',
+};
+
 export default function Show({ invoice, customer, company }) {
     const handlePrint = () => {
         window.print();
     };
+
+    const currencySymbol = SYMBOLS[invoice.currency] || '€';
 
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100 font-sans p-4 sm:p-8 flex flex-col items-center">
@@ -76,7 +84,7 @@ export default function Show({ invoice, customer, company }) {
                             <tr>
                                 <th className="p-4">Description</th>
                                 <th className="p-4 text-center">Tokens Credited</th>
-                                <th className="p-4 text-right">Amount (EUR)</th>
+                                <th className="p-4 text-right">Amount ({invoice.currency || 'EUR'})</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-800 print:divide-slate-200 text-slate-200 print:text-slate-800">
@@ -89,7 +97,7 @@ export default function Show({ invoice, customer, company }) {
                                     +{Number(invoice.tokens_credited).toLocaleString()}
                                 </td>
                                 <td className="p-4 text-right font-black text-white print:text-slate-900 text-sm">
-                                    €{parseFloat(invoice.amount).toFixed(2)}
+                                    {currencySymbol}{parseFloat(invoice.amount).toFixed(2)}
                                 </td>
                             </tr>
                         </tbody>
@@ -101,15 +109,15 @@ export default function Show({ invoice, customer, company }) {
                     <div className="w-full sm:w-64 space-y-2 text-xs">
                         <div className="flex justify-between text-slate-400 print:text-slate-600">
                             <span>Subtotal:</span>
-                            <span>€{parseFloat(invoice.amount).toFixed(2)}</span>
+                            <span>{currencySymbol}{parseFloat(invoice.amount).toFixed(2)}</span>
                         </div>
                         <div className="flex justify-between text-slate-400 print:text-slate-600">
                             <span>VAT (0% - Reverse Charge):</span>
-                            <span>€0.00</span>
+                            <span>{currencySymbol}0.00</span>
                         </div>
                         <div className="flex justify-between text-base font-black text-white print:text-slate-900 pt-2 border-t border-slate-800 print:border-slate-300">
                             <span>Total Paid:</span>
-                            <span className="text-emerald-400 print:text-emerald-700">€{parseFloat(invoice.amount).toFixed(2)} EUR</span>
+                            <span className="text-emerald-400 print:text-emerald-700">{currencySymbol}{parseFloat(invoice.amount).toFixed(2)} {invoice.currency || 'EUR'}</span>
                         </div>
                     </div>
                 </div>

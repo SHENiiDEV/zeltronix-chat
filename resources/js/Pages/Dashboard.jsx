@@ -21,7 +21,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
     const curr = CURRENCIES[selectedCurrency] || CURRENCIES.EUR;
 
     const calcPrice = (tokens) => {
-        const baseEur = (tokens / 1000) * 10.00; // €10 per 1,000 tokens
+        const baseEur = (tokens / 1000) * 1.00; // €1.00 per 1,000 tokens
         return (baseEur * curr.rate).toFixed(2);
     };
 
@@ -260,7 +260,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                         </div>
 
                         <p className="text-xs text-slate-400 mb-4">
-                            Rate: <strong>{curr.symbol}{(10 * curr.rate).toFixed(2)} {curr.code} per 1,000 AI tokens</strong>
+                            Rate: <strong>{curr.symbol}{(1.00 * curr.rate).toFixed(2)} {curr.code} per 1,000 AI tokens</strong>
                         </p>
 
                         <div className="grid grid-cols-3 gap-3 mb-6">

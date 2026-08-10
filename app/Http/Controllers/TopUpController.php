@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class TopUpController extends Controller
 {
     /**
-     * Top-up tokens for the user balance with multi-currency support (€10 per 1,000 tokens base).
+     * Top-up tokens for the user balance with multi-currency support (€1.00 per 1,000 tokens base).
      */
     public function store(Request $request)
     {
@@ -35,8 +35,8 @@ class TopUpController extends Controller
         $multiplier = $rates[$currency] ?? 1.0;
         $symbol = $symbols[$currency] ?? '€';
 
-        // Base rate: 1,000 AI Tokens = €10.00 EUR
-        $basePriceEur = ($tokens / 1000) * 10.00;
+        // Base rate: 1,000 AI Tokens = €1.00 EUR
+        $basePriceEur = ($tokens / 1000) * 1.00;
         $calculatedAmount = isset($validated['amount']) 
             ? (float) $validated['amount'] 
             : round($basePriceEur * $multiplier, 2);

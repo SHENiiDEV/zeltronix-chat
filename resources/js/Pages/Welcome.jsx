@@ -21,9 +21,9 @@ export default function Welcome({ auth }) {
 
     const curr = CURRENCIES[selectedCurrency] || CURRENCIES.EUR;
 
-    // Rate: €10 per 1,000 AI tokens base
+    // Rate: €1.00 per 1,000 AI tokens base
     const calcPrice = (tokens) => {
-        const baseEur = (tokens / 1000) * 10.00;
+        const baseEur = (tokens / 1000) * 1.00;
         return (baseEur * curr.rate).toFixed(2);
     };
 
@@ -60,7 +60,7 @@ export default function Welcome({ auth }) {
                         </h1>
 
                         <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed mb-8">
-                            Empower your business with autonomous, 24/7 customer support widgets trained exclusively on your business documentation. Flexible token rates at <span className="text-white font-bold">{curr.symbol}{(10 * curr.rate).toFixed(2)} {curr.code} per 1,000 AI tokens</span>.
+                            Empower your business with autonomous, 24/7 customer support widgets trained exclusively on your business documentation. Flexible token rates at <span className="text-white font-bold">{curr.symbol}{(1.00 * curr.rate).toFixed(2)} {curr.code} per 1,000 AI tokens</span>.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
@@ -83,7 +83,7 @@ export default function Welcome({ auth }) {
                                         href="#pricing"
                                         className="w-full sm:w-auto bg-slate-900/90 hover:bg-slate-800 text-slate-200 font-bold py-4 px-8 rounded-2xl transition-colors border border-slate-800 text-center"
                                     >
-                                        View Token Rates ({curr.symbol}{(10 * curr.rate).toFixed(2)} / 1k tokens)
+                                        View Token Rates ({curr.symbol}{(1.00 * curr.rate).toFixed(2)} / 1k tokens)
                                     </a>
                                 </>
                             )}
@@ -178,7 +178,7 @@ export default function Welcome({ auth }) {
                     <div className="text-center max-w-3xl mx-auto mb-12">
                         <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Token Pricing & Multi-Currency</h2>
                         <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                            Transparent Token Pricing ({curr.symbol}{(10 * curr.rate).toFixed(2)} per 1,000 Tokens)
+                            Transparent Token Pricing ({curr.symbol}{(1.00 * curr.rate).toFixed(2)} per 1,000 Tokens)
                         </p>
                         <p className="text-slate-400 text-sm mt-3">
                             Pay only for what you use. Choose your preferred currency below.

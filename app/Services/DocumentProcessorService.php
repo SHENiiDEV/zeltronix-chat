@@ -19,83 +19,61 @@ class DocumentProcessorService
     }
 
     /**
-     * Process an uploaded document, chunk it, embed, and store in vector database.
+     * Process document: parse text, split into chunks, generate embeddings, store in vector store.
      */
-    public function processDocument(Document $document): bool
+    public function process(Document $document): void
     {
         try {
             $document->update(['status' => 'processing']);
 
-            $fullPath = storage_path('app/' . $document->file_path);
-            if (!file_exists($fullPath) && Storage::exists($document->file_path)) {
-                $fullPath = Storage::path($document->file_path);
+            // 1. Get raw file path
+            $filePath = Storage::path($document->file_path);
+
+            // 2. Extract plain text
+            $text = $this->extractText($filePath, strtolower(pathinfo($document->filename, PATHINFO_EXTENSION)));
+
+            if (empty(trim($text))) {
+                throw new \Exception("Extracted text is empty for file {$document->filename}");
             }
 
-            $rawText = $this->extractTextFromFile($fullPath, $document->filename);
+            // 3. Chunk text into overlapping segments
+            $chunks = $this->chunkText($text);
 
-            if (empty(trim($rawText))) {
-                throw new \Exception('Extracted document text is empty.');
-            }
-
-            $chunks = $this->chunkText($rawText, 1200, 150);
-
-            $vectors = [];
-            $botUuid = $document->bot->uuid;
-
-            // Clear old vector storage file if reprocessing
-            $vPath = storage_path('app/private/vector_store/' . $botUuid . '.json');
-            if (file_exists($vPath)) {
-                @unlink($vPath);
-            }
-
+            // 4. Generate embeddings and store in Pinecone / Local Vector DB
+            $vectorRecords = [];
             foreach ($chunks as $index => $chunkText) {
-                $embedding = $this->openAi->getEmbedding($chunkText);
-                $vectorId = "doc_{$document->id}_chunk_{$index}";
-
-                $vectors[] = [
-                    'id' => $vectorId,
-                    'values' => $embedding,
+                $vectorRecords[] = [
+                    'id' => "{$document->bot->uuid}-doc{$document->id}-chunk{$index}",
+                    'text' => $chunkText,
+                    'embedding' => $this->openAi->getEmbedding($chunkText),
                     'metadata' => [
                         'document_id' => $document->id,
-                        'chunk_index' => $index,
                         'filename' => $document->filename,
-                        'text' => $chunkText,
-                    ]
+                        'chunk_index' => $index,
+                    ],
                 ];
             }
 
-            $this->pinecone->upsertVectors($botUuid, $vectors);
+            $this->pinecone->upsertVectors($document->bot->uuid, $vectorRecords);
 
+            // 5. Update document status
             $document->update([
                 'status' => 'ready',
                 'chunk_count' => count($chunks),
-                'error_message' => null,
             ]);
 
-            return true;
+            Log::info("Document {$document->id} ({$document->filename}) processed successfully with " . count($chunks) . " chunks.");
         } catch (\Throwable $e) {
+            $document->update(['status' => 'error']);
             Log::error("Failed to process document ID {$document->id}: " . $e->getMessage());
-
-            $document->update([
-                'status' => 'failed',
-                'error_message' => $e->getMessage(),
-            ]);
-
-            return false;
         }
     }
 
     /**
-     * Parse text from file based on extension.
+     * Extract text based on file extension.
      */
-    protected function extractTextFromFile(string $filePath, string $filename): string
+    protected function extractText(string $filePath, string $ext): string
     {
-        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-
-        if (!file_exists($filePath)) {
-            return '';
-        }
-
         if (in_array($ext, ['txt', 'md', 'json', 'csv', 'log'])) {
             return file_get_contents($filePath);
         }
@@ -106,7 +84,7 @@ class DocumentProcessorService
 
         // Fallback for docx or unrecognized files
         $content = @file_get_contents($filePath);
-        return preg_replace('/[^\x20-\x7E\x0A\x0D\x0400-\x04FF]/u', ' ', $content) ?: 'Document text content';
+        return preg_replace('/[^\x20-\x7E\x0A\x0D\x{0400}-\x{04FF}]/u', ' ', $content) ?: 'Document text content';
     }
 
     /**
@@ -131,7 +109,7 @@ class DocumentProcessorService
         preg_match_all('/(stream[\r\n]+(.*?)[\r\n]+endstream)|(\((.*?)\))/s', $content, $matches);
         $extracted = implode(' ', array_filter($matches[4] ?? []));
 
-        return preg_replace('/[^\x20-\x7E\x0A\x0D\x0400-\x04FF]/u', ' ', $extracted ?: $content);
+        return preg_replace('/[^\x20-\x7E\x0A\x0D\x{0400}-\x{04FF}]/u', ' ', $extracted ?: $content);
     }
 
     /**

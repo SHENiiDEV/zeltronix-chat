@@ -70,6 +70,14 @@ class DocumentProcessorService
     }
 
     /**
+     * Alias method for process()
+     */
+    public function processDocument(Document $document): void
+    {
+        $this->process($document);
+    }
+
+    /**
      * Extract text based on file extension.
      */
     protected function extractText(string $filePath, string $ext): string

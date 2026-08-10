@@ -24,7 +24,7 @@ class DocumentController extends Controller
         }
 
         $request->validate([
-            'document' => 'required|file|mimes:txt,pdf,md,doc,docx|max:10240', // 10MB max
+            'document' => 'required|file|mimes:txt,pdf,md,doc,docx,csv|max:10240', // 10MB max
         ]);
 
         $file = $request->file('document');
@@ -38,8 +38,8 @@ class DocumentController extends Controller
             'status' => 'pending',
         ]);
 
-        // Process immediately synchronously or dispatch job
-        $this->processor->processDocument($doc);
+        // Process document immediately
+        $this->processor->process($doc);
 
         return back()->with('success', 'Document uploaded and processed!');
     }

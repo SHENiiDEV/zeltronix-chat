@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
 
+const CURRENCY_SYMBOLS = { EUR: '€', USD: '$', GBP: '£' };
+
 export default function GuestLayout({ children }) {
     const { auth, company } = usePage().props;
+
+    const [currency, setCurrency] = useState(() => {
+        return localStorage.getItem('zeltronix_currency') || 'EUR';
+    });
+
+    const handleCurrencyChange = (code) => {
+        setCurrency(code);
+        localStorage.setItem('zeltronix_currency', code);
+        window.dispatchEvent(new Event('zeltronix_currency_changed'));
+    };
 
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-blue-500 selection:text-white">
@@ -22,6 +34,23 @@ export default function GuestLayout({ children }) {
                     </nav>
 
                     <div className="flex items-center gap-4">
+                        {/* Header Currency Selector */}
+                        <div className="hidden sm:flex items-center gap-1 bg-slate-900 border border-slate-800 p-1 rounded-xl text-xs font-bold">
+                            {['EUR', 'USD', 'GBP'].map((code) => (
+                                <button
+                                    key={code}
+                                    onClick={() => handleCurrencyChange(code)}
+                                    className={`px-2.5 py-1 rounded-lg transition-all ${
+                                        currency === code
+                                            ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20'
+                                            : 'text-slate-400 hover:text-white'
+                                    }`}
+                                >
+                                    {CURRENCY_SYMBOLS[code]} {code}
+                                </button>
+                            ))}
+                        </div>
+
                         {auth?.user ? (
                             <Link
                                 href={route('dashboard')}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import WidgetPreview from '@/Components/WidgetPreview';
@@ -16,8 +16,18 @@ const CURRENCIES = {
 };
 
 export default function Welcome({ auth }) {
-    const [selectedCurrency, setSelectedCurrency] = useState('EUR');
+    const [selectedCurrency, setSelectedCurrency] = useState(() => {
+        return localStorage.getItem('zeltronix_currency') || 'EUR';
+    });
     const [customTokens, setCustomTokens] = useState(5000); // 5,000 Tokens
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            setSelectedCurrency(localStorage.getItem('zeltronix_currency') || 'EUR');
+        };
+        window.addEventListener('zeltronix_currency_changed', handleStorageChange);
+        return () => window.removeEventListener('zeltronix_currency_changed', handleStorageChange);
+    }, []);
 
     const curr = CURRENCIES[selectedCurrency] || CURRENCIES.EUR;
 
@@ -25,6 +35,12 @@ export default function Welcome({ auth }) {
     const calcPrice = (tokens) => {
         const baseEur = (tokens / 1000) * 1.00;
         return (baseEur * curr.rate).toFixed(2);
+    };
+
+    const handleCurrencyChange = (code) => {
+        setSelectedCurrency(code);
+        localStorage.setItem('zeltronix_currency', code);
+        window.dispatchEvent(new Event('zeltronix_currency_changed'));
     };
 
     return (
@@ -192,7 +208,7 @@ export default function Welcome({ auth }) {
                                 <button
                                     key={c.code}
                                     type="button"
-                                    onClick={() => setSelectedCurrency(c.code)}
+                                    onClick={() => handleCurrencyChange(c.code)}
                                     className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                                         selectedCurrency === c.code
                                             ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25'

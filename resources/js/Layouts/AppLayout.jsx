@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
-import { Receipt } from 'lucide-react';
+import { Receipt, Globe } from 'lucide-react';
+
+const CURRENCY_SYMBOLS = { EUR: '€', USD: '$', GBP: '£' };
 
 export default function AppLayout({ header, children }) {
     const { auth, company } = usePage().props;
+
+    const [currency, setCurrency] = useState(() => {
+        return localStorage.getItem('zeltronix_currency') || 'EUR';
+    });
+
+    const handleCurrencyChange = (code) => {
+        setCurrency(code);
+        localStorage.setItem('zeltronix_currency', code);
+        window.dispatchEvent(new Event('zeltronix_currency_changed'));
+    };
 
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col">
@@ -47,16 +59,34 @@ export default function AppLayout({ header, children }) {
                             </div>
                         </div>
 
-                        {/* User Profile */}
-                        <div className="hidden sm:flex sm:items-center sm:gap-4">
-                            <span className="text-xs font-semibold text-slate-400 bg-slate-800 px-3 py-1.5 rounded-full border border-slate-700">
+                        {/* User Profile & Currency Switcher Header */}
+                        <div className="hidden sm:flex sm:items-center sm:gap-3">
+                            {/* Currency Selector Pill */}
+                            <div className="flex items-center gap-1 bg-slate-950 border border-slate-800 p-1 rounded-xl text-xs font-bold">
+                                {['EUR', 'USD', 'GBP'].map((code) => (
+                                    <button
+                                        key={code}
+                                        onClick={() => handleCurrencyChange(code)}
+                                        className={`px-2.5 py-1 rounded-lg transition-all ${
+                                            currency === code
+                                                ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20'
+                                                : 'text-slate-400 hover:text-white'
+                                        }`}
+                                    >
+                                        {CURRENCY_SYMBOLS[code]} {code}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <span className="text-xs font-semibold text-slate-200 bg-slate-800/80 px-3.5 py-1.5 rounded-xl border border-slate-700">
                                 {auth.user.name}
                             </span>
+
                             <Link
                                 href={route('logout')}
                                 method="post"
                                 as="button"
-                                className="text-xs font-semibold text-rose-400 hover:text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 px-3.5 py-1.5 rounded-lg border border-rose-500/20 transition-all"
+                                className="text-xs font-semibold text-rose-400 hover:text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 px-3.5 py-1.5 rounded-xl border border-rose-500/20 transition-all"
                             >
                                 Sign Out
                             </Link>

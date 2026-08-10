@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import { Bot, FileText, Layers, MessageSquare, TrendingUp, ArrowUpRight, Plus, ChevronRight, Coins, Sliders, Globe } from 'lucide-react';
@@ -13,8 +13,18 @@ const CURRENCIES = {
 
 export default function Dashboard({ stats, chartData = [], recentBots }) {
     const [showTopUpModal, setShowTopUpModal] = useState(false);
-    const [selectedCurrency, setSelectedCurrency] = useState('EUR');
+    const [selectedCurrency, setSelectedCurrency] = useState(() => {
+        return localStorage.getItem('zeltronix_currency') || 'EUR';
+    });
     const [customTokenInput, setCustomTokenInput] = useState(5000); // 5,000 tokens
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            setSelectedCurrency(localStorage.getItem('zeltronix_currency') || 'EUR');
+        };
+        window.addEventListener('zeltronix_currency_changed', handleStorageChange);
+        return () => window.removeEventListener('zeltronix_currency_changed', handleStorageChange);
+    }, []);
 
     const { post, processing } = useForm();
 
@@ -246,7 +256,11 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                                     <button
                                         key={c.code}
                                         type="button"
-                                        onClick={() => setSelectedCurrency(c.code)}
+                                        onClick={() => {
+                                            setSelectedCurrency(c.code);
+                                            localStorage.setItem('zeltronix_currency', c.code);
+                                            window.dispatchEvent(new Event('zeltronix_currency_changed'));
+                                        }}
                                         className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                                             selectedCurrency === c.code
                                                 ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'

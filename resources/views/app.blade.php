@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        <title inertia>{{ config('app.name', 'Zeltrionix') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -18,5 +18,8 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
+
+        <!-- Zeltrionix Live AI Support Widget -->
+        <script src="https://www.zeltrionix.com/widget.js" data-bot-id="49bb37b4-1bac-44e4-b298-dfd2e51e11d0" async></script>
     </body>
 </html>

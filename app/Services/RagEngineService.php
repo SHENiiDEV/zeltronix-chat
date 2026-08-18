@@ -47,7 +47,7 @@ class RagEngineService
             ->toArray();
 
         // 5. Build system prompt with guaranteed agent identity & company contact details
-        $companySupportEmail = config('services.company.support_email', 'support@zeltrionix.com');
+        $companySupportEmail = config('services.company.support_email', 'info@zeltrionix.com');
         
         $identityGuardrail = "IDENTITY INSTRUCTION: Your assistant name is '{$bot->name}'. "
             . "When asked about your name, who you are, or your identity, clearly state that you are '{$bot->name}' (the AI Support Assistant). "

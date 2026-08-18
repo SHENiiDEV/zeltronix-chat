@@ -9,12 +9,12 @@ return [
     */
     'company' => [
         'name' => env('COMPANY_NAME', 'FERNBLAKE LIMITED'),
-        'registration_number' => env('COMPANY_REG_NO', 'Company No. 14582910'),
-        'vat_id' => env('COMPANY_VAT_ID', 'VAT GB 432 9876 10'),
-        'support_email' => env('COMPANY_SUPPORT_EMAIL', 'support@fernblake.com'),
-        'billing_email' => env('COMPANY_BILLING_EMAIL', 'billing@fernblake.com'),
+        'registration_number' => env('COMPANY_REG_NO', 'Company No. 16020960'),
+        'vat_id' => env('COMPANY_VAT_ID', ''),
+        'support_email' => env('COMPANY_SUPPORT_EMAIL', 'info@zeltrionix.com'),
+        'billing_email' => env('COMPANY_BILLING_EMAIL', 'info@zeltrionix.com'),
         'phone' => env('COMPANY_PHONE', ''),
-        'address' => env('COMPANY_ADDRESS', '71-75 Shelton Street, Covent Garden, London, WC2H 9JQ, United Kingdom'),
+        'address' => env('COMPANY_ADDRESS', 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF'),
     ],
 
     /*

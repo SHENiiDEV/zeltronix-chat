@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 import LegalLayout from '@/Layouts/LegalLayout';
 
 export default function Cookies({ company }) {
-    const companyName = company?.name || 'Zeltrionix Inc.';
+    const companyName = company?.name || 'FERNBLAKE LIMITED';
 
     return (
         <LegalLayout

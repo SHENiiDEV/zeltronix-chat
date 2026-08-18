@@ -1,7 +1,7 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
-import { Printer, ArrowLeft, CheckCircle2, ShieldCheck, Mail, Phone, MapPin } from 'lucide-react';
+import { Printer, ArrowLeft, CheckCircle2, ShieldCheck, Mail, MapPin, Building2, FileCheck } from 'lucide-react';
 
 const SYMBOLS = {
     EUR: '€',
@@ -18,7 +18,7 @@ export default function Show({ invoice, customer, company }) {
 
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100 font-sans p-4 sm:p-8 flex flex-col items-center">
-            <Head title={`Invoice ${invoice.invoice_number} | Zeltrionix`} />
+            <Head title={`Invoice ${invoice.invoice_number} | FERNBLAKE LIMITED`} />
 
             {/* Print Controls (Hidden when printing) */}
             <div className="w-full max-w-3xl flex items-center justify-between mb-6 print:hidden">
@@ -43,11 +43,16 @@ export default function Show({ invoice, customer, company }) {
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-800 print:border-slate-300 pb-8 mb-8 gap-6">
                     <div>
                         <ZeltrionixLogo className="h-10 mb-3" />
-                        <div className="text-xs text-slate-400 print:text-slate-600 space-y-1 mt-3">
-                            <p className="font-bold text-slate-200 print:text-slate-900">{company?.name || 'Zeltrionix Inc.'}</p>
-                            <p className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-blue-400 print:hidden" /> {company?.address || '100 Tech Plaza, San Francisco, CA 94107'}</p>
-                            <p className="flex items-center gap-1"><Mail className="w-3.5 h-3.5 text-blue-400 print:hidden" /> {company?.billing_email || 'billing@zeltrionix.com'}</p>
-                            <p className="flex items-center gap-1"><Phone className="w-3.5 h-3.5 text-blue-400 print:hidden" /> {company?.phone || '+1 (800) 555-0199'}</p>
+                        <div className="text-xs text-slate-400 print:text-slate-600 space-y-1.5 mt-3">
+                            <p className="font-bold text-base text-slate-200 print:text-slate-900">{company?.name || 'FERNBLAKE LIMITED'}</p>
+                            {company?.registration_number && (
+                                <p className="flex items-center gap-1 text-[11px] text-slate-400 print:text-slate-600"><Building2 className="w-3.5 h-3.5 text-blue-400 print:hidden" /> {company.registration_number}</p>
+                            )}
+                            {company?.vat_id && (
+                                <p className="flex items-center gap-1 text-[11px] text-slate-400 print:text-slate-600"><FileCheck className="w-3.5 h-3.5 text-blue-400 print:hidden" /> {company.vat_id}</p>
+                            )}
+                            <p className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-blue-400 print:hidden" /> {company?.address || '71-75 Shelton Street, Covent Garden, London, WC2H 9JQ, United Kingdom'}</p>
+                            <p className="flex items-center gap-1"><Mail className="w-3.5 h-3.5 text-blue-400 print:hidden" /> {company?.billing_email || 'billing@fernblake.com'}</p>
                         </div>
                     </div>
 
@@ -91,7 +96,7 @@ export default function Show({ invoice, customer, company }) {
                             <tr>
                                 <td className="p-4 font-medium">
                                     <div className="font-bold text-white print:text-slate-900">{invoice.description}</div>
-                                    <span className="text-[11px] text-slate-400 print:text-slate-500">Zeltrionix AI Infrastructure Token Deposit</span>
+                                    <span className="text-[11px] text-slate-400 print:text-slate-500">AI Infrastructure Token Deposit</span>
                                 </td>
                                 <td className="p-4 text-center font-mono font-bold text-blue-400 print:text-blue-700">
                                     +{Number(invoice.tokens_credited).toLocaleString()}
@@ -125,9 +130,9 @@ export default function Show({ invoice, customer, company }) {
                 {/* Invoice Footer */}
                 <div className="border-t border-slate-800 print:border-slate-300 pt-6 text-center text-xs text-slate-500 print:text-slate-600">
                     <p className="flex items-center justify-center gap-1.5 mb-1 font-semibold">
-                        <ShieldCheck className="w-4 h-4 text-blue-400 print:hidden" /> Thank you for choosing {company?.name || 'Zeltrionix Inc.'}!
+                        <ShieldCheck className="w-4 h-4 text-blue-400 print:hidden" /> Thank you for choosing {company?.name || 'FERNBLAKE LIMITED'}!
                     </p>
-                    <p>If you have any questions regarding this invoice, please contact {company?.billing_email || 'billing@zeltrionix.com'}</p>
+                    <p>If you have any questions regarding this invoice, please contact {company?.billing_email || 'billing@fernblake.com'}</p>
                 </div>
             </div>
         </div>

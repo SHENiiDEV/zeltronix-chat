@@ -8,11 +8,13 @@ return [
     |--------------------------------------------------------------------------
     */
     'company' => [
-        'name' => env('COMPANY_NAME', 'Zeltrionix Inc.'),
-        'support_email' => env('COMPANY_SUPPORT_EMAIL', 'support@zeltrionix.com'),
-        'billing_email' => env('COMPANY_BILLING_EMAIL', 'billing@zeltrionix.com'),
-        'phone' => env('COMPANY_PHONE', '+1 (800) 555-0199'),
-        'address' => env('COMPANY_ADDRESS', '100 Tech Plaza, San Francisco, CA 94107'),
+        'name' => env('COMPANY_NAME', 'FERNBLAKE LIMITED'),
+        'registration_number' => env('COMPANY_REG_NO', 'Company No. 14582910'),
+        'vat_id' => env('COMPANY_VAT_ID', 'VAT GB 432 9876 10'),
+        'support_email' => env('COMPANY_SUPPORT_EMAIL', 'support@fernblake.com'),
+        'billing_email' => env('COMPANY_BILLING_EMAIL', 'billing@fernblake.com'),
+        'phone' => env('COMPANY_PHONE', ''),
+        'address' => env('COMPANY_ADDRESS', '71-75 Shelton Street, Covent Garden, London, WC2H 9JQ, United Kingdom'),
     ],
 
     /*

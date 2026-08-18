@@ -19,7 +19,7 @@ export default function Welcome({ auth }) {
     const [selectedCurrency, setSelectedCurrency] = useState(() => {
         return localStorage.getItem('zeltronix_currency') || 'EUR';
     });
-    const [customTokens, setCustomTokens] = useState(5000); // 5,000 Tokens
+    const [customTokens, setCustomTokens] = useState(500000); // 500,000 Tokens (€500)
 
     useEffect(() => {
         const handleStorageChange = () => {
@@ -45,7 +45,7 @@ export default function Welcome({ auth }) {
 
     return (
         <GuestLayout>
-            <Head title="Zeltrionix | Autonomous AI Support Agents & Token-based AI Infrastructure" />
+            <Head title="FERNBLAKE LIMITED | Autonomous AI Support Agents & Enterprise Token Infrastructure" />
 
             {/* 1. HERO SECTION */}
             <section className="relative overflow-hidden pt-16 pb-28 lg:pt-24 lg:pb-36 bg-slate-950 text-white">
@@ -64,7 +64,7 @@ export default function Welcome({ auth }) {
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-extrabold tracking-widest uppercase mb-6 shadow-lg shadow-blue-500/10 backdrop-blur-md">
                             <Zap className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
-                            MULTI-CURRENCY SUPPORT: EUR • USD • GBP
+                            FERNBLAKE LIMITED ENTERPRISE INFRASTRUCTURE
                         </div>
 
                         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6">
@@ -76,7 +76,7 @@ export default function Welcome({ auth }) {
                         </h1>
 
                         <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed mb-8">
-                            Empower your business with autonomous, 24/7 customer support widgets trained exclusively on your business documentation. Flexible token rates at <span className="text-white font-bold">{curr.symbol}{(1.00 * curr.rate).toFixed(2)} {curr.code} per 1,000 AI tokens</span>.
+                            Empower your enterprise with autonomous 24/7 customer support widgets trained exclusively on your business documentation. High-volume token rates at <span className="text-white font-bold">{curr.symbol}{(1.00 * curr.rate).toFixed(2)} {curr.code} per 1,000 AI tokens</span>.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
@@ -99,16 +99,16 @@ export default function Welcome({ auth }) {
                                         href="#pricing"
                                         className="w-full sm:w-auto bg-slate-900/90 hover:bg-slate-800 text-slate-200 font-bold py-4 px-8 rounded-2xl transition-colors border border-slate-800 text-center"
                                     >
-                                        View Token Rates ({curr.symbol}{(1.00 * curr.rate).toFixed(2)} / 1k tokens)
+                                        View Enterprise Packages
                                     </a>
                                 </>
                             )}
                         </div>
 
                         <div className="mt-10 flex items-center justify-center lg:justify-start gap-6 text-slate-400 text-xs font-semibold">
-                            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> Multi-Currency Support</span>
-                            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> Custom Top-Up Any Time</span>
-                            <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-blue-400" /> SOC2 Compliant</span>
+                            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> Multi-Currency VAT Billing</span>
+                            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> Custom Large Deposits</span>
+                            <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-blue-400" /> SOC2 & GDPR Compliant</span>
                         </div>
                     </motion.div>
 
@@ -168,7 +168,7 @@ export default function Welcome({ auth }) {
                             <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-6">
                                 <Brain className="w-6 h-6" />
                             </div>
-                            <h3 className="text-xl font-bold mb-3 text-white">The Zeltrionix Way</h3>
+                            <h3 className="text-xl font-bold mb-3 text-white">The FERNBLAKE Way</h3>
                             <p className="text-slate-300 text-sm leading-relaxed">
                                 Your AI Agent learns your business in minutes. It handles 80% of common support queries instantly, consuming tokens only when active.
                             </p>
@@ -188,22 +188,22 @@ export default function Welcome({ auth }) {
                 </div>
             </section>
 
-            {/* 4. PRICING & MULTI-CURRENCY CALCULATOR */}
+            {/* 4. ENTERPRISE HIGH-VOLUME PRICING & MULTI-CURRENCY CALCULATOR */}
             <section id="pricing" className="py-24 bg-slate-950 border-t border-slate-900">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-12">
-                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Token Pricing & Multi-Currency</h2>
+                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Enterprise High-Volume Packages</h2>
                         <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                            Transparent Token Pricing ({curr.symbol}{(1.00 * curr.rate).toFixed(2)} per 1,000 Tokens)
+                            Transparent Token Billing ({curr.symbol}{(1.00 * curr.rate).toFixed(2)} per 1,000 Tokens)
                         </p>
                         <p className="text-slate-400 text-sm mt-3">
-                            Pay only for what you use. Choose your preferred currency below.
+                            High volume token deposits for scaling platforms and enterprise customer support.
                         </p>
 
                         {/* Multi-Currency Selector */}
                         <div className="inline-flex items-center gap-2 mt-6 p-1.5 bg-slate-900 border border-slate-800 rounded-2xl">
                             <Globe className="w-4 h-4 text-blue-400 ml-2" />
-                            <span className="text-xs text-slate-400 font-bold mr-2">Currency:</span>
+                            <span className="text-xs text-slate-400 font-bold mr-2">Billing Currency:</span>
                             {Object.values(CURRENCIES).map((c) => (
                                 <button
                                     key={c.code}
@@ -222,49 +222,49 @@ export default function Welcome({ auth }) {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
-                        {/* 1,000 Tokens */}
+                        {/* 100,000 Tokens */}
                         <div className="bg-slate-900/90 p-8 rounded-3xl border border-slate-800 shadow-xl flex flex-col justify-between hover:border-blue-500/40 transition-all">
                             <div>
                                 <h3 className="text-xl font-bold text-white mb-1">Starter Pack</h3>
-                                <p className="text-slate-400 text-xs mb-6">Ideal for small sites & testing</p>
+                                <p className="text-slate-400 text-xs mb-6">For growing customer support</p>
 
                                 <div className="text-4xl font-black text-white mb-6">
-                                    {curr.symbol}{calcPrice(1000)} <span className="text-xs text-slate-400 font-semibold">{curr.code}</span>
+                                    {curr.symbol}{calcPrice(100000)} <span className="text-xs text-slate-400 font-semibold">{curr.code}</span>
                                 </div>
 
                                 <div className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-3 mb-6 text-center">
-                                    <span className="text-xs text-blue-300 font-bold">1,000 AI Tokens</span>
+                                    <span className="text-xs text-blue-300 font-bold">100,000 AI Tokens</span>
                                 </div>
 
                                 <ul className="space-y-3 text-xs text-slate-300 mb-6">
                                     <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> Full Knowledge Base RAG</li>
                                     <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> Dark & Light Theme Modes</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> VAT Invoice Generation</li>
+                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> Official VAT Invoices (FERNBLAKE)</li>
                                 </ul>
                             </div>
                             <Link
                                 href={route('register')}
                                 className="w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all"
                             >
-                                Get Started
+                                Purchase Pack
                             </Link>
                         </div>
 
-                        {/* 5,000 Tokens */}
+                        {/* 500,000 Tokens */}
                         <div className="bg-gradient-to-b from-slate-900 to-slate-950 p-8 rounded-3xl border-2 border-blue-500 shadow-2xl shadow-blue-500/10 flex flex-col justify-between relative">
                             <span className="absolute -top-3 right-6 bg-blue-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-                                Most Popular
+                                Recommended
                             </span>
                             <div>
-                                <h3 className="text-xl font-bold text-white mb-1">Popular Pack</h3>
-                                <p className="text-slate-400 text-xs mb-6">For active customer support</p>
+                                <h3 className="text-xl font-bold text-white mb-1">Growth Pack</h3>
+                                <p className="text-slate-400 text-xs mb-6">For high volume daily support</p>
 
                                 <div className="text-4xl font-black text-white mb-6">
-                                    {curr.symbol}{calcPrice(5000)} <span className="text-xs text-slate-400 font-semibold">{curr.code}</span>
+                                    {curr.symbol}{calcPrice(500000)} <span className="text-xs text-slate-400 font-semibold">{curr.code}</span>
                                 </div>
 
                                 <div className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-3 mb-6 text-center">
-                                    <span className="text-xs text-blue-300 font-bold">5,000 AI Tokens</span>
+                                    <span className="text-xs text-blue-300 font-bold">500,000 AI Tokens</span>
                                 </div>
 
                                 <ul className="space-y-3 text-xs text-slate-300 mb-6">
@@ -277,22 +277,22 @@ export default function Welcome({ auth }) {
                                 href={route('register')}
                                 className="w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all shadow-lg shadow-blue-500/25"
                             >
-                                Get Started
+                                Purchase Pack
                             </Link>
                         </div>
 
-                        {/* 10,000 Tokens */}
+                        {/* 1,000,000 Tokens */}
                         <div className="bg-slate-900/90 p-8 rounded-3xl border border-purple-500/30 shadow-xl flex flex-col justify-between hover:border-purple-500 transition-all">
                             <div>
-                                <h3 className="text-xl font-bold text-white mb-1">Pro Pack</h3>
-                                <p className="text-purple-300 text-xs mb-6">High volume customer support</p>
+                                <h3 className="text-xl font-bold text-white mb-1">Scale Pack</h3>
+                                <p className="text-purple-300 text-xs mb-6">Large enterprise capacity</p>
 
                                 <div className="text-4xl font-black text-white mb-6">
-                                    {curr.symbol}{calcPrice(10000)} <span className="text-xs text-slate-400 font-semibold">{curr.code}</span>
+                                    {curr.symbol}{calcPrice(1000000)} <span className="text-xs text-slate-400 font-semibold">{curr.code}</span>
                                 </div>
 
                                 <div className="bg-purple-500/10 border border-purple-500/20 rounded-2xl p-3 mb-6 text-center">
-                                    <span className="text-xs text-purple-300 font-bold">10,000 AI Tokens</span>
+                                    <span className="text-xs text-purple-300 font-bold">1,000,000 AI Tokens</span>
                                 </div>
 
                                 <ul className="space-y-3 text-xs text-slate-300 mb-6">
@@ -305,20 +305,20 @@ export default function Welcome({ auth }) {
                                 href={route('register')}
                                 className="w-full text-center bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all shadow-lg shadow-purple-500/25"
                             >
-                                Get Started
+                                Purchase Pack
                             </Link>
                         </div>
                     </div>
 
-                    {/* INTERACTIVE CUSTOM TOKEN TOP-UP CALCULATOR */}
+                    {/* INTERACTIVE CUSTOM LARGE TOKEN CALCULATOR */}
                     <div className="max-w-4xl mx-auto bg-slate-900/90 border border-slate-800 p-8 rounded-3xl shadow-2xl">
                         <div className="flex items-center gap-3 mb-4">
                             <div className="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
                                 <Sliders className="w-5 h-5" />
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold text-white">Interactive Token Calculator</h3>
-                                <p className="text-xs text-slate-400">Drag slider to calculate custom token package price in {curr.name}.</p>
+                                <h3 className="text-xl font-bold text-white">Large Enterprise Deposit Calculator</h3>
+                                <p className="text-xs text-slate-400">Drag slider to calculate custom high-volume token deposits in {curr.name}.</p>
                             </div>
                         </div>
 
@@ -330,17 +330,17 @@ export default function Welcome({ auth }) {
                                 </div>
                                 <input
                                     type="range"
-                                    min="1000"
-                                    max="100000"
-                                    step="1000"
+                                    min="100000"
+                                    max="10000000"
+                                    step="100000"
                                     value={customTokens}
                                     onChange={(e) => setCustomTokens(Number(e.target.value))}
                                     className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500"
                                 />
                                 <div className="flex justify-between text-[11px] text-slate-500 font-mono">
-                                    <span>1,000 tokens</span>
-                                    <span>50,000 tokens</span>
                                     <span>100,000 tokens</span>
+                                    <span>5,000,000 tokens</span>
+                                    <span>10,000,000 tokens</span>
                                 </div>
                             </div>
 
@@ -423,7 +423,7 @@ export default function Welcome({ auth }) {
                         Ready to Transform Your Customer Service?
                     </h2>
                     <p className="text-slate-300 text-lg max-w-2xl mx-auto mb-8">
-                        Join hundreds of forward-thinking businesses reducing costs and boosting satisfaction with Zeltrionix. Start building your custom AI Support Agent today.
+                        Join hundreds of forward-thinking businesses reducing costs and boosting satisfaction with FERNBLAKE LIMITED.
                     </p>
                     <Link
                         href={route('register')}

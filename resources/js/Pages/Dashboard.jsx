@@ -16,7 +16,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
     const [selectedCurrency, setSelectedCurrency] = useState(() => {
         return localStorage.getItem('zeltronix_currency') || 'EUR';
     });
-    const [customTokenInput, setCustomTokenInput] = useState(5000); // 5,000 tokens
+    const [customTokenInput, setCustomTokenInput] = useState(100000); // Default 100k tokens (€100)
 
     useEffect(() => {
         const handleStorageChange = () => {
@@ -80,7 +80,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                 </div>
             }
         >
-            <Head title="Dashboard | Zeltrionix" />
+            <Head title="Dashboard | FERNBLAKE LIMITED" />
 
             {/* Metric Cards including Token Balance */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
@@ -229,14 +229,14 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                 )}
             </div>
 
-            {/* MULTI-CURRENCY TOKEN TOP-UP MODAL */}
+            {/* MULTI-CURRENCY ENTERPRISE TOKEN TOP-UP MODAL */}
             {showTopUpModal && (
                 <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-                    <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-lg p-6 shadow-2xl">
+                    <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-xl p-6 sm:p-8 shadow-2xl">
                         <div className="flex justify-between items-center mb-4">
                             <div className="flex items-center gap-2">
                                 <Coins className="w-6 h-6 text-amber-400" />
-                                <h3 className="text-xl font-bold text-white">Top-Up AI Tokens</h3>
+                                <h3 className="text-xl font-bold text-white">Enterprise AI Token Top-Up</h3>
                             </div>
                             <button
                                 onClick={() => setShowTopUpModal(false)}
@@ -249,7 +249,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                         {/* Multi-Currency Selector */}
                         <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800 mb-6 flex items-center justify-between">
                             <span className="text-xs font-bold text-slate-400 flex items-center gap-1.5">
-                                <Globe className="w-4 h-4 text-blue-400" /> Payment Currency:
+                                <Globe className="w-4 h-4 text-blue-400" /> Billing Currency:
                             </span>
                             <div className="flex gap-1.5">
                                 {Object.values(CURRENCIES).map((c) => (
@@ -274,72 +274,83 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                         </div>
 
                         <p className="text-xs text-slate-400 mb-4">
-                            Rate: <strong>{curr.symbol}{(1.00 * curr.rate).toFixed(2)} {curr.code} per 1,000 AI tokens</strong>
+                            Enterprise Rate: <strong>{curr.symbol}{(1.00 * curr.rate).toFixed(2)} {curr.code} per 1,000 AI tokens</strong> (€1,000 per 1M tokens)
                         </p>
 
-                        <div className="grid grid-cols-3 gap-3 mb-6">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
                             <button
                                 type="button"
-                                onClick={() => handleTopUpSubmit(1000)}
+                                onClick={() => handleTopUpSubmit(100000)}
                                 className="bg-slate-950 border border-slate-800 hover:border-amber-500/50 p-3 rounded-2xl text-left transition-all group"
                             >
                                 <span className="text-[10px] text-amber-400 font-bold block mb-1">Starter Pack</span>
-                                <div className="text-base font-black text-white">1,000 Tokens</div>
-                                <span className="text-xs text-slate-400 font-semibold mt-1 block">{curr.symbol}{calcPrice(1000)}</span>
+                                <div className="text-sm font-black text-white">100k Tokens</div>
+                                <span className="text-xs text-slate-300 font-extrabold mt-1 block">{curr.symbol}{calcPrice(100000)}</span>
                             </button>
 
                             <button
                                 type="button"
-                                onClick={() => handleTopUpSubmit(5000)}
+                                onClick={() => handleTopUpSubmit(500000)}
                                 className="bg-slate-950 border border-amber-500/40 hover:border-amber-500 p-3 rounded-2xl text-left transition-all shadow-lg shadow-amber-500/5 group"
                             >
-                                <span className="text-[10px] text-amber-400 font-bold block mb-1">Popular Pack</span>
-                                <div className="text-base font-black text-white">5,000 Tokens</div>
-                                <span className="text-xs text-slate-400 font-semibold mt-1 block">{curr.symbol}{calcPrice(5000)}</span>
+                                <span className="text-[10px] text-amber-400 font-bold block mb-1">Growth Pack</span>
+                                <div className="text-sm font-black text-white">500k Tokens</div>
+                                <span className="text-xs text-slate-300 font-extrabold mt-1 block">{curr.symbol}{calcPrice(500000)}</span>
                             </button>
 
                             <button
                                 type="button"
-                                onClick={() => handleTopUpSubmit(10000)}
+                                onClick={() => handleTopUpSubmit(1000000)}
+                                className="bg-slate-950 border border-blue-500/40 hover:border-blue-500 p-3 rounded-2xl text-left transition-all group"
+                            >
+                                <span className="text-[10px] text-blue-400 font-bold block mb-1">Scale Pack</span>
+                                <div className="text-sm font-black text-white">1M Tokens</div>
+                                <span className="text-xs text-slate-300 font-extrabold mt-1 block">{curr.symbol}{calcPrice(1000000)}</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => handleTopUpSubmit(5000000)}
                                 className="bg-slate-950 border border-purple-500/40 hover:border-purple-500 p-3 rounded-2xl text-left transition-all group"
                             >
-                                <span className="text-[10px] text-purple-400 font-bold block mb-1">Pro Pack</span>
-                                <div className="text-base font-black text-white">10,000 Tokens</div>
-                                <span className="text-xs text-slate-400 font-semibold mt-1 block">{curr.symbol}{calcPrice(10000)}</span>
+                                <span className="text-[10px] text-purple-400 font-bold block mb-1">Mega Pack</span>
+                                <div className="text-sm font-black text-white">5M Tokens</div>
+                                <span className="text-xs text-slate-300 font-extrabold mt-1 block">{curr.symbol}{calcPrice(5000000)}</span>
                             </button>
                         </div>
 
-                        {/* Custom Token Input */}
+                        {/* Custom Large Token Input */}
                         <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 mb-6">
                             <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
-                                Custom Token Amount
+                                Custom Token Deposit Amount
                             </label>
                             <div className="flex gap-2">
                                 <input
                                     type="number"
-                                    min="1000"
-                                    max="100000000"
-                                    step="1000"
+                                    min="10000"
+                                    max="500000000"
+                                    step="10000"
                                     value={customTokenInput}
                                     onChange={(e) => setCustomTokenInput(Number(e.target.value))}
-                                    className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-amber-500"
+                                    className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-amber-500 font-mono"
                                 />
                                 <button
                                     type="button"
                                     onClick={() => handleTopUpSubmit(customTokenInput)}
                                     disabled={processing}
-                                    className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs px-5 py-2 rounded-xl transition-all shadow-md shadow-amber-500/20"
+                                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition-all shadow-md shadow-blue-500/20 flex-shrink-0"
                                 >
-                                    Top Up ({curr.symbol}{calcPrice(customTokenInput)})
+                                    Purchase ({curr.symbol}{calcPrice(customTokenInput)})
                                 </button>
                             </div>
                         </div>
 
-                        <div className="flex justify-end">
+                        <div className="flex justify-between items-center text-xs text-slate-500">
+                            <span>Official Invoice Issued by FERNBLAKE LIMITED</span>
                             <button
                                 type="button"
                                 onClick={() => setShowTopUpModal(false)}
-                                className="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-6 py-2.5 rounded-xl text-xs"
+                                className="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-5 py-2 rounded-xl"
                             >
                                 Close
                             </button>

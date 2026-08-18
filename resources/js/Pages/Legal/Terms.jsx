@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 import LegalLayout from '@/Layouts/LegalLayout';
 
 export default function Terms({ company }) {
-    const companyName = company?.name || 'Zeltrionix Inc.';
+    const companyName = company?.name || 'FERNBLAKE LIMITED';
     const companyEmail = company?.support_email || 'support@zeltrionix.com';
 
     return (

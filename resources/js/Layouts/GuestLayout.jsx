@@ -90,19 +90,18 @@ export default function GuestLayout({ children }) {
                         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                             <ZeltrionixLogo className="h-7" showText={true} />
                             <span className="hidden sm:inline text-slate-700">|</span>
-                            <span className="text-xs text-slate-500">© 2026 {company?.name || 'Zeltrionix Inc.'}. All rights reserved.</span>
+                            <span className="text-xs text-slate-500">© 2026 {company?.name || 'FERNBLAKE LIMITED'}. All rights reserved.</span>
                         </div>
 
                         {/* Contact Information */}
                         <div className="flex flex-wrap items-center gap-6 text-slate-400 text-xs font-semibold">
-                            <span>Email: <a href={`mailto:${company?.support_email}`} className="text-blue-400 hover:underline">{company?.support_email || 'support@zeltrionix.com'}</a></span>
-                            <span>Phone: <a href={`tel:${company?.phone}`} className="text-blue-400 hover:underline">{company?.phone || '+1 (800) 555-0199'}</a></span>
+                            <span>Email: <a href={`mailto:${company?.support_email}`} className="text-blue-400 hover:underline">{company?.support_email || 'support@fernblake.com'}</a></span>
                         </div>
                     </div>
 
                     {/* Legal Links Bar */}
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-400">
-                        <span className="text-slate-500">Legal Compliance & Security</span>
+                        <span className="text-slate-500">Legal Compliance & Security • {company?.name || 'FERNBLAKE LIMITED'}</span>
                         <div className="flex flex-wrap items-center gap-6">
                             <Link href={route('legal.terms')} className="hover:text-white transition-colors">
                                 Terms & Conditions

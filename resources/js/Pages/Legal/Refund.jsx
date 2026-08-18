@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 import LegalLayout from '@/Layouts/LegalLayout';
 
 export default function Refund({ company }) {
-    const companyName = company?.name || 'Zeltrionix Inc.';
+    const companyName = company?.name || 'FERNBLAKE LIMITED';
     const billingEmail = company?.billing_email || company?.support_email || 'billing@zeltrionix.com';
 
     return (

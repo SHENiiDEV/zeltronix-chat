@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
-import { Receipt, Globe } from 'lucide-react';
+import { Receipt, Globe, Building2, MapPin, Mail } from 'lucide-react';
 
 const CURRENCY_SYMBOLS = { EUR: '€', USD: '$', GBP: '£' };
 
@@ -109,28 +109,41 @@ export default function AppLayout({ header, children }) {
                 {children}
             </main>
 
-            {/* Dashboard Footer */}
+            {/* Dashboard Footer with Full Company Information */}
             <footer className="bg-slate-950 border-t border-slate-900/90 py-8 text-slate-400 text-xs">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                        <ZeltrionixLogo className="h-6" showText={true} />
-                        <span className="text-slate-600">|</span>
-                        <span className="text-slate-500">© 2026 {company?.name || 'Zeltrionix Inc.'}. All rights reserved.</span>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-slate-900">
+                        <div>
+                            <span className="font-bold text-white text-sm block mb-1">{company?.name || 'FERNBLAKE LIMITED'}</span>
+                            <div className="flex flex-wrap items-center gap-4 text-slate-400 text-[11px]">
+                                <span className="flex items-center gap-1"><Building2 className="w-3.5 h-3.5 text-blue-400" /> {company?.registration_number || 'Company No. 16020960'}</span>
+                                <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-blue-400" /> {company?.address || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF'}</span>
+                                <span className="flex items-center gap-1"><Mail className="w-3.5 h-3.5 text-blue-400" /> <a href={`mailto:${company?.support_email || 'info@zeltrionix.com'}`} className="hover:text-blue-300 underline">{company?.support_email || 'info@zeltrionix.com'}</a></span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-6 font-semibold">
-                        <Link href={route('legal.terms')} className="hover:text-white transition-colors">
-                            Terms & Conditions
-                        </Link>
-                        <Link href={route('legal.privacy')} className="hover:text-white transition-colors">
-                            Privacy Policy
-                        </Link>
-                        <Link href={route('legal.cookies')} className="hover:text-white transition-colors">
-                            Cookie Policy
-                        </Link>
-                        <Link href={route('legal.refund')} className="hover:text-white transition-colors">
-                            Refund Policy
-                        </Link>
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                            <ZeltrionixLogo className="h-6" showText={true} />
+                            <span className="text-slate-600">|</span>
+                            <span className="text-slate-500">© 2026 {company?.name || 'FERNBLAKE LIMITED'}. All rights reserved.</span>
+                        </div>
+
+                        <div className="flex flex-wrap items-center gap-6 font-semibold">
+                            <Link href={route('legal.terms')} className="hover:text-white transition-colors">
+                                Terms & Conditions
+                            </Link>
+                            <Link href={route('legal.privacy')} className="hover:text-white transition-colors">
+                                Privacy Policy
+                            </Link>
+                            <Link href={route('legal.cookies')} className="hover:text-white transition-colors">
+                                Cookie Policy
+                            </Link>
+                            <Link href={route('legal.refund')} className="hover:text-white transition-colors">
+                                Refund Policy
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </footer>

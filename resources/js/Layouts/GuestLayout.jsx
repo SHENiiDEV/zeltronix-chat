@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
+import { Building2, MapPin, Mail, ShieldCheck } from 'lucide-react';
 
 const CURRENCY_SYMBOLS = { EUR: '€', USD: '$', GBP: '£' };
 
@@ -83,25 +84,44 @@ export default function GuestLayout({ children }) {
                 {children}
             </main>
 
-            {/* Comprehensive Footer with Legal Section */}
+            {/* Comprehensive Footer with Full Company Information */}
             <footer className="bg-slate-950 border-t border-slate-900 pt-12 pb-8 text-slate-400 text-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-8 border-b border-slate-900">
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                            <ZeltrionixLogo className="h-7" showText={true} />
-                            <span className="hidden sm:inline text-slate-700">|</span>
-                            <span className="text-xs text-slate-500">© 2026 {company?.name || 'FERNBLAKE LIMITED'}. All rights reserved.</span>
+                    {/* Top Row: Logo & Detailed Company Information */}
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-slate-900 items-start">
+                        <div className="md:col-span-4 space-y-3">
+                            <ZeltrionixLogo className="h-8" showText={true} />
+                            <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
+                                Autonomous AI Support Infrastructure. Trained exclusively on your business documentation for zero-hallucination support.
+                            </p>
                         </div>
 
-                        {/* Contact Information */}
-                        <div className="flex flex-wrap items-center gap-6 text-slate-400 text-xs font-semibold">
-                            <span>Email: <a href={`mailto:${company?.support_email}`} className="text-blue-400 hover:underline">{company?.support_email || 'support@fernblake.com'}</a></span>
+                        {/* Official Company Details Block */}
+                        <div className="md:col-span-8 bg-slate-900/60 p-6 rounded-2xl border border-slate-800/80 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Company Details</span>
+                                <h4 className="font-bold text-white text-sm mb-1">{company?.name || 'FERNBLAKE LIMITED'}</h4>
+                                <p className="text-slate-400 flex items-center gap-1.5"><Building2 className="w-3.5 h-3.5 text-blue-400" /> {company?.registration_number || 'Company No. 16020960'}</p>
+                                <p className="text-slate-400 flex items-center gap-1.5 mt-1"><Mail className="w-3.5 h-3.5 text-blue-400" /> <a href={`mailto:${company?.support_email || 'info@zeltrionix.com'}`} className="hover:text-blue-300 underline">{company?.support_email || 'info@zeltrionix.com'}</a></p>
+                            </div>
+
+                            <div>
+                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Registered Address</span>
+                                <p className="text-slate-300 leading-relaxed flex items-start gap-1.5">
+                                    <MapPin className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
+                                    <span>{company?.address || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF'}</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
 
                     {/* Legal Links Bar */}
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-400">
-                        <span className="text-slate-500">Legal Compliance & Security • {company?.name || 'FERNBLAKE LIMITED'}</span>
+                        <div className="flex items-center gap-2">
+                            <ShieldCheck className="w-4 h-4 text-blue-400" />
+                            <span>© 2026 {company?.name || 'FERNBLAKE LIMITED'}. All rights reserved.</span>
+                        </div>
+
                         <div className="flex flex-wrap items-center gap-6">
                             <Link href={route('legal.terms')} className="hover:text-white transition-colors">
                                 Terms & Conditions

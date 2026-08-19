@@ -1,25 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
-import { Receipt, Globe, Building2, MapPin, Mail } from 'lucide-react';
-
-const CURRENCY_SYMBOLS = { EUR: '€', USD: '$', GBP: '£' };
+import CookieConsent from '@/Components/CookieConsent';
+import OfflineBanner from '@/Components/OfflineBanner';
+import CurrencyDropdown from '@/Components/CurrencyDropdown';
+import { Receipt, Building2, MapPin, Mail } from 'lucide-react';
 
 export default function AppLayout({ header, children }) {
     const { auth, company } = usePage().props;
 
-    const [currency, setCurrency] = useState(() => {
-        return localStorage.getItem('zeltronix_currency') || 'EUR';
-    });
-
-    const handleCurrencyChange = (code) => {
-        setCurrency(code);
-        localStorage.setItem('zeltronix_currency', code);
-        window.dispatchEvent(new Event('zeltronix_currency_changed'));
-    };
-
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col">
+            {/* Global Network Connectivity Detector */}
+            <OfflineBanner />
+
             {/* Top Navigation Bar */}
             <nav className="bg-slate-900/80 backdrop-blur-xl border-b border-slate-800 sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,24 +53,9 @@ export default function AppLayout({ header, children }) {
                             </div>
                         </div>
 
-                        {/* User Profile & Currency Switcher Header */}
+                        {/* User Profile & Flag Currency Dropdown */}
                         <div className="hidden sm:flex sm:items-center sm:gap-3">
-                            {/* Currency Selector Pill */}
-                            <div className="flex items-center gap-1 bg-slate-950 border border-slate-800 p-1 rounded-xl text-xs font-bold">
-                                {['EUR', 'USD', 'GBP'].map((code) => (
-                                    <button
-                                        key={code}
-                                        onClick={() => handleCurrencyChange(code)}
-                                        className={`px-2.5 py-1 rounded-lg transition-all ${
-                                            currency === code
-                                                ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/20'
-                                                : 'text-slate-400 hover:text-white'
-                                        }`}
-                                    >
-                                        {CURRENCY_SYMBOLS[code]} {code}
-                                    </button>
-                                ))}
-                            </div>
+                            <CurrencyDropdown />
 
                             <span className="text-xs font-semibold text-slate-200 bg-slate-800/80 px-3.5 py-1.5 rounded-xl border border-slate-700">
                                 {auth.user.name}
@@ -147,6 +126,9 @@ export default function AppLayout({ header, children }) {
                     </div>
                 </div>
             </footer>
+
+            {/* Glassmorphism Cookie Consent Modal */}
+            <CookieConsent />
         </div>
     );
 }

@@ -13,6 +13,10 @@ class Invoice extends Model
     protected $fillable = [
         'invoice_number',
         'user_id',
+        'type',
+        'service_name',
+        'gateway_reference',
+        'project_id',
         'description',
         'amount',
         'currency',
@@ -29,5 +33,13 @@ class Invoice extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get effective gateway reference number.
+     */
+    public function getRefAttribute(): string
+    {
+        return $this->gateway_reference ?: ($this->invoice_number ?: 'INV-' . $this->id);
     }
 }

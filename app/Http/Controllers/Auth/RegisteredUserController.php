@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\WelcomeUserMail;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
@@ -77,12 +80,20 @@ class RegisteredUserController extends Controller
             'address_country' => $request->address_country,
             'address_postcode' => $request->address_postcode,
             'terms_accepted' => true,
+            'terms_accepted_at' => now(),
             'password' => Hash::make($request->password),
             'subscription_plan' => 'free_trial',
             'token_balance' => 10000, // 10k trial tokens for initial testing
         ]);
 
         event(new Registered($user));
+
+        // Trigger Welcome Onboarding Mail
+        try {
+            Mail::to($user->email)->send(new WelcomeUserMail($user));
+        } catch (\Throwable $e) {
+            Log::error('Welcome email dispatch failed: ' . $e->getMessage());
+        }
 
         Auth::login($user);
 

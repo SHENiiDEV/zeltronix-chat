@@ -8,13 +8,13 @@ return [
     |--------------------------------------------------------------------------
     */
     'company' => [
-        'name' => env('COMPANY_NAME', 'FERNBLAKE LIMITED'),
-        'registration_number' => env('COMPANY_REG_NO', 'Company No. 16020960'),
+        'name' => env('COMPANY_NAME', 'INCHWARD LIMITED'),
+        'registration_number' => env('COMPANY_REG_NO', 'UK Co. No. 16021412'),
         'vat_id' => env('COMPANY_VAT_ID', ''),
-        'support_email' => env('COMPANY_SUPPORT_EMAIL', 'info@zeltrionix.com'),
-        'billing_email' => env('COMPANY_BILLING_EMAIL', 'info@zeltrionix.com'),
+        'support_email' => env('COMPANY_SUPPORT_EMAIL', 'info@voltoria.co.uk'),
+        'billing_email' => env('COMPANY_BILLING_EMAIL', 'info@voltoria.co.uk'),
         'phone' => env('COMPANY_PHONE', ''),
-        'address' => env('COMPANY_ADDRESS', 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF'),
+        'address' => env('COMPANY_ADDRESS', 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom'),
     ],
 
     /*

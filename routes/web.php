@@ -38,9 +38,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
 
     Route::post('/topup', [TopUpController::class, 'store'])->name('topup.store');
+    Route::post('/wallet/topup', [TopUpController::class, 'store'])->name('wallet.topup');
 
     Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
     Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
+    Route::get('/invoices/{invoice}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoices.download');
+    Route::get('/wallet/invoice/{invoice}', [InvoiceController::class, 'downloadInvoice'])->name('wallet.invoice');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

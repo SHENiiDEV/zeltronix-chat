@@ -21,10 +21,12 @@ use Illuminate\Notifications\Notifiable;
     'address_country',
     'address_postcode',
     'terms_accepted',
+    'terms_accepted_at',
     'password',
     'subscription_plan',
     'token_balance',
     'total_tokens_used',
+    'balance',
 ])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
@@ -41,11 +43,13 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'terms_accepted_at' => 'datetime',
             'date_of_birth' => 'date',
             'terms_accepted' => 'boolean',
             'password' => 'hashed',
             'token_balance' => 'integer',
             'total_tokens_used' => 'integer',
+            'balance' => 'decimal:2',
         ];
     }
 
@@ -55,6 +59,11 @@ class User extends Authenticatable
     }
 
     public function invoices(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
+    public function payments(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Invoice::class);
     }

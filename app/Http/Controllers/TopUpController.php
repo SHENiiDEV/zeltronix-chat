@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WalletTopUpMail;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class TopUpController extends Controller
 {
@@ -43,13 +46,19 @@ class TopUpController extends Controller
 
         $user = $request->user();
         $user->token_balance += $tokens;
+        $user->balance += $calculatedAmount;
         $user->save();
 
+        $gatewayRef = 'TOPUP-' . date('Ymd') . '-' . strtoupper(substr(md5(uniqid()), 0, 6));
         $invoiceNumber = 'INV-' . date('Ymd') . '-' . sprintf('%04d', Invoice::count() + 1);
+        $serviceName = 'AI Token Top-Up Package (' . number_format($tokens) . ' Tokens)';
 
-        $user->invoices()->create([
+        $invoice = $user->invoices()->create([
             'invoice_number' => $invoiceNumber,
-            'description' => 'AI Token Top-Up Package (' . number_format($tokens) . ' Tokens)',
+            'gateway_reference' => $gatewayRef,
+            'type' => 'topup',
+            'service_name' => $serviceName,
+            'description' => $serviceName,
             'amount' => $calculatedAmount,
             'currency' => $currency,
             'tokens_credited' => $tokens,
@@ -57,7 +66,14 @@ class TopUpController extends Controller
             'paid_at' => now(),
         ]);
 
+        // Send Wallet Top-Up Confirmation Email with attached PDF Invoice
+        try {
+            Mail::to($user->email)->send(new WalletTopUpMail($user, $invoice));
+        } catch (\Throwable $e) {
+            Log::error('Wallet top-up email dispatch failed: ' . $e->getMessage());
+        }
+
         $formattedTokens = number_format($tokens);
-        return back()->with('success', "Added {$formattedTokens} AI tokens to your balance ({$symbol}{$calculatedAmount} {$currency}) & created Invoice #{$invoiceNumber}!");
+        return back()->with('success', "Added {$formattedTokens} AI tokens to your balance ({$symbol}{$calculatedAmount} {$currency}) & issued Invoice #{$gatewayRef}!");
     }
 }

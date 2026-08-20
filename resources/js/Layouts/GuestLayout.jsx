@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
 import CookieConsent from '@/Components/CookieConsent';
 import OfflineBanner from '@/Components/OfflineBanner';
 import CurrencyDropdown from '@/Components/CurrencyDropdown';
-import { Building2, MapPin, Mail, ShieldCheck } from 'lucide-react';
+import { Building2, MapPin, Mail, ShieldCheck, Menu, X, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function GuestLayout({ children }) {
     const { auth, company } = usePage().props;
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-blue-500 selection:text-white">
@@ -21,6 +23,7 @@ export default function GuestLayout({ children }) {
                         <ZeltrionixLogo className="h-9" />
                     </Link>
 
+                    {/* Desktop Navigation */}
                     <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
                         <a href="#features" className="hover:text-blue-400 transition-colors">Platform</a>
                         <a href="#how-it-works" className="hover:text-blue-400 transition-colors">Solutions</a>
@@ -28,8 +31,8 @@ export default function GuestLayout({ children }) {
                         <a href="#demo" className="hover:text-blue-400 transition-colors">Live Demo</a>
                     </nav>
 
-                    <div className="flex items-center gap-4">
-                        {/* Header Flag Currency Selector */}
+                    {/* Desktop Actions */}
+                    <div className="hidden md:flex items-center gap-4">
                         <CurrencyDropdown />
 
                         {auth?.user ? (
@@ -56,8 +59,120 @@ export default function GuestLayout({ children }) {
                             </>
                         )}
                     </div>
+
+                    {/* Mobile Hamburger Toggle Button */}
+                    <div className="flex md:hidden items-center gap-3">
+                        <CurrencyDropdown />
+                        <button
+                            onClick={() => setMobileMenuOpen(true)}
+                            className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white focus:outline-none focus:border-blue-500 transition-colors"
+                            aria-label="Open mobile menu"
+                        >
+                            <Menu className="w-6 h-6" />
+                        </button>
+                    </div>
                 </div>
             </header>
+
+            {/* Mobile Slide-Over Drawer (Right Side) */}
+            <AnimatePresence>
+                {mobileMenuOpen && (
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 md:hidden"
+                        />
+
+                        {/* Drawer Panel */}
+                        <motion.div
+                            initial={{ x: '100%' }}
+                            animate={{ x: 0 }}
+                            exit={{ x: '100%' }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                            className="fixed inset-y-0 right-0 w-full max-w-xs bg-slate-900/95 border-l border-slate-800 backdrop-blur-2xl z-50 p-6 flex flex-col justify-between shadow-2xl md:hidden"
+                        >
+                            <div>
+                                {/* Drawer Header */}
+                                <div className="flex items-center justify-between pb-6 border-b border-slate-800">
+                                    <ZeltrionixLogo className="h-8" />
+                                    <button
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="p-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+                                    >
+                                        <X className="w-5 h-5" />
+                                    </button>
+                                </div>
+
+                                {/* Drawer Navigation Links */}
+                                <nav className="mt-8 space-y-4 text-base font-semibold text-slate-300">
+                                    <a
+                                        href="#features"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="block px-4 py-3 rounded-xl hover:bg-slate-800/80 hover:text-white transition-all"
+                                    >
+                                        Platform Features
+                                    </a>
+                                    <a
+                                        href="#how-it-works"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="block px-4 py-3 rounded-xl hover:bg-slate-800/80 hover:text-white transition-all"
+                                    >
+                                        Solutions & AI Agents
+                                    </a>
+                                    <a
+                                        href="#pricing"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="block px-4 py-3 rounded-xl hover:bg-slate-800/80 hover:text-white transition-all"
+                                    >
+                                        Pricing & Token Rates
+                                    </a>
+                                    <a
+                                        href="#demo"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="block px-4 py-3 rounded-xl hover:bg-slate-800/80 hover:text-white transition-all"
+                                    >
+                                        Interactive Demo
+                                    </a>
+                                </nav>
+                            </div>
+
+                            {/* Drawer Footer Actions */}
+                            <div className="pt-6 border-t border-slate-800 space-y-3">
+                                {auth?.user ? (
+                                    <Link
+                                        href={route('dashboard')}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3.5 px-6 rounded-xl text-center flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25"
+                                    >
+                                        Open Dashboard <ArrowRight className="w-4 h-4" />
+                                    </Link>
+                                ) : (
+                                    <>
+                                        <Link
+                                            href={route('register')}
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-3.5 px-6 rounded-xl text-center block shadow-lg shadow-blue-500/25 text-sm"
+                                        >
+                                            Get Started
+                                        </Link>
+                                        <Link
+                                            href={route('login')}
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className="w-full bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800 font-bold py-3 px-6 rounded-xl text-center block text-sm transition-colors"
+                                        >
+                                            Sign In
+                                        </Link>
+                                    </>
+                                )}
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
 
             {/* Main Page Content */}
             <main className="flex-1">
@@ -80,16 +195,16 @@ export default function GuestLayout({ children }) {
                         <div className="md:col-span-8 bg-slate-900/60 p-6 rounded-2xl border border-slate-800/80 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                             <div>
                                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Company Details</span>
-                                <h4 className="font-bold text-white text-sm mb-1">{company?.name || 'FERNBLAKE LIMITED'}</h4>
-                                <p className="text-slate-400 flex items-center gap-1.5"><Building2 className="w-3.5 h-3.5 text-blue-400" /> {company?.registration_number || 'Company No. 16020960'}</p>
-                                <p className="text-slate-400 flex items-center gap-1.5 mt-1"><Mail className="w-3.5 h-3.5 text-blue-400" /> <a href={`mailto:${company?.support_email || 'info@zeltrionix.com'}`} className="hover:text-blue-300 underline">{company?.support_email || 'info@zeltrionix.com'}</a></p>
+                                <h4 className="font-bold text-white text-sm mb-1">{company?.name || 'INCHWARD LIMITED'}</h4>
+                                <p className="text-slate-400 flex items-center gap-1.5"><Building2 className="w-3.5 h-3.5 text-blue-400" /> {company?.registration_number || 'UK Co. No. 16021412'}</p>
+                                <p className="text-slate-400 flex items-center gap-1.5 mt-1"><Mail className="w-3.5 h-3.5 text-blue-400" /> <a href={`mailto:${company?.support_email || 'info@voltoria.co.uk'}`} className="hover:text-blue-300 underline">{company?.support_email || 'info@voltoria.co.uk'}</a></p>
                             </div>
 
                             <div>
                                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Registered Address</span>
                                 <p className="text-slate-300 leading-relaxed flex items-start gap-1.5">
                                     <MapPin className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
-                                    <span>{company?.address || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF'}</span>
+                                    <span>{company?.address || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom'}</span>
                                 </p>
                             </div>
                         </div>
@@ -99,7 +214,7 @@ export default function GuestLayout({ children }) {
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-400">
                         <div className="flex items-center gap-2">
                             <ShieldCheck className="w-4 h-4 text-blue-400" />
-                            <span>© 2026 {company?.name || 'FERNBLAKE LIMITED'}. All rights reserved.</span>
+                            <span>© 2026 {company?.name || 'INCHWARD LIMITED'}. All rights reserved.</span>
                         </div>
 
                         <div className="flex flex-wrap items-center gap-6">

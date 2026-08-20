@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BotController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\InvoiceController;
@@ -12,6 +13,22 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
+
+// Platform Public Pages
+Route::get('/how-it-works', function () {
+    return Inertia::render('HowItWorks', ['company' => config('services.company')]);
+})->name('how-it-works');
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+Route::get('/support', function () {
+    return Inertia::render('Support', ['company' => config('services.company')]);
+})->name('support');
+
+Route::get('/about', function () {
+    return Inertia::render('About', ['company' => config('services.company')]);
+})->name('about');
 
 // Legal Pages
 Route::get('/terms', function () {

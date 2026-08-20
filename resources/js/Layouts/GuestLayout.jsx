@@ -23,16 +23,24 @@ export default function GuestLayout({ children }) {
                         <ZeltrionixLogo className="h-9" />
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-                        <a href="#features" className="hover:text-blue-400 transition-colors">Platform</a>
-                        <a href="#how-it-works" className="hover:text-blue-400 transition-colors">Solutions</a>
-                        <a href="#pricing" className="hover:text-blue-400 transition-colors">Pricing</a>
-                        <a href="#demo" className="hover:text-blue-400 transition-colors">Live Demo</a>
+                    {/* Desktop Navigation Links */}
+                    <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+                        <Link href={route('how-it-works')} className={`hover:text-blue-400 transition-colors ${route().current('how-it-works') ? 'text-blue-400 font-bold' : ''}`}>
+                            How It Works
+                        </Link>
+                        <Link href={route('about')} className={`hover:text-blue-400 transition-colors ${route().current('about') ? 'text-blue-400 font-bold' : ''}`}>
+                            About Us
+                        </Link>
+                        <Link href={route('support')} className={`hover:text-blue-400 transition-colors ${route().current('support') ? 'text-blue-400 font-bold' : ''}`}>
+                            Support & FAQ
+                        </Link>
+                        <Link href={route('contact')} className={`hover:text-blue-400 transition-colors ${route().current('contact') ? 'text-blue-400 font-bold' : ''}`}>
+                            Contact Us
+                        </Link>
                     </nav>
 
                     {/* Desktop Actions */}
-                    <div className="hidden md:flex items-center gap-4">
+                    <div className="hidden lg:flex items-center gap-4">
                         <CurrencyDropdown />
 
                         {auth?.user ? (
@@ -61,7 +69,7 @@ export default function GuestLayout({ children }) {
                     </div>
 
                     {/* Mobile Hamburger Toggle Button */}
-                    <div className="flex md:hidden items-center gap-3">
+                    <div className="flex lg:hidden items-center gap-3">
                         <CurrencyDropdown />
                         <button
                             onClick={() => setMobileMenuOpen(true)}
@@ -84,7 +92,7 @@ export default function GuestLayout({ children }) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 md:hidden"
+                            className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 lg:hidden"
                         />
 
                         {/* Drawer Panel */}
@@ -93,7 +101,7 @@ export default function GuestLayout({ children }) {
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}
                             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                            className="fixed inset-y-0 right-0 w-full max-w-xs bg-slate-900/95 border-l border-slate-800 backdrop-blur-2xl z-50 p-6 flex flex-col justify-between shadow-2xl md:hidden"
+                            className="fixed inset-y-0 right-0 w-full max-w-xs bg-slate-900/95 border-l border-slate-800 backdrop-blur-2xl z-50 p-6 flex flex-col justify-between shadow-2xl lg:hidden"
                         >
                             <div>
                                 {/* Drawer Header */}
@@ -108,35 +116,35 @@ export default function GuestLayout({ children }) {
                                 </div>
 
                                 {/* Drawer Navigation Links */}
-                                <nav className="mt-8 space-y-4 text-base font-semibold text-slate-300">
-                                    <a
-                                        href="#features"
+                                <nav className="mt-8 space-y-3 text-base font-semibold text-slate-300">
+                                    <Link
+                                        href={route('how-it-works')}
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-4 py-3 rounded-xl hover:bg-slate-800/80 hover:text-white transition-all"
                                     >
-                                        Platform Features
-                                    </a>
-                                    <a
-                                        href="#how-it-works"
+                                        How It Works
+                                    </Link>
+                                    <Link
+                                        href={route('about')}
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-4 py-3 rounded-xl hover:bg-slate-800/80 hover:text-white transition-all"
                                     >
-                                        Solutions & AI Agents
-                                    </a>
-                                    <a
-                                        href="#pricing"
+                                        About Us
+                                    </Link>
+                                    <Link
+                                        href={route('support')}
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-4 py-3 rounded-xl hover:bg-slate-800/80 hover:text-white transition-all"
                                     >
-                                        Pricing & Token Rates
-                                    </a>
-                                    <a
-                                        href="#demo"
+                                        Support & FAQ
+                                    </Link>
+                                    <Link
+                                        href={route('contact')}
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="block px-4 py-3 rounded-xl hover:bg-slate-800/80 hover:text-white transition-all"
                                     >
-                                        Interactive Demo
-                                    </a>
+                                        Contact Support
+                                    </Link>
                                 </nav>
                             </div>
 
@@ -179,15 +187,15 @@ export default function GuestLayout({ children }) {
                 {children}
             </main>
 
-            {/* Comprehensive Footer with Full Company Information */}
+            {/* Comprehensive Footer with Navigation & Full Company Information */}
             <footer className="bg-slate-950 border-t border-slate-900 pt-12 pb-8 text-slate-400 text-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-                    {/* Top Row: Logo & Detailed Company Information */}
+                    {/* Top Row: Logo & Corporate Information */}
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-slate-900 items-start">
                         <div className="md:col-span-4 space-y-3">
                             <ZeltrionixLogo className="h-8" showText={true} />
                             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-                                Autonomous AI Support Infrastructure. Trained exclusively on your business documentation for zero-hallucination support.
+                                Autonomous AI Support Infrastructure & Direct OEM Sourcing Architecture.
                             </p>
                         </div>
 
@@ -210,26 +218,23 @@ export default function GuestLayout({ children }) {
                         </div>
                     </div>
 
-                    {/* Legal Links Bar */}
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-400">
-                        <div className="flex items-center gap-2">
-                            <ShieldCheck className="w-4 h-4 text-blue-400" />
-                            <span>© 2026 {company?.name || 'INCHWARD LIMITED'}. All rights reserved.</span>
+                    {/* Navigation & Legal Links Bar */}
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-400">
+                        <div className="flex flex-wrap items-center gap-6">
+                            <Link href={route('how-it-works')} className="hover:text-white transition-colors">How It Works</Link>
+                            <Link href={route('about')} className="hover:text-white transition-colors">About Us</Link>
+                            <Link href={route('support')} className="hover:text-white transition-colors">Support & FAQ</Link>
+                            <Link href={route('contact')} className="hover:text-white transition-colors">Contact Support</Link>
+                            <span className="text-slate-700">|</span>
+                            <Link href={route('legal.terms')} className="hover:text-white transition-colors">Terms</Link>
+                            <Link href={route('legal.privacy')} className="hover:text-white transition-colors">Privacy</Link>
+                            <Link href={route('legal.cookies')} className="hover:text-white transition-colors">Cookies</Link>
+                            <Link href={route('legal.refund')} className="hover:text-white transition-colors">Refund Policy</Link>
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-6">
-                            <Link href={route('legal.terms')} className="hover:text-white transition-colors">
-                                Terms & Conditions
-                            </Link>
-                            <Link href={route('legal.privacy')} className="hover:text-white transition-colors">
-                                Privacy Policy
-                            </Link>
-                            <Link href={route('legal.cookies')} className="hover:text-white transition-colors">
-                                Cookie Policy
-                            </Link>
-                            <Link href={route('legal.refund')} className="hover:text-white transition-colors">
-                                Refund Policy
-                            </Link>
+                        <div className="flex items-center gap-2 text-slate-500">
+                            <ShieldCheck className="w-4 h-4 text-blue-400" />
+                            <span>© 2026 {company?.name || 'INCHWARD LIMITED'}. All rights reserved.</span>
                         </div>
                     </div>
                 </div>

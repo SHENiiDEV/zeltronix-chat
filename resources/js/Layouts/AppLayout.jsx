@@ -4,7 +4,7 @@ import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
 import CookieConsent from '@/Components/CookieConsent';
 import OfflineBanner from '@/Components/OfflineBanner';
 import CurrencyDropdown from '@/Components/CurrencyDropdown';
-import { Receipt, Building2, MapPin, Mail, Menu, X, Bot, LayoutDashboard, LogOut, User } from 'lucide-react';
+import { Receipt, Building2, MapPin, Mail, Menu, X, Bot, LayoutDashboard, LogOut, User, HelpCircle, PhoneCall, Info } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function AppLayout({ header, children }) {
@@ -27,7 +27,7 @@ export default function AppLayout({ header, children }) {
                             </Link>
 
                             {/* Desktop Nav Links */}
-                            <div className="hidden sm:flex items-center gap-6 text-sm font-semibold text-slate-300">
+                            <div className="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-300">
                                 <Link
                                     href={route('dashboard')}
                                     className={`px-3 py-2 rounded-lg transition-colors ${
@@ -52,11 +52,19 @@ export default function AppLayout({ header, children }) {
                                 >
                                     <Receipt className="w-4 h-4 text-amber-400" /> Invoices & Billing
                                 </Link>
+                                <Link
+                                    href={route('how-it-works')}
+                                    className={`px-3 py-2 rounded-lg transition-colors ${
+                                        route().current('how-it-works') ? 'bg-blue-600/10 text-blue-400 border border-blue-500/20' : 'hover:text-white'
+                                    }`}
+                                >
+                                    How It Works
+                                </Link>
                             </div>
                         </div>
 
                         {/* Desktop User Profile & Flag Currency Dropdown */}
-                        <div className="hidden sm:flex sm:items-center sm:gap-3">
+                        <div className="hidden md:flex md:items-center md:gap-3">
                             <CurrencyDropdown />
 
                             <span className="text-xs font-semibold text-slate-200 bg-slate-800/80 px-3.5 py-1.5 rounded-xl border border-slate-700">
@@ -74,7 +82,7 @@ export default function AppLayout({ header, children }) {
                         </div>
 
                         {/* Mobile Hamburger Toggle Button */}
-                        <div className="flex sm:hidden items-center gap-2">
+                        <div className="flex md:hidden items-center gap-2">
                             <CurrencyDropdown />
                             <button
                                 onClick={() => setMobileMenuOpen(true)}
@@ -98,7 +106,7 @@ export default function AppLayout({ header, children }) {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 sm:hidden"
+                            className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 md:hidden"
                         />
 
                         {/* Drawer Panel */}
@@ -107,7 +115,7 @@ export default function AppLayout({ header, children }) {
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}
                             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                            className="fixed inset-y-0 right-0 w-full max-w-xs bg-slate-900/95 border-l border-slate-800 backdrop-blur-2xl z-50 p-6 flex flex-col justify-between shadow-2xl sm:hidden"
+                            className="fixed inset-y-0 right-0 w-full max-w-xs bg-slate-900/95 border-l border-slate-800 backdrop-blur-2xl z-50 p-6 flex flex-col justify-between shadow-2xl md:hidden"
                         >
                             <div>
                                 {/* Drawer Header */}
@@ -172,6 +180,33 @@ export default function AppLayout({ header, children }) {
                                         <Receipt className="w-5 h-5 text-amber-400" />
                                         Invoices & Billing
                                     </Link>
+
+                                    <Link
+                                        href={route('how-it-works')}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800/70 hover:text-white transition-all"
+                                    >
+                                        <HelpCircle className="w-5 h-5 text-cyan-400" />
+                                        How It Works
+                                    </Link>
+
+                                    <Link
+                                        href={route('support')}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800/70 hover:text-white transition-all"
+                                    >
+                                        <HelpCircle className="w-5 h-5 text-emerald-400" />
+                                        Support & FAQ
+                                    </Link>
+
+                                    <Link
+                                        href={route('contact')}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800/70 hover:text-white transition-all"
+                                    >
+                                        <PhoneCall className="w-5 h-5 text-rose-400" />
+                                        Contact Support
+                                    </Link>
                                 </nav>
                             </div>
 
@@ -206,7 +241,7 @@ export default function AppLayout({ header, children }) {
                 {children}
             </main>
 
-            {/* Dashboard Footer with Full Company Information */}
+            {/* Dashboard Footer with Navigation & Full Company Information */}
             <footer className="bg-slate-950 border-t border-slate-900/90 py-8 text-slate-400 text-xs">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-slate-900">
@@ -221,25 +256,20 @@ export default function AppLayout({ header, children }) {
                     </div>
 
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div className="flex flex-wrap items-center gap-6 font-semibold">
+                            <Link href={route('how-it-works')} className="hover:text-white transition-colors">How It Works</Link>
+                            <Link href={route('about')} className="hover:text-white transition-colors">About Us</Link>
+                            <Link href={route('support')} className="hover:text-white transition-colors">Support & FAQ</Link>
+                            <Link href={route('contact')} className="hover:text-white transition-colors">Contact Support</Link>
+                            <span className="text-slate-700">|</span>
+                            <Link href={route('legal.terms')} className="hover:text-white transition-colors">Terms</Link>
+                            <Link href={route('legal.privacy')} className="hover:text-white transition-colors">Privacy</Link>
+                        </div>
+
                         <div className="flex items-center gap-3">
                             <ZeltrionixLogo className="h-6" showText={true} />
                             <span className="text-slate-600">|</span>
                             <span className="text-slate-500">© 2026 {company?.name || 'INCHWARD LIMITED'}. All rights reserved.</span>
-                        </div>
-
-                        <div className="flex flex-wrap items-center gap-6 font-semibold">
-                            <Link href={route('legal.terms')} className="hover:text-white transition-colors">
-                                Terms & Conditions
-                            </Link>
-                            <Link href={route('legal.privacy')} className="hover:text-white transition-colors">
-                                Privacy Policy
-                            </Link>
-                            <Link href={route('legal.cookies')} className="hover:text-white transition-colors">
-                                Cookie Policy
-                            </Link>
-                            <Link href={route('legal.refund')} className="hover:text-white transition-colors">
-                                Refund Policy
-                            </Link>
                         </div>
                     </div>
                 </div>

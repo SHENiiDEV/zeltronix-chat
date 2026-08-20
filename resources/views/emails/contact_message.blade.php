@@ -43,7 +43,7 @@
                     <!-- Footer -->
                     <tr>
                         <td style="padding:20px 32px; background-color:#0f172a; border-top:1px solid #334155; text-align:center; font-size:11px; color:#64748b;">
-                            SLA Target: &lt; 4 Business Hours Response &bull; {{ config('services.company.name', 'INCHWARD LIMITED') }}
+                            SLA Target: 24-48 Business Hours Response &bull; {{ config('services.company.name', 'INCHWARD LIMITED') }}
                         </td>
                     </tr>
 

@@ -230,7 +230,7 @@ export default function HowItWorks({ auth }) {
                                     <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400" /> Full 6-Page Institutional Memorandum</li>
                                     <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400" /> Bilingual English/Chinese Negotiation Scripts</li>
                                     <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400" /> Sea Freight & HS Code Duty Tariff Calculator</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400" /> Priority Executive Support (&lt;4h SLA)</li>
+                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400" /> Priority Executive Support (24-48h SLA)</li>
                                 </ul>
                             </div>
                             <Link

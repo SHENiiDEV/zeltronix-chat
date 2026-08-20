@@ -108,7 +108,7 @@ export default function Support({ company }) {
                                 </div>
                                 <h3 className="text-xl font-bold text-white mb-2">Corporate Inquiries</h3>
                                 <p className="text-xs text-slate-400 leading-relaxed mb-6">
-                                    Initiate formal trade desk support tickets with SLA response guaranteed under 4 hours.
+                                    Initiate formal trade desk support tickets with SLA response guaranteed within 24-48 hours.
                                 </p>
                             </div>
                             <Link

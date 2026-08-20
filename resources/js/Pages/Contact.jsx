@@ -36,7 +36,7 @@ export default function Contact({ company }) {
                     <div className="text-center max-w-3xl mx-auto">
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-extrabold tracking-widest uppercase mb-4 shadow-lg backdrop-blur-md">
                             <Clock className="w-3.5 h-3.5 text-blue-400" />
-                            SLA TARGET: &lt; 4 BUSINESS HOURS RESPONSE
+                            SLA TARGET: 24-48 BUSINESS HOURS RESPONSE
                         </div>
                         <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white mb-4">
                             Executive Trade Desk & Support
@@ -97,7 +97,7 @@ export default function Contact({ company }) {
                                         <ShieldCheck className="w-4 h-4 text-blue-400" /> Guaranteed SLA Standard
                                     </div>
                                     <p className="text-[11px] text-slate-300 leading-relaxed">
-                                        All support inquiries are logged and addressed by dedicated trade officers within 4 business hours.
+                                        All support inquiries are logged and addressed by dedicated trade officers within 24-48 business hours.
                                     </p>
                                 </div>
                             </div>

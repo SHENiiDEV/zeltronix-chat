@@ -4,7 +4,7 @@ Zeltrionix provides AI-powered support agents for B2B and B2C companies. AI widg
 
 ## Key Features
 
-- **DeepSeek AI RAG Integration**: Strictly grounded answers using uploaded document vector embeddings.
+- **Proprietary AI RAG Vector Integration**: Strictly grounded answers using uploaded document vector embeddings.
 - **Embeddable Vanilla JS Widget**: Fast, standalone JavaScript widget script (`public/widget.js`) with Dark & Light theme modes.
 - **Inertia.js + React Dashboard**: Modern admin dashboard for managing AI agents, documents, and token balances.
 - **Token-Based Pricing & Billing**: Support for PRO (€30/mo) and ENTERPRISE (€100/mo) plans with token top-ups and PDF invoices.

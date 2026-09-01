@@ -18,7 +18,7 @@ class RagEngineService
     }
 
     /**
-     * Answer user question using RAG workflow and deduct consumed DeepSeek tokens from user account balance.
+     * Answer user question using RAG workflow and deduct consumed AI tokens from user account balance.
      */
     public function ask(Bot $bot, ChatSession $session, string $question): string
     {

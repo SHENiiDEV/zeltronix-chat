@@ -3,16 +3,16 @@ import { Head } from '@inertiajs/react';
 import LegalLayout from '@/Layouts/LegalLayout';
 
 export default function Privacy({ company }) {
-    const companyName = company?.name || 'FERNBLAKE LIMITED';
-    const companyEmail = company?.support_email || 'support@zeltrionix.com';
+    const companyName = company?.name || 'INCHWARD LIMITED';
+    const companyEmail = company?.support_email || 'info@voltoria.co.uk';
 
     return (
         <LegalLayout
             title="Privacy Policy & Data Security"
-            subtitle="How Zeltrionix protects your data, knowledge base documents, and customer privacy."
+            subtitle="How Zeltrionix AI protects your data, knowledge base documents, and customer privacy."
             company={company}
         >
-            <Head title="Privacy Policy | Zeltrionix" />
+            <Head title="Privacy Policy | Zeltrionix AI" />
 
             <section className="space-y-4">
                 <h3 className="text-lg font-bold text-white">1. Data Protection Commitment</h3>
@@ -33,7 +33,7 @@ export default function Privacy({ company }) {
             <section className="space-y-4">
                 <h3 className="text-lg font-bold text-white">3. Zero Model Training Pledge</h3>
                 <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl text-emerald-300 font-semibold text-xs">
-                    🔒 <strong>Strict Guarantee:</strong> Your uploaded business documents and customer chat logs are NEVER used to train public foundation models (OpenAI, DeepSeek, etc.). Your vector data is strictly isolated within your private account space.
+                    🔒 <strong>Strict Guarantee:</strong> Your uploaded business documents and customer chat logs are NEVER used to train public foundation AI models. Your vector data is strictly isolated within your private account space.
                 </div>
             </section>
 

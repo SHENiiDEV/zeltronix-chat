@@ -280,7 +280,7 @@ export default function HowItWorks({ auth }) {
                             Select Your Supply Chain Package
                         </p>
                         <p className="text-slate-400 text-sm mt-3">
-                            Instant credit to your digital wallet with official UK B2B PDF tax invoice (€649 – €6,759).
+                            Instant credit to your digital wallet with official UK B2B PDF tax invoice.
                         </p>
                     </div>
 

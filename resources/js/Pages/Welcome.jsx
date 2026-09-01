@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Head, Link, usePage } from '@inertiajs/react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
@@ -29,7 +29,6 @@ export default function Welcome({ auth }) {
     const [selectedCurrency, setSelectedCurrency] = useState(() => {
         return localStorage.getItem('zeltronix_currency') || 'EUR';
     });
-    const [calcTokens, setCalcTokens] = useState(649000);
 
     const curr = CURRENCIES[selectedCurrency] || CURRENCIES.EUR;
 
@@ -45,41 +44,55 @@ export default function Welcome({ auth }) {
         <GuestLayout>
             <Head title="Zeltrionix AI — Autonomous AI Support Infrastructure & Direct OEM Sourcing" />
 
-            {/* 1. HERO SECTION */}
-            <section className="relative overflow-hidden pt-20 pb-32 bg-slate-950 text-white">
+            {/* 1. HERO SECTION WITH EMBEDDED LIVE AI CHAT WIDGET */}
+            <section className="relative overflow-hidden pt-16 pb-24 bg-slate-950 text-white">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950 to-slate-950 pointer-events-none"></div>
                 <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-blue-600/20 via-purple-600/20 to-cyan-500/10 blur-[160px] rounded-full pointer-events-none"></div>
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-extrabold tracking-widest uppercase mb-8 shadow-lg backdrop-blur-md">
-                        <Zap className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
-                        DIRECT OEM FACTORY SOURCING & AI AGENT INFRASTRUCTURE
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="text-center max-w-4xl mx-auto mb-10">
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-extrabold tracking-widest uppercase mb-6 shadow-lg backdrop-blur-md">
+                            <Zap className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
+                            DIRECT OEM FACTORY SOURCING & AI AGENT INFRASTRUCTURE
+                        </div>
+
+                        <h1 className="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-tight">
+                            Autonomous AI Support & <br />
+                            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+                                Direct OEM Sourcing Architecture
+                            </span>
+                        </h1>
+
+                        <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-8">
+                            Bypass 30–40% trading broker markups. Connect your business directly to 1,200+ audited Shenzhen, Ningbo & Vietnam OEM factories with autonomous RAG vector intelligence and 6-page institutional dossiers in &lt;60s.
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-12">
+                            <Link
+                                href={auth?.user ? route('dashboard') : route('register')}
+                                className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-extrabold text-sm px-8 py-3.5 rounded-2xl shadow-xl shadow-blue-500/25 transition-all flex items-center justify-center gap-2"
+                            >
+                                Get Started Now <ArrowRight className="w-4 h-4" />
+                            </Link>
+                            <a
+                                href="#pricing"
+                                className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-bold text-sm px-8 py-3.5 rounded-2xl transition-all text-center"
+                            >
+                                View Sourcing Packages
+                            </a>
+                        </div>
                     </div>
 
-                    <h1 className="text-4xl sm:text-7xl font-black tracking-tight mb-8 leading-tight">
-                        Autonomous AI Support & <br />
-                        <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-                            Direct OEM Sourcing Architecture
-                        </span>
-                    </h1>
-
-                    <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
-                        Bypass 30–40% trading broker markups. Connect your business directly to 1,200+ audited Shenzhen, Ningbo & Vietnam OEM factories with autonomous RAG vector intelligence and 6-page institutional dossiers in &lt;60s.
-                    </p>
-
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-16">
-                        <Link
-                            href={auth?.user ? route('dashboard') : route('register')}
-                            className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-extrabold text-base px-8 py-4 rounded-2xl shadow-xl shadow-blue-500/25 transition-all flex items-center justify-center gap-2"
-                        >
-                            Get Started Now <ArrowRight className="w-5 h-5" />
-                        </Link>
-                        <a
-                            href="#pricing"
-                            className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-bold text-base px-8 py-4 rounded-2xl transition-all text-center"
-                        >
-                            View Packages (€649 – €6,759)
-                        </a>
+                    {/* LIVE CHAT WIDGET EMBEDDED DIRECTLY IN HERO */}
+                    <div className="max-w-4xl mx-auto mb-16 shadow-2xl rounded-3xl border border-slate-800/80 overflow-hidden bg-slate-900/60 backdrop-blur-xl">
+                        <div className="bg-slate-900/90 px-6 py-3 border-b border-slate-800 flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                                <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span className="text-xs font-bold text-white uppercase tracking-wider">Live AI Support Assistant</span>
+                            </div>
+                            <span className="text-[11px] text-blue-400 font-mono">DeepSeek-R1 Vector RAG Engine</span>
+                        </div>
+                        <WidgetPreview />
                     </div>
 
                     {/* Trust Badges */}
@@ -100,26 +113,7 @@ export default function Welcome({ auth }) {
                 </div>
             </section>
 
-            {/* 2. LIVE INTERACTIVE AI AGENT PREVIEW */}
-            <section id="demo" className="py-20 bg-slate-950 border-t border-slate-900">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-3xl mx-auto mb-12">
-                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Live Technology Demo</h2>
-                        <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                            Experience Zeltrionix RAG AI Widget
-                        </p>
-                        <p className="text-slate-400 text-sm mt-3">
-                            Test our embedded support widget in real-time. Zero hallucinations, trained exclusively on indexed business documentation.
-                        </p>
-                    </div>
-
-                    <div className="max-w-4xl mx-auto">
-                        <WidgetPreview />
-                    </div>
-                </div>
-            </section>
-
-            {/* 3. PLATFORM FEATURES & VALUE PROP */}
+            {/* 2. PLATFORM FEATURES & VALUE PROP */}
             <section id="features" className="py-24 bg-slate-950 border-t border-slate-900">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-16">
@@ -163,13 +157,13 @@ export default function Welcome({ auth }) {
                 </div>
             </section>
 
-            {/* 4. SOURCING PACKAGES (€649 – €6,759) */}
+            {/* 3. SOURCING PACKAGES */}
             <section id="pricing" className="py-24 bg-slate-950 border-t border-slate-900">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-12">
                         <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Sourcing Packages & Token Infrastructure</h2>
                         <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                            Transparent Sourcing Packages (€649 to €6,759)
+                            Transparent Sourcing Packages
                         </p>
                         <p className="text-slate-400 text-sm mt-3">
                             Digital wallet deposits backed by 14-day unused balance refund policy and UK B2B PDF invoices.

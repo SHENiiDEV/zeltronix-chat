@@ -234,7 +234,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                             <Coins className="w-6 h-6 text-amber-400" /> Digital Wallet Token Top-Up
                         </h3>
                         <p className="text-xs text-slate-400 mb-6">
-                            Select a high-volume supply package ranging from <strong>€649 to €6,759</strong> or specify custom token deposits. Official B2B PDF tax invoice generated instantly.
+                            Select a high-volume supply package or specify custom token deposits. Official B2B PDF tax invoice generated instantly.
                         </p>
 
                         <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800 mb-6 flex items-center justify-between">

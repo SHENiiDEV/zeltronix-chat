@@ -17,7 +17,7 @@ class OpenAiService
 
     public function __construct()
     {
-        $this->provider = config('services.provider', env('AI_PROVIDER', 'openai'));
+        $this->provider = config('services.provider', env('AI_PROVIDER', 'deepseek'));
         $this->openAiApiKey = config('services.openai.api_key', env('OPENAI_API_KEY'));
 
         if ($this->provider === 'deepseek') {

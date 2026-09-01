@@ -1,41 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import GuestLayout from '@/Layouts/GuestLayout';
+import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
 import WidgetPreview from '@/Components/WidgetPreview';
-import { motion } from 'framer-motion';
-import {
-    Sparkles, ArrowRight, ShieldCheck, Zap, Layers, Target, Palette,
-    UserPlus, BarChart3, Lock, Globe, Clock, Brain, TrendingUp, Check, Star,
-    Coins, Sliders
+import { 
+    Bot, ShieldCheck, Zap, Layers, Cpu, Globe, Check, ArrowRight, Wallet, 
+    FileText, Calculator, Building2, Coins, Sparkles, Sliders, MessageSquare, 
+    TrendingUp, Clock, Brain, Lock, MapPin, Mail 
 } from 'lucide-react';
 
 const CURRENCIES = {
-    EUR: { code: 'EUR', symbol: '€', rate: 1.0, name: 'EUR (€)' },
-    USD: { code: 'USD', symbol: '$', rate: 1.09, name: 'USD ($)' },
-    GBP: { code: 'GBP', symbol: '£', rate: 0.86, name: 'GBP (£)' },
+    EUR: { code: 'EUR', symbol: '€', rate: 1.0, name: 'Euro (€)' },
+    USD: { code: 'USD', symbol: '$', rate: 1.09, name: 'US Dollar ($)' },
+    GBP: { code: 'GBP', symbol: '£', rate: 0.86, name: 'British Pound (£)' },
 };
 
+const WELCOME_PACKAGES = [
+    { name: 'Starter Sourcing', eurPrice: 649, tokens: 649000, tag: 'Entry Tier', desc: 'Initial OEM product sourcing & supplier verification', badge: null },
+    { name: 'Standard Sourcing', eurPrice: 1249, tokens: 1249000, tag: 'Standard Tier', desc: 'HS Code tariff calculations & RFQ negotiation scripts', badge: null },
+    { name: 'Pro Sourcing', eurPrice: 2499, tokens: 2499000, tag: 'Institutional', desc: 'Full 6-page institutional Memorandum & RFQ scripts', badge: 'Most Popular' },
+    { name: 'Growth Infrastructure', eurPrice: 3899, tokens: 3899000, tag: 'Growth Scaled', desc: 'Multi-product OEM negotiations & container FCL routing', badge: null },
+    { name: 'Institutional Scale', eurPrice: 5299, tokens: 5299000, tag: 'Scale Tier', desc: 'Dedicated Trade Desk & custom factory sample audits', badge: null },
+    { name: 'Enterprise Global', eurPrice: 6759, tokens: 6759000, tag: 'Enterprise', desc: 'Full turnkey supply chain architecture & unlimited exports', badge: 'Enterprise' },
+];
+
 export default function Welcome({ auth }) {
+    const { company } = usePage().props;
     const [selectedCurrency, setSelectedCurrency] = useState(() => {
         return localStorage.getItem('zeltronix_currency') || 'EUR';
     });
-    const [customTokens, setCustomTokens] = useState(500000); // 500,000 Tokens (€500)
-
-    useEffect(() => {
-        const handleStorageChange = () => {
-            setSelectedCurrency(localStorage.getItem('zeltronix_currency') || 'EUR');
-        };
-        window.addEventListener('zeltronix_currency_changed', handleStorageChange);
-        return () => window.removeEventListener('zeltronix_currency_changed', handleStorageChange);
-    }, []);
+    const [calcTokens, setCalcTokens] = useState(649000);
 
     const curr = CURRENCIES[selectedCurrency] || CURRENCIES.EUR;
 
-    // Rate: €1.00 per 1,000 AI tokens base
-    const calcPrice = (tokens) => {
-        const baseEur = (tokens / 1000) * 1.00;
-        return (baseEur * curr.rate).toFixed(2);
-    };
+    const calcPrice = (eurAmount) => (eurAmount * curr.rate).toFixed(0);
 
     const handleCurrencyChange = (code) => {
         setSelectedCurrency(code);
@@ -45,159 +43,136 @@ export default function Welcome({ auth }) {
 
     return (
         <GuestLayout>
-            <Head title="FERNBLAKE LIMITED | Autonomous AI Support Agents & Enterprise Token Infrastructure" />
+            <Head title="Zeltrionix AI — Autonomous AI Support Infrastructure & Direct OEM Sourcing" />
 
             {/* 1. HERO SECTION */}
-            <section className="relative overflow-hidden pt-16 pb-28 lg:pt-24 lg:pb-36 bg-slate-950 text-white">
-                {/* Background Glows & Aceternity-style Animated Grid */}
+            <section className="relative overflow-hidden pt-20 pb-32 bg-slate-950 text-white">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-950 to-slate-950 pointer-events-none"></div>
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-25 pointer-events-none"></div>
-                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-blue-600/20 via-purple-600/20 to-cyan-500/10 blur-[140px] rounded-full pointer-events-none"></div>
+                <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-blue-600/20 via-purple-600/20 to-cyan-500/10 blur-[160px] rounded-full pointer-events-none"></div>
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    {/* Left Copy */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="lg:col-span-7 text-center lg:text-left"
-                    >
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-extrabold tracking-widest uppercase mb-6 shadow-lg shadow-blue-500/10 backdrop-blur-md">
-                            <Zap className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
-                            FERNBLAKE LIMITED ENTERPRISE INFRASTRUCTURE
-                        </div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-extrabold tracking-widest uppercase mb-8 shadow-lg backdrop-blur-md">
+                        <Zap className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
+                        DIRECT OEM FACTORY SOURCING & AI AGENT INFRASTRUCTURE
+                    </div>
 
-                        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6">
-                            Your Knowledge. <br />
-                            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-                                Our AI Agents.
-                            </span> <br />
-                            Zero Hallucinations.
-                        </h1>
+                    <h1 className="text-4xl sm:text-7xl font-black tracking-tight mb-8 leading-tight">
+                        Autonomous AI Support & <br />
+                        <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+                            Direct OEM Sourcing Architecture
+                        </span>
+                    </h1>
 
-                        <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed mb-8">
-                            Empower your enterprise with autonomous 24/7 customer support widgets trained exclusively on your business documentation. High-volume token rates at <span className="text-white font-bold">{curr.symbol}{(1.00 * curr.rate).toFixed(2)} {curr.code} per 1,000 AI tokens</span>.
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                            {auth?.user ? (
-                                <Link
-                                    href={route('dashboard')}
-                                    className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-4 px-8 rounded-2xl transition-all shadow-xl shadow-blue-500/30 hover:shadow-purple-500/40 text-center flex items-center justify-center gap-2"
-                                >
-                                    Open Dashboard <ArrowRight className="w-5 h-5" />
-                                </Link>
-                            ) : (
-                                <>
-                                    <Link
-                                        href={route('register')}
-                                        className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-4 px-8 rounded-2xl transition-all shadow-xl shadow-blue-500/30 hover:shadow-purple-500/40 text-center flex items-center justify-center gap-2"
-                                    >
-                                        Build Your AI Agent <ArrowRight className="w-5 h-5" />
-                                    </Link>
-                                    <a
-                                        href="#pricing"
-                                        className="w-full sm:w-auto bg-slate-900/90 hover:bg-slate-800 text-slate-200 font-bold py-4 px-8 rounded-2xl transition-colors border border-slate-800 text-center"
-                                    >
-                                        View Enterprise Packages
-                                    </a>
-                                </>
-                            )}
-                        </div>
-
-                        <div className="mt-10 flex items-center justify-center lg:justify-start gap-6 text-slate-400 text-xs font-semibold">
-                            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> Multi-Currency VAT Billing</span>
-                            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-400" /> Custom Large Deposits</span>
-                            <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-blue-400" /> SOC2 & GDPR Compliant</span>
-                        </div>
-                    </motion.div>
-
-                    {/* Right Interactive Widget Demo */}
-                    <motion.div
-                        id="demo"
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="lg:col-span-5 flex justify-center"
-                    >
-                        <WidgetPreview />
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* 2. TRUST BAR */}
-            <section className="py-12 bg-slate-950/80 border-y border-slate-900">
-                <div className="max-w-7xl mx-auto px-4 text-center">
-                    <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">
-                        Trusted by innovative teams worldwide
+                    <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
+                        Bypass 30–40% trading broker markups. Connect your business directly to 1,200+ audited Shenzhen, Ningbo & Vietnam OEM factories with autonomous RAG vector intelligence and 6-page institutional dossiers in &lt;60s.
                     </p>
-                    <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all text-slate-300 font-extrabold text-lg">
-                        <span>OMNITECH</span>
-                        <span>APEX LOGISTICS</span>
-                        <span>CLOUDFLOW</span>
-                        <span>PAYPHANTOM</span>
-                        <span>VORTEX SAAS</span>
+
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-16">
+                        <Link
+                            href={auth?.user ? route('dashboard') : route('register')}
+                            className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-extrabold text-base px-8 py-4 rounded-2xl shadow-xl shadow-blue-500/25 transition-all flex items-center justify-center gap-2"
+                        >
+                            Get Started Now <ArrowRight className="w-5 h-5" />
+                        </Link>
+                        <a
+                            href="#pricing"
+                            className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-bold text-base px-8 py-4 rounded-2xl transition-all text-center"
+                        >
+                            View Packages (€649 – €6,759)
+                        </a>
+                    </div>
+
+                    {/* Trust Badges */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-slate-900 text-xs font-semibold text-slate-400">
+                        <div className="flex items-center justify-center gap-2">
+                            <ShieldCheck className="w-4 h-4 text-emerald-400" /> 1,200+ OEM Factories Audited
+                        </div>
+                        <div className="flex items-center justify-center gap-2">
+                            <Clock className="w-4 h-4 text-blue-400" /> &lt;60s Vector Dossier Match
+                        </div>
+                        <div className="flex items-center justify-center gap-2">
+                            <Lock className="w-4 h-4 text-purple-400" /> 100% IP Ownership Retention
+                        </div>
+                        <div className="flex items-center justify-center gap-2">
+                            <Coins className="w-4 h-4 text-amber-400" /> UK B2B PDF Tax Invoices
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* 3. PROBLEM / SOLUTION SECTION */}
-            <section className="py-24 bg-slate-950 text-white">
+            {/* 2. LIVE INTERACTIVE AI AGENT PREVIEW */}
+            <section id="demo" className="py-20 bg-slate-950 border-t border-slate-900">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center max-w-3xl mx-auto mb-12">
+                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Live Technology Demo</h2>
+                        <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">
+                            Experience Zeltrionix RAG AI Widget
+                        </p>
+                        <p className="text-slate-400 text-sm mt-3">
+                            Test our embedded support widget in real-time. Zero hallucinations, trained exclusively on indexed business documentation.
+                        </p>
+                    </div>
+
+                    <div className="max-w-4xl mx-auto">
+                        <WidgetPreview />
+                    </div>
+                </div>
+            </section>
+
+            {/* 3. PLATFORM FEATURES & VALUE PROP */}
+            <section id="features" className="py-24 bg-slate-950 border-t border-slate-900">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Efficiency Reimagined</h2>
+                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Architectural Edge</h2>
                         <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                            Support that Scales Without the Headcount
+                            Infrastructure Built for Scaling B2B Platforms
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {/* Card 1 */}
                         <div className="bg-slate-900/60 p-8 rounded-3xl border border-slate-800 hover:border-slate-700 transition-all">
                             <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
                                 <Clock className="w-6 h-6" />
                             </div>
-                            <h3 className="text-xl font-bold mb-3 text-white">The Old Way</h3>
+                            <h3 className="text-xl font-bold mb-3 text-white">Traditional Middlemen</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
-                                Support teams overwhelmed by repetitive questions, leading to slow response times, high operational costs, and frustrated customers.
+                                Overseas trading brokers mark up factory unit costs by 30–40%, conceal actual OEM factory contacts, and delay RFQ negotiation cycles.
                             </p>
                         </div>
 
-                        {/* Card 2 */}
                         <div className="bg-gradient-to-b from-slate-900 to-slate-950 p-8 rounded-3xl border border-blue-500/30 hover:border-blue-500/60 transition-all shadow-xl shadow-blue-500/5 relative">
                             <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-6">
                                 <Brain className="w-6 h-6" />
                             </div>
-                            <h3 className="text-xl font-bold mb-3 text-white">The FERNBLAKE Way</h3>
+                            <h3 className="text-xl font-bold mb-3 text-white">The Zeltrionix Way</h3>
                             <p className="text-slate-300 text-sm leading-relaxed">
-                                Your AI Agent learns your business in minutes. It handles 80% of common support queries instantly, consuming tokens only when active.
+                                Autonomous vector search maps your requirements directly to audited OEM manufacturers in Shenzhen and Ningbo with reverse landed cost calculation.
                             </p>
                         </div>
 
-                        {/* Card 3 */}
                         <div className="bg-slate-900/60 p-8 rounded-3xl border border-slate-800 hover:border-slate-700 transition-all">
                             <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6">
                                 <TrendingUp className="w-6 h-6" />
                             </div>
-                            <h3 className="text-xl font-bold mb-3 text-white">The Result</h3>
+                            <h3 className="text-xl font-bold mb-3 text-white">The Institutional Result</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
-                                Drastically reduced support ticket costs, full control over token consumption, and ability to top-up tokens flexibly as your business grows.
+                                Average 58.4% profit margin gain, 6-page institutional investment dossiers, and official UK B2B PDF tax receipts stamped PAID & VERIFIED.
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* 4. ENTERPRISE HIGH-VOLUME PRICING & MULTI-CURRENCY CALCULATOR */}
+            {/* 4. SOURCING PACKAGES (€649 – €6,759) */}
             <section id="pricing" className="py-24 bg-slate-950 border-t border-slate-900">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-12">
-                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Enterprise High-Volume Packages</h2>
+                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Sourcing Packages & Token Infrastructure</h2>
                         <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                            Transparent Token Billing ({curr.symbol}{(1.00 * curr.rate).toFixed(2)} per 1,000 Tokens)
+                            Transparent Sourcing Packages (€649 to €6,759)
                         </p>
                         <p className="text-slate-400 text-sm mt-3">
-                            High volume token deposits for scaling platforms and enterprise customer support.
+                            Digital wallet deposits backed by 14-day unused balance refund policy and UK B2B PDF invoices.
                         </p>
 
                         {/* Multi-Currency Selector */}
@@ -221,216 +196,52 @@ export default function Welcome({ auth }) {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
-                        {/* 100,000 Tokens */}
-                        <div className="bg-slate-900/90 p-8 rounded-3xl border border-slate-800 shadow-xl flex flex-col justify-between hover:border-blue-500/40 transition-all">
-                            <div>
-                                <h3 className="text-xl font-bold text-white mb-1">Starter Pack</h3>
-                                <p className="text-slate-400 text-xs mb-6">For growing customer support</p>
-
-                                <div className="text-4xl font-black text-white mb-6">
-                                    {curr.symbol}{calcPrice(100000)} <span className="text-xs text-slate-400 font-semibold">{curr.code}</span>
-                                </div>
-
-                                <div className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-3 mb-6 text-center">
-                                    <span className="text-xs text-blue-300 font-bold">100,000 AI Tokens</span>
-                                </div>
-
-                                <ul className="space-y-3 text-xs text-slate-300 mb-6">
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> Full Knowledge Base RAG</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> Dark & Light Theme Modes</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> Official VAT Invoices (FERNBLAKE)</li>
-                                </ul>
-                            </div>
-                            <Link
-                                href={route('register')}
-                                className="w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all"
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
+                        {WELCOME_PACKAGES.map((pkg, idx) => (
+                            <div
+                                key={idx}
+                                className={`p-8 rounded-3xl border shadow-xl flex flex-col justify-between relative transition-all ${
+                                    pkg.badge === 'Most Popular'
+                                        ? 'bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-blue-500 shadow-blue-500/10'
+                                        : pkg.badge === 'Enterprise'
+                                        ? 'bg-slate-900/90 border-purple-500/50 hover:border-purple-500'
+                                        : 'bg-slate-900/90 border-slate-800 hover:border-slate-700'
+                                }`}
                             >
-                                Purchase Pack
-                            </Link>
-                        </div>
+                                {pkg.badge && (
+                                    <span className="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                                        {pkg.badge}
+                                    </span>
+                                )}
 
-                        {/* 500,000 Tokens */}
-                        <div className="bg-gradient-to-b from-slate-900 to-slate-950 p-8 rounded-3xl border-2 border-blue-500 shadow-2xl shadow-blue-500/10 flex flex-col justify-between relative">
-                            <span className="absolute -top-3 right-6 bg-blue-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-                                Recommended
-                            </span>
-                            <div>
-                                <h3 className="text-xl font-bold text-white mb-1">Growth Pack</h3>
-                                <p className="text-slate-400 text-xs mb-6">For high volume daily support</p>
+                                <div>
+                                    <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-1">
+                                        {pkg.tag}
+                                    </span>
+                                    <h3 className="text-xl font-bold text-white mb-2">{pkg.name}</h3>
+                                    <p className="text-xs text-slate-400 mb-6">{pkg.desc}</p>
 
-                                <div className="text-4xl font-black text-white mb-6">
-                                    {curr.symbol}{calcPrice(500000)} <span className="text-xs text-slate-400 font-semibold">{curr.code}</span>
+                                    <div className="text-4xl font-black text-white mb-4">
+                                        {curr.symbol}{calcPrice(pkg.eurPrice)}{' '}
+                                        <span className="text-xs text-slate-400 font-semibold">{curr.code}</span>
+                                    </div>
+
+                                    <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-2.5 mb-6 text-center">
+                                        <span className="text-xs text-blue-300 font-extrabold font-mono">
+                                            +{pkg.tokens.toLocaleString()} AI Tokens
+                                        </span>
+                                    </div>
                                 </div>
 
-                                <div className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-3 mb-6 text-center">
-                                    <span className="text-xs text-blue-300 font-bold">500,000 AI Tokens</span>
-                                </div>
-
-                                <ul className="space-y-3 text-xs text-slate-300 mb-6">
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> Unlimited AI Agents</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> PDF, DOCX, TXT, CSV Uploads</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-blue-400" /> Human Escalation Trigger</li>
-                                </ul>
+                                <Link
+                                    href={route('register')}
+                                    className="w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 px-4 rounded-xl text-xs transition-all shadow-lg shadow-blue-500/20"
+                                >
+                                    Select {pkg.name}
+                                </Link>
                             </div>
-                            <Link
-                                href={route('register')}
-                                className="w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all shadow-lg shadow-blue-500/25"
-                            >
-                                Purchase Pack
-                            </Link>
-                        </div>
-
-                        {/* 1,000,000 Tokens */}
-                        <div className="bg-slate-900/90 p-8 rounded-3xl border border-purple-500/30 shadow-xl flex flex-col justify-between hover:border-purple-500 transition-all">
-                            <div>
-                                <h3 className="text-xl font-bold text-white mb-1">Scale Pack</h3>
-                                <p className="text-purple-300 text-xs mb-6">Large enterprise capacity</p>
-
-                                <div className="text-4xl font-black text-white mb-6">
-                                    {curr.symbol}{calcPrice(1000000)} <span className="text-xs text-slate-400 font-semibold">{curr.code}</span>
-                                </div>
-
-                                <div className="bg-purple-500/10 border border-purple-500/20 rounded-2xl p-3 mb-6 text-center">
-                                    <span className="text-xs text-purple-300 font-bold">1,000,000 AI Tokens</span>
-                                </div>
-
-                                <ul className="space-y-3 text-xs text-slate-300 mb-6">
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-purple-400" /> Priority Vector Store Retrieval</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-purple-400" /> Dedicated Account Manager</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-purple-400" /> Multi-Currency VAT Invoices</li>
-                                </ul>
-                            </div>
-                            <Link
-                                href={route('register')}
-                                className="w-full text-center bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all shadow-lg shadow-purple-500/25"
-                            >
-                                Purchase Pack
-                            </Link>
-                        </div>
+                        ))}
                     </div>
-
-                    {/* INTERACTIVE CUSTOM LARGE TOKEN CALCULATOR */}
-                    <div className="max-w-4xl mx-auto bg-slate-900/90 border border-slate-800 p-8 rounded-3xl shadow-2xl">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
-                                <Sliders className="w-5 h-5" />
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-bold text-white">Large Enterprise Deposit Calculator</h3>
-                                <p className="text-xs text-slate-400">Drag slider to calculate custom high-volume token deposits in {curr.name}.</p>
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mt-6">
-                            <div className="md:col-span-8 space-y-4">
-                                <div className="flex justify-between text-xs font-bold text-slate-300">
-                                    <span>Token Package Size:</span>
-                                    <span className="text-blue-400 text-sm font-black">{customTokens.toLocaleString()} Tokens</span>
-                                </div>
-                                <input
-                                    type="range"
-                                    min="100000"
-                                    max="10000000"
-                                    step="100000"
-                                    value={customTokens}
-                                    onChange={(e) => setCustomTokens(Number(e.target.value))}
-                                    className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500"
-                                />
-                                <div className="flex justify-between text-[11px] text-slate-500 font-mono">
-                                    <span>100,000 tokens</span>
-                                    <span>5,000,000 tokens</span>
-                                    <span>10,000,000 tokens</span>
-                                </div>
-                            </div>
-
-                            <div className="md:col-span-4 bg-slate-950 border border-slate-800 rounded-2xl p-6 text-center">
-                                <span className="text-xs text-slate-400 block font-semibold mb-1">Total ({curr.code})</span>
-                                <div className="text-3xl font-black text-white">{curr.symbol}{calcPrice(customTokens)}</div>
-                                <span className="text-[10px] text-emerald-400 block mt-1">Instant Token Credit</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* 5. KEY FEATURES GRID */}
-            <section id="features" className="py-24 bg-slate-950">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Enterprise Ready</h2>
-                        <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                            Built for Accuracy, Designed for Business
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div className="bg-slate-900/40 p-8 rounded-3xl border border-slate-800 hover:border-blue-500/50 transition-all">
-                            <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-4">
-                                <Target className="w-6 h-6" />
-                            </div>
-                            <h3 className="text-lg font-bold mb-2">Precision & Accuracy</h3>
-                            <p className="text-slate-400 text-sm">No Hallucinations. RAG engine ensures the AI strictly answers using your verified business documentation.</p>
-                        </div>
-
-                        <div className="bg-slate-900/40 p-8 rounded-3xl border border-slate-800 hover:border-blue-500/50 transition-all">
-                            <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-4">
-                                <Palette className="w-6 h-6" />
-                            </div>
-                            <h3 className="text-lg font-bold mb-2">Full Customization</h3>
-                            <p className="text-slate-400 text-sm">Your Brand, Your Voice. Customize colors, greeting text, and assistant names to match your design.</p>
-                        </div>
-
-                        <div className="bg-slate-900/40 p-8 rounded-3xl border border-slate-800 hover:border-blue-500/50 transition-all">
-                            <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-4">
-                                <UserPlus className="w-6 h-6" />
-                            </div>
-                            <h3 className="text-lg font-bold mb-2">Smart Escalation</h3>
-                            <p className="text-slate-400 text-sm">Seamless Human Handover. When queries are complex, the AI routes requests to your human support team.</p>
-                        </div>
-
-                        <div className="bg-slate-900/40 p-8 rounded-3xl border border-slate-800 hover:border-blue-500/50 transition-all">
-                            <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4">
-                                <BarChart3 className="w-6 h-6" />
-                            </div>
-                            <h3 className="text-lg font-bold mb-2">Deep Analytics</h3>
-                            <p className="text-slate-400 text-sm">Monitor conversation logs, token consumption rates, and identify gaps in your knowledge base.</p>
-                        </div>
-
-                        <div className="bg-slate-900/40 p-8 rounded-3xl border border-slate-800 hover:border-blue-500/50 transition-all">
-                            <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-4">
-                                <Lock className="w-6 h-6" />
-                            </div>
-                            <h3 className="text-lg font-bold mb-2">Secure & Private</h3>
-                            <p className="text-slate-400 text-sm">Your customer data is encrypted in transit and at rest, and never used to train public models.</p>
-                        </div>
-
-                        <div className="bg-slate-900/40 p-8 rounded-3xl border border-slate-800 hover:border-blue-500/50 transition-all">
-                            <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-4">
-                                <Globe className="w-6 h-6" />
-                            </div>
-                            <h3 className="text-lg font-bold mb-2">Multi-lingual Support</h3>
-                            <p className="text-slate-400 text-sm">Automatically detects and responds in over 50 languages to support your global customer base.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* 6. FINAL CTA */}
-            <section className="py-20 bg-gradient-to-r from-blue-900/40 via-slate-900 to-purple-900/40 border-t border-slate-800 text-center">
-                <div className="max-w-4xl mx-auto px-4">
-                    <h2 className="text-3xl sm:text-5xl font-extrabold mb-6">
-                        Ready to Transform Your Customer Service?
-                    </h2>
-                    <p className="text-slate-300 text-lg max-w-2xl mx-auto mb-8">
-                        Join hundreds of forward-thinking businesses reducing costs and boosting satisfaction with FERNBLAKE LIMITED.
-                    </p>
-                    <Link
-                        href={route('register')}
-                        className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-extrabold py-4 px-10 rounded-2xl text-lg shadow-2xl shadow-blue-500/40 transition-all transform hover:scale-105"
-                    >
-                        Get Started Today <Sparkles className="w-5 h-5" />
-                    </Link>
                 </div>
             </section>
         </GuestLayout>

@@ -11,12 +11,21 @@ const CURRENCIES = {
     GBP: { code: 'GBP', symbol: '£', rate: 0.86, name: 'British Pound (£)' },
 };
 
+const TOPUP_PACKAGES = [
+    { name: 'Starter Sourcing', tokens: 649000, eurPrice: 649, badge: 'Entry' },
+    { name: 'Standard Sourcing', tokens: 1249000, eurPrice: 1249, badge: null },
+    { name: 'Pro Sourcing', tokens: 2499000, eurPrice: 2499, badge: 'Popular' },
+    { name: 'Growth Infrastructure', tokens: 3899000, eurPrice: 3899, badge: null },
+    { name: 'Institutional Scale', tokens: 5299000, eurPrice: 5299, badge: null },
+    { name: 'Enterprise Global', tokens: 6759000, eurPrice: 6759, badge: 'Enterprise' },
+];
+
 export default function Dashboard({ stats, chartData = [], recentBots }) {
     const [showTopUpModal, setShowTopUpModal] = useState(false);
     const [selectedCurrency, setSelectedCurrency] = useState(() => {
         return localStorage.getItem('zeltronix_currency') || 'EUR';
     });
-    const [customTokenInput, setCustomTokenInput] = useState(100000); // Default 100k tokens (€100)
+    const [customTokenInput, setCustomTokenInput] = useState(649000); // Default 649k tokens (€649)
 
     useEffect(() => {
         const handleStorageChange = () => {
@@ -80,7 +89,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                 </div>
             }
         >
-            <Head title="Dashboard | FERNBLAKE LIMITED" />
+            <Head title="Dashboard | INCHWARD LIMITED" />
 
             {/* Metric Cards including Token Balance */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
@@ -147,31 +156,25 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                 <div className="flex items-center justify-between mb-6">
                     <div>
                         <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                            <TrendingUp className="w-5 h-5 text-blue-400" />
-                            Support & Token Consumption Volume
+                            <TrendingUp className="w-5 h-5 text-blue-400" /> Token Consumption Activity
                         </h3>
-                        <p className="text-xs text-slate-400">7-Day token consumption and message volume across active agents</p>
+                        <p className="text-xs text-slate-400">Daily deepseek token usage metrics across customer bots</p>
                     </div>
-                    <span className="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 font-bold px-3 py-1 rounded-full">
-                        Live Database Telemetry
-                    </span>
                 </div>
 
                 <div className="h-64 w-full">
                     <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart data={chartData}>
+                        <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                             <defs>
-                                <linearGradient id="colorQueries" x1="0" y1="0" x2="0" y2="1">
+                                <linearGradient id="colorTokens" x1="0" y1="0" x2="0" y2="1">
                                     <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.4}/>
                                     <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
                                 </linearGradient>
                             </defs>
-                            <XAxis dataKey="day" stroke="#64748b" fontSize={12} tickLine={false} />
-                            <YAxis stroke="#64748b" fontSize={12} tickLine={false} allowDecimals={false} />
-                            <Tooltip
-                                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '12px', color: '#fff' }}
-                            />
-                            <Area type="monotone" dataKey="queries" stroke="#3b82f6" strokeWidth={3} fillOpacity={1} fill="url(#colorQueries)" />
+                            <XAxis dataKey="date" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+                            <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+                            <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '12px', color: '#fff', fontSize: '12px' }} />
+                            <Area type="monotone" dataKey="tokens" stroke="#3b82f6" strokeWidth={3} fillOpacity={1} fill="url(#colorTokens)" />
                         </AreaChart>
                     </ResponsiveContainer>
                 </div>
@@ -181,7 +184,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
             <div className="bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-xl">
                 <div className="p-6 border-b border-slate-800 flex items-center justify-between">
                     <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                        <Bot className="w-5 h-5 text-purple-400" /> Your Support Agents
+                        <Bot className="w-5 h-5 text-purple-400" /> Deployed AI Support Agents
                     </h3>
                     <Link href={route('bots.index')} className="text-xs font-bold text-blue-400 hover:text-blue-300 flex items-center gap-1">
                         View All Agents <ChevronRight className="w-4 h-4" />
@@ -190,38 +193,32 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
 
                 {recentBots.length === 0 ? (
                     <div className="p-12 text-center text-slate-400">
-                        <p className="mb-4 text-sm">No AI agents created yet.</p>
-                        <Link
-                            href={route('bots.index')}
-                            className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm px-6 py-3 rounded-xl inline-flex items-center gap-2 shadow-lg shadow-blue-500/20"
-                        >
-                            <Plus className="w-4 h-4" /> Create Your First AI Agent
+                        <Bot className="w-12 h-12 text-slate-600 mx-auto mb-3" />
+                        <h4 className="text-base font-bold text-white mb-1">No AI Agents Deployed Yet</h4>
+                        <p className="text-xs text-slate-400 max-w-sm mx-auto mb-4">Create your first AI Support Agent and upload knowledge documentation.</p>
+                        <Link href={route('bots.index')} className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-lg inline-flex items-center gap-2">
+                            <Plus className="w-4 h-4" /> Create First Agent
                         </Link>
                     </div>
                 ) : (
                     <div className="divide-y divide-slate-800">
                         {recentBots.map((bot) => (
-                            <div key={bot.id} className="p-6 flex items-center justify-between hover:bg-slate-800/40 transition-colors">
+                            <div key={bot.id} className="p-5 flex items-center justify-between hover:bg-slate-800/40 transition-colors">
                                 <div className="flex items-center gap-4">
-                                    <div
-                                        className="w-11 h-11 rounded-2xl flex items-center justify-center font-bold text-white text-base shadow-md"
-                                        style={{ background: `linear-gradient(135deg, ${bot.primary_color}, ${bot.secondary_color})` }}
-                                    >
-                                        <Bot className="w-5 h-5 text-white" />
+                                    <div className="w-10 h-10 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center font-bold">
+                                        <Bot className="w-5 h-5" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-white text-base">{bot.name}</h4>
-                                        <p className="text-xs text-slate-400 mt-0.5">
-                                            {bot.documents_count} Knowledge Docs • {bot.chat_sessions_count} Active Sessions
-                                        </p>
+                                        <h4 className="font-bold text-white text-sm">{bot.name}</h4>
+                                        <p className="text-xs text-slate-400">{bot.documents_count || 0} indexed docs • Model: DeepSeek Chat</p>
                                     </div>
                                 </div>
 
                                 <Link
                                     href={route('bots.show', bot.id)}
-                                    className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-4 py-2.5 rounded-xl border border-slate-700 transition-colors flex items-center gap-1.5"
+                                    className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-4 py-2 rounded-xl border border-slate-700 transition-colors flex items-center gap-1.5"
                                 >
-                                    Manage & Embed <ChevronRight className="w-4 h-4 text-blue-400" />
+                                    Manage <ArrowUpRight className="w-3.5 h-3.5" />
                                 </Link>
                             </div>
                         ))}
@@ -229,24 +226,17 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                 )}
             </div>
 
-            {/* MULTI-CURRENCY ENTERPRISE TOKEN TOP-UP MODAL */}
+            {/* TOP-UP MODAL (6 PACKAGES €649 - €6,759) */}
             {showTopUpModal && (
-                <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-                    <div className="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-xl p-6 sm:p-8 shadow-2xl">
-                        <div className="flex justify-between items-center mb-4">
-                            <div className="flex items-center gap-2">
-                                <Coins className="w-6 h-6 text-amber-400" />
-                                <h3 className="text-xl font-bold text-white">Enterprise AI Token Top-Up</h3>
-                            </div>
-                            <button
-                                onClick={() => setShowTopUpModal(false)}
-                                className="text-slate-400 hover:text-white text-lg font-bold"
-                            >
-                                ✕
-                            </button>
-                        </div>
+                <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
+                    <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 max-w-2xl w-full shadow-2xl relative">
+                        <h3 className="text-xl font-extrabold text-white mb-2 flex items-center gap-2">
+                            <Coins className="w-6 h-6 text-amber-400" /> Digital Wallet Token Top-Up
+                        </h3>
+                        <p className="text-xs text-slate-400 mb-6">
+                            Select a high-volume supply package ranging from <strong>€649 to €6,759</strong> or specify custom token deposits. Official B2B PDF tax invoice generated instantly.
+                        </p>
 
-                        {/* Multi-Currency Selector */}
                         <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800 mb-6 flex items-center justify-between">
                             <span className="text-xs font-bold text-slate-400 flex items-center gap-1.5">
                                 <Globe className="w-4 h-4 text-blue-400" /> Billing Currency:
@@ -273,50 +263,33 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                             </div>
                         </div>
 
-                        <p className="text-xs text-slate-400 mb-4">
-                            Enterprise Rate: <strong>{curr.symbol}{(1.00 * curr.rate).toFixed(2)} {curr.code} per 1,000 AI tokens</strong> (€1,000 per 1M tokens)
-                        </p>
-
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-                            <button
-                                type="button"
-                                onClick={() => handleTopUpSubmit(100000)}
-                                className="bg-slate-950 border border-slate-800 hover:border-amber-500/50 p-3 rounded-2xl text-left transition-all group"
-                            >
-                                <span className="text-[10px] text-amber-400 font-bold block mb-1">Starter Pack</span>
-                                <div className="text-sm font-black text-white">100k Tokens</div>
-                                <span className="text-xs text-slate-300 font-extrabold mt-1 block">{curr.symbol}{calcPrice(100000)}</span>
-                            </button>
-
-                            <button
-                                type="button"
-                                onClick={() => handleTopUpSubmit(500000)}
-                                className="bg-slate-950 border border-amber-500/40 hover:border-amber-500 p-3 rounded-2xl text-left transition-all shadow-lg shadow-amber-500/5 group"
-                            >
-                                <span className="text-[10px] text-amber-400 font-bold block mb-1">Growth Pack</span>
-                                <div className="text-sm font-black text-white">500k Tokens</div>
-                                <span className="text-xs text-slate-300 font-extrabold mt-1 block">{curr.symbol}{calcPrice(500000)}</span>
-                            </button>
-
-                            <button
-                                type="button"
-                                onClick={() => handleTopUpSubmit(1000000)}
-                                className="bg-slate-950 border border-blue-500/40 hover:border-blue-500 p-3 rounded-2xl text-left transition-all group"
-                            >
-                                <span className="text-[10px] text-blue-400 font-bold block mb-1">Scale Pack</span>
-                                <div className="text-sm font-black text-white">1M Tokens</div>
-                                <span className="text-xs text-slate-300 font-extrabold mt-1 block">{curr.symbol}{calcPrice(1000000)}</span>
-                            </button>
-
-                            <button
-                                type="button"
-                                onClick={() => handleTopUpSubmit(5000000)}
-                                className="bg-slate-950 border border-purple-500/40 hover:border-purple-500 p-3 rounded-2xl text-left transition-all group"
-                            >
-                                <span className="text-[10px] text-purple-400 font-bold block mb-1">Mega Pack</span>
-                                <div className="text-sm font-black text-white">5M Tokens</div>
-                                <span className="text-xs text-slate-300 font-extrabold mt-1 block">{curr.symbol}{calcPrice(5000000)}</span>
-                            </button>
+                        {/* 6 Top-Up Packages Grid */}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+                            {TOPUP_PACKAGES.map((pkg, pIdx) => (
+                                <button
+                                    key={pIdx}
+                                    type="button"
+                                    onClick={() => handleTopUpSubmit(pkg.tokens)}
+                                    className={`bg-slate-950 border p-3 rounded-2xl text-left transition-all relative group hover:scale-[1.02] ${
+                                        pkg.badge === 'Popular'
+                                            ? 'border-blue-500/60 hover:border-blue-500 shadow-md shadow-blue-500/10'
+                                            : pkg.badge === 'Enterprise'
+                                            ? 'border-purple-500/60 hover:border-purple-500'
+                                            : 'border-slate-800 hover:border-amber-500/50'
+                                    }`}
+                                >
+                                    {pkg.badge && (
+                                        <span className="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 uppercase absolute top-2 right-2">
+                                            {pkg.badge}
+                                        </span>
+                                    )}
+                                    <span className="text-[10px] text-amber-400 font-bold block mb-1">{pkg.name}</span>
+                                    <div className="text-sm font-black text-white">{(pkg.tokens / 1000).toLocaleString()}k Tokens</div>
+                                    <span className="text-xs text-slate-300 font-extrabold mt-1 block">
+                                        {curr.symbol}{calcPrice(pkg.tokens)} {curr.code}
+                                    </span>
+                                </button>
+                            ))}
                         </div>
 
                         {/* Custom Large Token Input */}
@@ -327,7 +300,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                             <div className="flex gap-2">
                                 <input
                                     type="number"
-                                    min="10000"
+                                    min="100000"
                                     max="500000000"
                                     step="10000"
                                     value={customTokenInput}
@@ -346,7 +319,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                         </div>
 
                         <div className="flex justify-between items-center text-xs text-slate-500">
-                            <span>Official Invoice Issued by FERNBLAKE LIMITED</span>
+                            <span>Official Invoice Issued by INCHWARD LIMITED</span>
                             <button
                                 type="button"
                                 onClick={() => setShowTopUpModal(false)}

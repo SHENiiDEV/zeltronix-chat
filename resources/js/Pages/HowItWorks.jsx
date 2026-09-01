@@ -70,6 +70,105 @@ const STEPS = [
     }
 ];
 
+const PACKAGES = [
+    {
+        name: 'Starter Sourcing',
+        eurPrice: 649,
+        tokens: 649000,
+        tag: 'Entry Tier',
+        desc: 'Ideal for initial product sourcing & supplier verification',
+        badge: null,
+        features: [
+            'Up to 3 Shenzhen OEM Factory Matches',
+            '649,000 AI Token Balance',
+            'Basic Reverse Landed Cost Model',
+            'Downloadable PDF Invoice Stamped PAID',
+            '14-Day Money Back Guarantee'
+        ],
+        btnColor: 'bg-slate-800 hover:bg-slate-700'
+    },
+    {
+        name: 'Standard Sourcing',
+        eurPrice: 1249,
+        tokens: 1249000,
+        tag: 'Standard Tier',
+        desc: 'Comprehensive HS Code tariff calculations & RFQ scripts',
+        badge: null,
+        features: [
+            'Up to 7 OEM Factory Vector Matches',
+            '1,249,000 AI Token Balance',
+            'Bilingual English/Chinese RFQ Scripts',
+            'Sea Freight Container Duty Tariff Calculator',
+            'Downloadable PDF Invoice Stamped PAID'
+        ],
+        btnColor: 'bg-slate-800 hover:bg-slate-700'
+    },
+    {
+        name: 'Pro Sourcing',
+        eurPrice: 2499,
+        tokens: 2499000,
+        tag: 'Institutional Sourcing',
+        desc: 'Full 6-page institutional Memorandum & bilingual scripts',
+        badge: 'Most Popular',
+        features: [
+            'Full 6-Page Institutional Memorandum',
+            '2,499,000 AI Token Balance',
+            'Bilingual English/Chinese Negotiation Scripts',
+            'Sea Freight & Air Cargo Rate Calculations',
+            'Priority Executive Support (24-48h SLA)'
+        ],
+        btnColor: 'bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-500/25'
+    },
+    {
+        name: 'Growth Infrastructure',
+        eurPrice: 3899,
+        tokens: 3899000,
+        tag: 'Growth Scaled',
+        desc: 'Multi-product OEM negotiations & container FCL routing',
+        badge: null,
+        features: [
+            'Multi-Line OEM Factory Audits',
+            '3,899,000 AI Token Balance',
+            'Turnkey Landed Cost & Customs Tariffs',
+            'Dedicated Account Manager',
+            'Unlimited RAG Vector Search'
+        ],
+        btnColor: 'bg-slate-800 hover:bg-slate-700'
+    },
+    {
+        name: 'Institutional Scale',
+        eurPrice: 5299,
+        tokens: 5299000,
+        tag: 'Institutional Scale',
+        desc: 'Dedicated Trade Desk & custom factory sample audits',
+        badge: null,
+        features: [
+            'Dedicated Trade Desk Manager',
+            '5,299,000 AI Token Balance',
+            'Custom Factory Sample Verification',
+            '100% IP Ownership Retention',
+            'Direct Factory Executive Dispatch'
+        ],
+        btnColor: 'bg-purple-600 hover:bg-purple-500 shadow-lg shadow-purple-500/25'
+    },
+    {
+        name: 'Enterprise Global',
+        eurPrice: 6759,
+        tokens: 6759000,
+        tag: 'Enterprise Maximum',
+        desc: 'Full turnkey supply chain architecture & unlimited exports',
+        badge: 'Enterprise',
+        features: [
+            'Unlimited Vector Dossier Exports',
+            '6,759,000 AI Token Balance',
+            'Custom Multi-Currency B2B Invoicing',
+            'Full Audited Shenzhen/Ningbo OEM Directory',
+            'VIP SLA Direct Trade Line'
+        ],
+        btnColor: 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 shadow-lg shadow-purple-500/30'
+    }
+];
+
 export default function HowItWorks({ auth }) {
     const [selectedCurrency, setSelectedCurrency] = useState('EUR');
 
@@ -83,7 +182,7 @@ export default function HowItWorks({ auth }) {
 
     return (
         <GuestLayout>
-            <Head title="How It Works — Step-by-Step AI Sourcing & B2B Invoices | Voltoria AI" />
+            <Head title="How It Works — Step-by-Step AI Sourcing & B2B Invoices | Zeltrionix AI" />
 
             {/* HERO SECTION */}
             <section className="relative overflow-hidden pt-16 pb-24 bg-slate-950 text-white">
@@ -97,7 +196,7 @@ export default function HowItWorks({ auth }) {
                     </div>
 
                     <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-                        How <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Voltoria AI</span> Powers Your <br />
+                        How <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Zeltrionix AI</span> Powers Your <br />
                         Global Supply Chain Architecture
                     </h1>
 
@@ -172,7 +271,7 @@ export default function HowItWorks({ auth }) {
                 </div>
             </section>
 
-            {/* SUPPLY PACKAGES CARDS SECTION */}
+            {/* SUPPLY PACKAGES CARDS SECTION (6 PACKAGES €649 to €6759) */}
             <section className="py-24 bg-slate-950 border-t border-slate-900 text-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-12">
@@ -181,91 +280,64 @@ export default function HowItWorks({ auth }) {
                             Select Your Supply Chain Package
                         </p>
                         <p className="text-slate-400 text-sm mt-3">
-                            Instant credit to your digital wallet with official UK B2B PDF tax invoice.
+                            Instant credit to your digital wallet with official UK B2B PDF tax invoice (€649 – €6,759).
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                        {/* Starter Package (€149) */}
-                        <div className="bg-slate-900/90 p-8 rounded-3xl border border-slate-800 shadow-xl flex flex-col justify-between hover:border-blue-500/40 transition-all">
-                            <div>
-                                <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-1">Starter Sourcing</span>
-                                <h3 className="text-xl font-bold text-white mb-2">Starter Package</h3>
-                                <p className="text-xs text-slate-400 mb-6">Ideal for initial product sourcing & verification</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                        {PACKAGES.map((pkg, idx) => (
+                            <div
+                                key={idx}
+                                className={`p-8 rounded-3xl border shadow-xl flex flex-col justify-between relative transition-all ${
+                                    pkg.badge === 'Most Popular'
+                                        ? 'bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-blue-500 shadow-blue-500/10'
+                                        : pkg.badge === 'Enterprise'
+                                        ? 'bg-slate-900/90 border-purple-500/50 hover:border-purple-500'
+                                        : 'bg-slate-900/90 border-slate-800 hover:border-slate-700'
+                                }`}
+                            >
+                                {pkg.badge && (
+                                    <span className="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                                        {pkg.badge}
+                                    </span>
+                                )}
 
-                                <div className="text-4xl font-black text-white mb-6">
-                                    {symbol}{calcPrice(149)} <span className="text-xs text-slate-400 font-semibold">{selectedCurrency}</span>
+                                <div>
+                                    <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-1">
+                                        {pkg.tag}
+                                    </span>
+                                    <h3 className="text-xl font-bold text-white mb-2">{pkg.name}</h3>
+                                    <p className="text-xs text-slate-400 mb-6">{pkg.desc}</p>
+
+                                    <div className="text-4xl font-black text-white mb-4">
+                                        {symbol}{calcPrice(pkg.eurPrice)}{' '}
+                                        <span className="text-xs text-slate-400 font-semibold">{selectedCurrency}</span>
+                                    </div>
+
+                                    <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-2.5 mb-6 text-center">
+                                        <span className="text-xs text-blue-300 font-extrabold font-mono">
+                                            +{pkg.tokens.toLocaleString()} AI Tokens
+                                        </span>
+                                    </div>
+
+                                    <ul className="space-y-3 text-xs text-slate-300 mb-8">
+                                        {pkg.features.map((feat, fIdx) => (
+                                            <li key={fIdx} className="flex items-center gap-2">
+                                                <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                                                <span>{feat}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
 
-                                <ul className="space-y-3 text-xs text-slate-300 mb-6">
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400" /> Up to 3 Shenzhen OEM Factory Matches</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400" /> Basic Reverse Landed Cost Model</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400" /> Downloadable PDF Invoice Stamped PAID</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400" /> 14-Day Money Back Guarantee</li>
-                                </ul>
+                                <Link
+                                    href={auth?.user ? route('dashboard') : route('register')}
+                                    className={`w-full text-center text-white font-bold py-3.5 px-4 rounded-xl text-xs transition-all ${pkg.btnColor}`}
+                                >
+                                    Select {pkg.name}
+                                </Link>
                             </div>
-                            <Link
-                                href={auth?.user ? route('dashboard') : route('register')}
-                                className="w-full text-center bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all"
-                            >
-                                Select Starter Package
-                            </Link>
-                        </div>
-
-                        {/* Pro Package (€499) */}
-                        <div className="bg-gradient-to-b from-slate-900 to-slate-950 p-8 rounded-3xl border-2 border-blue-500 shadow-2xl shadow-blue-500/10 flex flex-col justify-between relative">
-                            <span className="absolute -top-3 right-6 bg-blue-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-                                Most Popular
-                            </span>
-                            <div>
-                                <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-1">Institutional Sourcing</span>
-                                <h3 className="text-xl font-bold text-white mb-2">Pro Sourcing Package</h3>
-                                <p className="text-xs text-slate-400 mb-6">Full institutional Memorandum & RFQ Scripts</p>
-
-                                <div className="text-4xl font-black text-white mb-6">
-                                    {symbol}{calcPrice(499)} <span className="text-xs text-slate-400 font-semibold">{selectedCurrency}</span>
-                                </div>
-
-                                <ul className="space-y-3 text-xs text-slate-300 mb-6">
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400" /> Full 6-Page Institutional Memorandum</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400" /> Bilingual English/Chinese Negotiation Scripts</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400" /> Sea Freight & HS Code Duty Tariff Calculator</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400" /> Priority Executive Support (24-48h SLA)</li>
-                                </ul>
-                            </div>
-                            <Link
-                                href={auth?.user ? route('dashboard') : route('register')}
-                                className="w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 px-4 rounded-xl text-xs transition-all shadow-lg shadow-blue-500/25"
-                            >
-                                Select Pro Package
-                            </Link>
-                        </div>
-
-                        {/* Enterprise Package (€1,499) */}
-                        <div className="bg-slate-900/90 p-8 rounded-3xl border border-purple-500/40 shadow-xl flex flex-col justify-between hover:border-purple-500 transition-all">
-                            <div>
-                                <span className="text-[10px] font-bold text-purple-400 uppercase tracking-wider block mb-1">Enterprise Scaled</span>
-                                <h3 className="text-xl font-bold text-white mb-2">Enterprise Package</h3>
-                                <p className="text-xs text-slate-400 mb-6">Dedicated Trade Desk & Custom Factory Audits</p>
-
-                                <div className="text-4xl font-black text-white mb-6">
-                                    {symbol}{calcPrice(1499)} <span className="text-xs text-slate-400 font-semibold">{selectedCurrency}</span>
-                                </div>
-
-                                <ul className="space-y-3 text-xs text-slate-300 mb-6">
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-purple-400" /> Dedicated Trade Desk Manager</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-purple-400" /> Custom Factory Sample Verification</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-purple-400" /> Unlimited Vector Dossier Exports</li>
-                                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-purple-400" /> Custom Multi-Currency B2B Invoicing</li>
-                                </ul>
-                            </div>
-                            <Link
-                                href={auth?.user ? route('dashboard') : route('register')}
-                                className="w-full text-center bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-4 rounded-xl text-xs transition-all shadow-lg shadow-purple-500/25"
-                            >
-                                Select Enterprise Package
-                            </Link>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </section>

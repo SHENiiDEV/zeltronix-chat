@@ -9,12 +9,12 @@ import {
 
 const FAQS = [
     {
-        q: 'What is included in Voltoria AI sourcing packages?',
-        a: 'Our packages (Starter €149, Pro €499, Enterprise €1,499) credit your digital wallet with AI infrastructure capacity. Pro packages include 6-page institutional investment dossiers, bilingual English/Chinese factory negotiation scripts, sea freight tariff calculations, and direct Shenzhen OEM supplier matches.'
+        q: 'What is included in Zeltrionix AI sourcing packages?',
+        a: 'Our 6 sourcing packages (ranging from €649 up to €6,759) credit your digital wallet with high-capacity AI infrastructure tokens. Higher tier packages include 6-page institutional investment dossiers, bilingual English/Chinese factory negotiation scripts, sea freight tariff calculations, and direct Shenzhen/Ningbo OEM supplier matches.'
     },
     {
         q: 'How does the 14-day money-back guarantee work?',
-        a: 'All digital wallet deposits are backed by a 14-day money-back refund policy provided less than 10% of your purchased token quota has been consumed. Contact info@voltoria.co.uk to request a prompt refund.'
+        a: 'All digital wallet deposits are backed by a 14-day money-back refund policy provided less than 10% of your purchased token quota has been consumed. Contact info@zeltrionix.com to request a prompt refund.'
     },
     {
         q: 'How is VAT handled for B2B invoices?',
@@ -22,7 +22,7 @@ const FAQS = [
     },
     {
         q: 'Who owns the Intellectual Property (IP) of generated dossiers?',
-        a: 'You retain 100% intellectual property ownership of all uploaded documentation, project briefs, and generated dossiers. Voltoria AI operates under a zero public foundation model training pledge.'
+        a: 'You retain 100% intellectual property ownership of all uploaded documentation, project briefs, and generated dossiers. Zeltrionix AI operates under a zero public foundation model training pledge.'
     },
     {
         q: 'How can I download official PDF invoices for my accounting team?',
@@ -39,7 +39,7 @@ export default function Support({ company }) {
 
     return (
         <GuestLayout>
-            <Head title="Support & Help Desk — FAQ & Invoicing Assistance | Voltoria AI" />
+            <Head title="Support & Help Desk — FAQ & Invoicing Assistance | Zeltrionix AI" />
 
             <div className="relative min-h-screen bg-slate-950 text-slate-100 py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
                 {/* Background Glow */}
@@ -74,7 +74,7 @@ export default function Support({ company }) {
                                 </p>
                             </div>
                             <a
-                                href={`mailto:${company?.support_email || 'info@voltoria.co.uk'}`}
+                                href={`mailto:${company?.support_email || 'info@zeltrionix.com'}`}
                                 className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-3 px-4 rounded-xl text-center transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20"
                             >
                                 Send Direct Email <ArrowRight className="w-4 h-4" />

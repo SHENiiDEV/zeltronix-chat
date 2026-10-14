@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -7,31 +7,37 @@ import {
     FileText, Lock, ArrowRight, Wallet, CheckCircle2 
 } from 'lucide-react';
 
-const FAQS = [
-    {
-        q: 'What is included in Zeltrionix AI sourcing packages?',
-        a: 'Our 6 sourcing packages (ranging from €649 up to €6,759) credit your digital wallet with high-capacity AI infrastructure tokens. Higher tier packages include 6-page institutional investment dossiers, bilingual English/Chinese factory negotiation scripts, sea freight tariff calculations, and direct Shenzhen/Ningbo OEM supplier matches.'
-    },
-    {
-        q: 'How does the 14-day money-back guarantee work?',
-        a: 'All digital wallet deposits are backed by a 14-day money-back refund policy provided less than 10% of your purchased token quota has been consumed. Contact info@zeltrionix.com to request a prompt refund.'
-    },
-    {
-        q: 'How is VAT handled for B2B invoices?',
-        a: 'Invoices issued by INCHWARD LIMITED (UK Co. No. 16021412) are processed under UK B2B rules and International Reverse Charge regulations (0% VAT). Official B2B PDF tax receipts stamped PAID & VERIFIED are automatically generated and attached to all top-up receipts.'
-    },
-    {
-        q: 'Who owns the Intellectual Property (IP) of generated dossiers?',
-        a: 'You retain 100% intellectual property ownership of all uploaded documentation, project briefs, and generated dossiers. Zeltrionix AI operates under a zero public foundation model training pledge.'
-    },
-    {
-        q: 'How can I download official PDF invoices for my accounting team?',
-        a: 'Navigate to Invoices & Billing (/invoices) in your dashboard or click the "Invoice (PDF)" download link next to any top-up transaction. PDFs are formatted to standard A4 UK tax standards.'
-    }
-];
-
 export default function Support({ company }) {
+    const { company: pageCompany } = usePage().props;
+    const currentCompany = company || pageCompany;
+    const companyName = currentCompany?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED';
+    const companyRegNumber = currentCompany?.registration_number || currentCompany?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || 'UK Co. No. 16021412';
+    const companyEmail = currentCompany?.email || currentCompany?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk';
+
     const [openIndex, setOpenIndex] = useState(null);
+
+    const faqs = [
+        {
+            q: 'What is included in Zeltrionix AI sourcing packages?',
+            a: 'Our 6 sourcing packages (ranging from €649 up to €6,759) credit your digital wallet with high-capacity AI infrastructure tokens. Higher tier packages include 6-page institutional investment dossiers, bilingual English/Chinese factory negotiation scripts, sea freight tariff calculations, and direct Shenzhen/Ningbo OEM supplier matches.'
+        },
+        {
+            q: 'How does the 14-day money-back guarantee work?',
+            a: `All digital wallet deposits are backed by a 14-day money-back refund policy provided less than 10% of your purchased token quota has been consumed. Contact ${companyEmail} to request a prompt refund.`
+        },
+        {
+            q: 'How is VAT handled for B2B invoices?',
+            a: `Invoices issued by ${companyName} (${companyRegNumber}) are processed under UK B2B rules and International Reverse Charge regulations (0% VAT). Official B2B PDF tax receipts stamped PAID & VERIFIED are automatically generated and attached to all top-up receipts.`
+        },
+        {
+            q: 'Who owns the Intellectual Property (IP) of generated dossiers?',
+            a: 'You retain 100% intellectual property ownership of all uploaded documentation, project briefs, and generated dossiers. Zeltrionix AI operates under a zero public foundation model training pledge.'
+        },
+        {
+            q: 'How can I download official PDF invoices for my accounting team?',
+            a: 'Navigate to Invoices & Billing (/invoices) in your dashboard or click the "Invoice (PDF)" download link next to any top-up transaction. PDFs are formatted to standard A4 UK tax standards.'
+        }
+    ];
 
     const toggleFaq = (idx) => {
         setOpenIndex(openIndex === idx ? null : idx);
@@ -74,7 +80,7 @@ export default function Support({ company }) {
                                 </p>
                             </div>
                             <a
-                                href={`mailto:${company?.support_email || 'info@zeltrionix.com'}`}
+                                href={`mailto:${companyEmail}`}
                                 className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-3 px-4 rounded-xl text-center transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20"
                             >
                                 Send Direct Email <ArrowRight className="w-4 h-4" />
@@ -128,7 +134,7 @@ export default function Support({ company }) {
                         </div>
 
                         <div className="space-y-4">
-                            {FAQS.map((faq, idx) => (
+                            {faqs.map((faq, idx) => (
                                 <div key={idx} className="border border-slate-800/90 rounded-2xl overflow-hidden bg-slate-950/60">
                                     <button
                                         onClick={() => toggleFaq(idx)}

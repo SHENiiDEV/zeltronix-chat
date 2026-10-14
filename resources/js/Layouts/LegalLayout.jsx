@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
-import { ShieldCheck, FileText, Lock, Cookie, RefreshCw, ArrowLeft, Download } from 'lucide-react';
+import { ShieldCheck, FileText, Lock, Cookie, RefreshCw, ArrowLeft, Download, Building2, MapPin, Mail } from 'lucide-react';
 
 export default function LegalLayout({ title, subtitle, lastUpdated = "August 5, 2026", children, company }) {
-    const { auth } = usePage().props;
+    const { auth, company: sharedCompany } = usePage().props;
+    const currentCompany = company || sharedCompany;
+    const companyName = currentCompany?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED';
+    const companyRegNumber = currentCompany?.registration_number || currentCompany?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || 'UK Co. No. 16021412';
+    const companyAddress = currentCompany?.address || import.meta.env.VITE_COMPANY_ADDRESS || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom';
+    const companyEmail = currentCompany?.email || currentCompany?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk';
 
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col selection:bg-blue-500 selection:text-white">
@@ -127,19 +132,50 @@ export default function LegalLayout({ title, subtitle, lastUpdated = "August 5, 
                 </div>
             </div>
 
-            {/* Footer */}
-            <footer className="bg-slate-900 border-t border-slate-800 py-12 mt-12">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div className="flex items-center gap-3">
-                        <ZeltrionixLogo className="h-6" />
-                        <span className="text-xs text-slate-500">© 2026 {company?.name || 'Zeltrionix Inc.'}. All rights reserved.</span>
+            {/* Footer with Full Company Information */}
+            <footer className="bg-slate-900 border-t border-slate-800 py-12 mt-12 text-slate-400 text-sm">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                    {/* Top Row: Logo & Corporate Information */}
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-slate-800 items-start">
+                        <div className="md:col-span-4 space-y-3">
+                            <ZeltrionixLogo className="h-7" showText={true} />
+                            <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
+                                Autonomous AI Support Infrastructure & Direct OEM Sourcing Architecture.
+                            </p>
+                        </div>
+
+                        {/* Official Company Details Block */}
+                        <div className="md:col-span-8 bg-slate-950/60 p-6 rounded-2xl border border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Company Details</span>
+                                <h4 className="font-bold text-white text-sm mb-1">{companyName}</h4>
+                                <p className="text-slate-400 flex items-center gap-1.5"><Building2 className="w-3.5 h-3.5 text-blue-400" /> {companyRegNumber}</p>
+                                <p className="text-slate-400 flex items-center gap-1.5 mt-1"><Mail className="w-3.5 h-3.5 text-blue-400" /> <a href={`mailto:${companyEmail}`} className="hover:text-blue-300 underline">{companyEmail}</a></p>
+                            </div>
+
+                            <div>
+                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Registered Address</span>
+                                <p className="text-slate-300 leading-relaxed flex items-start gap-1.5">
+                                    <MapPin className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
+                                    <span>{companyAddress}</span>
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="flex flex-wrap justify-center gap-6 text-xs text-slate-400 font-medium">
-                        <Link href={route('legal.terms')} className="hover:text-white transition-colors">Terms of Service</Link>
-                        <Link href={route('legal.privacy')} className="hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link href={route('legal.cookies')} className="hover:text-white transition-colors">Cookie Policy</Link>
-                        <Link href={route('legal.refund')} className="hover:text-white transition-colors">Refund Policy</Link>
+                    {/* Navigation & Legal Links Bar */}
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-400">
+                        <div className="flex flex-wrap items-center gap-6">
+                            <Link href={route('legal.terms')} className="hover:text-white transition-colors">Terms of Service</Link>
+                            <Link href={route('legal.privacy')} className="hover:text-white transition-colors">Privacy Policy</Link>
+                            <Link href={route('legal.cookies')} className="hover:text-white transition-colors">Cookie Policy</Link>
+                            <Link href={route('legal.refund')} className="hover:text-white transition-colors">Refund Policy</Link>
+                        </div>
+
+                        <div className="flex items-center gap-2 text-slate-500">
+                            <ShieldCheck className="w-4 h-4 text-blue-400" />
+                            <span>© 2026 {companyName}. All rights reserved.</span>
+                        </div>
                     </div>
                 </div>
             </footer>

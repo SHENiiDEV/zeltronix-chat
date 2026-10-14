@@ -89,16 +89,16 @@ export default function About({ company }) {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-slate-950/80 p-6 rounded-2xl border border-slate-800/80 text-xs">
                             <div>
                                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Corporate Name</span>
-                                <h4 className="font-bold text-white text-base mb-1">{company?.name || 'INCHWARD LIMITED'}</h4>
-                                <p className="text-slate-400 flex items-center gap-1.5"><Building2 className="w-4 h-4 text-blue-400" /> {company?.registration_number || 'UK Co. No. 16021412'}</p>
-                                <p className="text-slate-400 flex items-center gap-1.5 mt-1"><Mail className="w-4 h-4 text-blue-400" /> <a href={`mailto:${company?.support_email || 'info@voltoria.co.uk'}`} className="hover:text-blue-300 underline">{company?.support_email || 'info@voltoria.co.uk'}</a></p>
+                                <h4 className="font-bold text-white text-base mb-1">{company?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED'}</h4>
+                                <p className="text-slate-400 flex items-center gap-1.5"><Building2 className="w-4 h-4 text-blue-400" /> {company?.registration_number || company?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || 'UK Co. No. 16021412'}</p>
+                                <p className="text-slate-400 flex items-center gap-1.5 mt-1"><Mail className="w-4 h-4 text-blue-400" /> <a href={`mailto:${company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk'}`} className="hover:text-blue-300 underline">{company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk'}</a></p>
                             </div>
 
                             <div>
                                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Registered Address</span>
                                 <p className="text-slate-300 leading-relaxed flex items-start gap-1.5">
                                     <MapPin className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
-                                    <span>{company?.address || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom'}</span>
+                                    <span>{company?.address || import.meta.env.VITE_COMPANY_ADDRESS || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom'}</span>
                                 </p>
                                 <p className="text-[11px] text-slate-400 mt-2 font-semibold flex items-center gap-1">
                                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> B2B 0% VAT Reverse Charge Compliant

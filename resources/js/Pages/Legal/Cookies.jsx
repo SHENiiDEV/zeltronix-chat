@@ -1,22 +1,27 @@
 import React from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import LegalLayout from '@/Layouts/LegalLayout';
 
 export default function Cookies({ company }) {
-    const companyName = company?.name || 'FERNBLAKE LIMITED';
+    const { company: pageCompany } = usePage().props;
+    const currentCompany = company || pageCompany;
+    const companyName = currentCompany?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED';
+    const companyRegNumber = currentCompany?.registration_number || currentCompany?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || 'UK Co. No. 16021412';
+    const companyAddress = currentCompany?.address || import.meta.env.VITE_COMPANY_ADDRESS || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom';
+    const companyEmail = currentCompany?.email || currentCompany?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk';
 
     return (
         <LegalLayout
             title="Cookie & Local Storage Policy"
             subtitle="Understanding how Zeltrionix uses cookies and browser storage for chat widget continuity."
-            company={company}
+            company={currentCompany}
         >
             <Head title="Cookie Policy | Zeltrionix" />
 
             <section className="space-y-4">
                 <h3 className="text-lg font-bold text-white">1. What Are Cookies and Local Storage?</h3>
                 <p>
-                    Cookies and HTML5 Local Storage (`localStorage`) are small data files stored on your web browser to remember session states, user preferences, and maintain continuous service across web pages.
+                    This Cookie & Storage Policy explains how <strong>{companyName}</strong> (Registration No: {companyRegNumber}) uses cookies and HTML5 Local Storage (`localStorage`) across our services to remember session states, user preferences, and maintain continuous service across web pages.
                 </p>
             </section>
 
@@ -43,6 +48,14 @@ export default function Cookies({ company }) {
                     You can manage or disable cookies directly in your browser settings. Note that clearing your browser's `localStorage` will reset ongoing AI widget chat conversations.
                 </p>
             </section>
+
+            <section className="space-y-4">
+                <h3 className="text-lg font-bold text-white">4. Questions & Contact</h3>
+                <p>
+                    If you have questions about our cookie practices or data storage, please contact <strong>{companyName}</strong> at <a href={`mailto:${companyEmail}`} className="text-blue-400 font-semibold underline">{companyEmail}</a> or write to our registered office: {companyAddress}.
+                </p>
+            </section>
         </LegalLayout>
     );
 }
+

@@ -1,23 +1,27 @@
 import React from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import LegalLayout from '@/Layouts/LegalLayout';
 
 export default function Terms({ company }) {
-    const companyName = company?.name || 'FERNBLAKE LIMITED';
-    const companyEmail = company?.support_email || 'support@zeltrionix.com';
+    const { company: pageCompany } = usePage().props;
+    const currentCompany = company || pageCompany;
+    const companyName = currentCompany?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED';
+    const companyRegNumber = currentCompany?.registration_number || currentCompany?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || 'UK Co. No. 16021412';
+    const companyAddress = currentCompany?.address || import.meta.env.VITE_COMPANY_ADDRESS || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom';
+    const companyEmail = currentCompany?.email || currentCompany?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk';
 
     return (
         <LegalLayout
             title="Terms of Service & Conditions"
             subtitle="Please read these terms carefully before using Zeltrionix AI Widget platform services."
-            company={company}
+            company={currentCompany}
         >
             <Head title="Terms of Service | Zeltrionix" />
 
             <section className="space-y-4">
                 <h3 className="text-lg font-bold text-white">1. Acceptance of Terms</h3>
                 <p>
-                    By creating an account, accessing, or using the <strong>{companyName}</strong> AI Customer Support Widget platform, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
+                    By creating an account, accessing, or using the <strong>{companyName}</strong> (Registration No: {companyRegNumber}) AI Customer Support Widget platform, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
                 </p>
             </section>
 
@@ -52,11 +56,21 @@ export default function Terms({ company }) {
             </section>
 
             <section className="space-y-4">
-                <h3 className="text-lg font-bold text-white">6. Contact Information</h3>
+                <h3 className="text-lg font-bold text-white">6. Operator Information & Legal Notice</h3>
                 <p>
-                    If you have any questions regarding these Terms, please contact our legal team at <a href={`mailto:${companyEmail}`} className="text-blue-400 font-semibold underline">{companyEmail}</a>.
+                    This service is owned and operated by <strong>{companyName}</strong>, registered under company registration number <strong>{companyRegNumber}</strong>.
+                </p>
+                <div className="p-4 bg-slate-950/70 border border-slate-800 rounded-2xl text-xs space-y-1.5 text-slate-300">
+                    <div><strong className="text-white">Corporate Entity:</strong> {companyName}</div>
+                    <div><strong className="text-white">Company Registration:</strong> {companyRegNumber}</div>
+                    <div><strong className="text-white">Registered Address:</strong> {companyAddress}</div>
+                    <div><strong className="text-white">Official Contact Email:</strong> <a href={`mailto:${companyEmail}`} className="text-blue-400 font-semibold underline">{companyEmail}</a></div>
+                </div>
+                <p>
+                    If you have any questions regarding these Terms or our services, please contact our legal team at <a href={`mailto:${companyEmail}`} className="text-blue-400 font-semibold underline">{companyEmail}</a>.
                 </p>
             </section>
         </LegalLayout>
     );
 }
+

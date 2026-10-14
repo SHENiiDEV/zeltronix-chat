@@ -246,11 +246,11 @@ export default function AppLayout({ header, children }) {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-slate-900">
                         <div>
-                            <span className="font-bold text-white text-sm block mb-1">{company?.name || 'INCHWARD LIMITED'}</span>
+                            <span className="font-bold text-white text-sm block mb-1">{company?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED'}</span>
                             <div className="flex flex-wrap items-center gap-4 text-slate-400 text-[11px]">
-                                <span className="flex items-center gap-1"><Building2 className="w-3.5 h-3.5 text-blue-400" /> {company?.registration_number || 'UK Co. No. 16021412'}</span>
-                                <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-blue-400" /> {company?.address || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom'}</span>
-                                <span className="flex items-center gap-1"><Mail className="w-3.5 h-3.5 text-blue-400" /> <a href={`mailto:${company?.support_email || 'info@voltoria.co.uk'}`} className="hover:text-blue-300 underline">{company?.support_email || 'info@voltoria.co.uk'}</a></span>
+                                <span className="flex items-center gap-1"><Building2 className="w-3.5 h-3.5 text-blue-400" /> {company?.registration_number || company?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || 'UK Co. No. 16021412'}</span>
+                                <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-blue-400" /> {company?.address || import.meta.env.VITE_COMPANY_ADDRESS || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom'}</span>
+                                <span className="flex items-center gap-1"><Mail className="w-3.5 h-3.5 text-blue-400" /> <a href={`mailto:${company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk'}`} className="hover:text-blue-300 underline">{company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk'}</a></span>
                             </div>
                         </div>
                     </div>
@@ -269,7 +269,7 @@ export default function AppLayout({ header, children }) {
                         <div className="flex items-center gap-3">
                             <ZeltrionixLogo className="h-6" showText={true} />
                             <span className="text-slate-600">|</span>
-                            <span className="text-slate-500">© 2026 {company?.name || 'INCHWARD LIMITED'}. All rights reserved.</span>
+                            <span className="text-slate-500">© 2026 {company?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED'}. All rights reserved.</span>
                         </div>
                     </div>
                 </div>

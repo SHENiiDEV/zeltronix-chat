@@ -9,10 +9,12 @@ return [
     */
     'company' => [
         'name' => env('COMPANY_NAME', 'INCHWARD LIMITED'),
-        'registration_number' => env('COMPANY_REG_NO', 'UK Co. No. 16021412'),
+        'registration_number' => env('COMPANY_REG_NUMBER', env('COMPANY_REG_NO', 'UK Co. No. 16021412')),
+        'reg_number' => env('COMPANY_REG_NUMBER', env('COMPANY_REG_NO', 'UK Co. No. 16021412')),
         'vat_id' => env('COMPANY_VAT_ID', ''),
-        'support_email' => env('COMPANY_SUPPORT_EMAIL', 'info@voltoria.co.uk'),
-        'billing_email' => env('COMPANY_BILLING_EMAIL', 'info@voltoria.co.uk'),
+        'email' => env('COMPANY_EMAIL', env('COMPANY_SUPPORT_EMAIL', 'info@voltoria.co.uk')),
+        'support_email' => env('COMPANY_EMAIL', env('COMPANY_SUPPORT_EMAIL', 'info@voltoria.co.uk')),
+        'billing_email' => env('COMPANY_BILLING_EMAIL', env('COMPANY_EMAIL', env('COMPANY_SUPPORT_EMAIL', 'info@voltoria.co.uk'))),
         'phone' => env('COMPANY_PHONE', ''),
         'address' => env('COMPANY_ADDRESS', 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom'),
     ],

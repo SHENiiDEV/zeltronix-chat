@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>500 - Temporary Clinical Rest | FERNBLAKE LIMITED</title>
+    <title>500 - Server Error | {{ config('services.company.name', 'Zeltrionix AI') }}</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex items-center justify-center p-4">

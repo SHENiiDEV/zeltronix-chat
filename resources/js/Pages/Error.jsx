@@ -3,7 +3,8 @@ import { Head, Link } from '@inertiajs/react';
 import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
 import { ShieldAlert, ArrowLeft, RefreshCw, Moon, Lock, AlertTriangle, Wrench } from 'lucide-react';
 
-export default function Error({ status = 404, message }) {
+export default function Error({ status = 404, message, company }) {
+    const companyName = company?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED';
     const errorConfigs = {
         404: {
             code: '404',
@@ -48,7 +49,7 @@ export default function Error({ status = 404, message }) {
 
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col items-center justify-center p-4 relative overflow-hidden selection:bg-blue-500 selection:text-white">
-            <Head title={`${config.code} - ${config.title} | FERNBLAKE LIMITED`} />
+            <Head title={`${config.code} - ${config.title} | ${companyName}`} />
 
             {/* Background Ambient Glows */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-blue-600/15 via-purple-600/15 to-cyan-500/10 blur-[150px] rounded-full pointer-events-none"></div>
@@ -98,7 +99,7 @@ export default function Error({ status = 404, message }) {
                 </div>
 
                 <p className="text-[11px] text-slate-500 mt-8">
-                    FERNBLAKE LIMITED • Official Telemetry & System Status
+                    {companyName} • Official Telemetry & System Status
                 </p>
             </div>
         </div>

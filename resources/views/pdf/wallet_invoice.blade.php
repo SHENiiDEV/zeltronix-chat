@@ -157,10 +157,10 @@
             'GBP' => '£',
             default => '€'
         };
-        $merchantName = config('services.company.name', 'INCHWARD LIMITED');
-        $merchantReg = config('services.company.registration_number', 'UK Co. No. 16021412');
-        $merchantAddress = config('services.company.address', 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom');
-        $merchantEmail = config('services.company.support_email', 'info@voltoria.co.uk');
+        $merchantName = config('services.company.name', 'FERNBLAKE LIMITED');
+        $merchantReg = config('services.company.registration_number', '16020960');
+        $merchantAddress = config('services.company.address', 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF');
+        $merchantEmail = config('services.company.email', config('services.company.support_email', 'info@zeltrionix.co.uk'));
         $ref = $payment->gateway_reference ?? ($payment->invoice_number ?? 'INV-'.$payment->id);
     @endphp
 
@@ -168,7 +168,7 @@
     <table class="header-table">
         <tr>
             <td>
-                <div class="brand-title">VOLTORIA AI</div>
+                <div class="brand-title">ZELTRIONIX AI</div>
                 <div class="brand-subtitle">Autonomous AI Support & Business Planning Infrastructure</div>
             </td>
             <td style="text-align: right;">
@@ -254,7 +254,7 @@
     <div class="footer-disclaimer">
         <strong>Official B2B Receipt & Tax Invoice • Issued by {{ $merchantName }} ({{ $merchantReg }})</strong><br>
         Registered in England & Wales • All services are subject to our 14-day refund policy for unused token balances.<br>
-        Thank you for choosing Voltoria AI for your business infrastructure.
+        Thank you for choosing Zeltrionix AI for your business infrastructure.
     </div>
 </body>
 </html>

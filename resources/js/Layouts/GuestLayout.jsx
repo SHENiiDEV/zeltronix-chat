@@ -203,16 +203,16 @@ export default function GuestLayout({ children }) {
                         <div className="md:col-span-8 bg-slate-900/60 p-6 rounded-2xl border border-slate-800/80 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                             <div>
                                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Company Details</span>
-                                <h4 className="font-bold text-white text-sm mb-1">{company?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED'}</h4>
-                                <p className="text-slate-400 flex items-center gap-1.5"><Building2 className="w-3.5 h-3.5 text-blue-400" /> {company?.registration_number || company?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || 'UK Co. No. 16021412'}</p>
-                                <p className="text-slate-400 flex items-center gap-1.5 mt-1"><Mail className="w-3.5 h-3.5 text-blue-400" /> <a href={`mailto:${company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk'}`} className="hover:text-blue-300 underline">{company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk'}</a></p>
+                                <h4 className="font-bold text-white text-sm mb-1">{company?.name || import.meta.env.VITE_COMPANY_NAME || 'FERNBLAKE LIMITED'}</h4>
+                                <p className="text-slate-400 flex items-center gap-1.5"><Building2 className="w-3.5 h-3.5 text-blue-400" /> {company?.registration_number || company?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || '16020960'}</p>
+                                <p className="text-slate-400 flex items-center gap-1.5 mt-1"><Mail className="w-3.5 h-3.5 text-blue-400" /> <a href={`mailto:${company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@zeltrionix.co.uk'}`} className="hover:text-blue-300 underline">{company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@zeltrionix.co.uk'}</a></p>
                             </div>
 
                             <div>
                                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Registered Address</span>
                                 <p className="text-slate-300 leading-relaxed flex items-start gap-1.5">
                                     <MapPin className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
-                                    <span>{company?.address || import.meta.env.VITE_COMPANY_ADDRESS || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom'}</span>
+                                    <span>{company?.address || import.meta.env.VITE_COMPANY_ADDRESS || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF'}</span>
                                 </p>
                             </div>
                         </div>
@@ -234,7 +234,7 @@ export default function GuestLayout({ children }) {
 
                         <div className="flex items-center gap-2 text-slate-500">
                             <ShieldCheck className="w-4 h-4 text-blue-400" />
-                            <span>© 2026 {company?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED'}. All rights reserved.</span>
+                            <span>© 2026 {company?.name || import.meta.env.VITE_COMPANY_NAME || 'FERNBLAKE LIMITED'}. All rights reserved.</span>
                         </div>
                     </div>
                 </div>

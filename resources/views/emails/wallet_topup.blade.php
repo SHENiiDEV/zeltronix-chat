@@ -24,7 +24,7 @@
                     <!-- Header -->
                     <tr>
                         <td style="padding:32px 32px 20px 32px; background-color:#0f172a; border-bottom:1px solid #334155; text-align:center;">
-                            <div style="font-size:24px; font-weight:900; color:#ffffff; tracking-tight:-0.5px;">VOLTORIA AI</div>
+                            <div style="font-size:24px; font-weight:900; color:#ffffff; tracking-tight:-0.5px;">ZELTRIONIX AI</div>
                             <div style="font-size:11px; color:#22c55e; font-weight:800; text-transform:uppercase; letter-spacing:1px; margin-top:4px;">&#10003; Wallet Top-Up Successful</div>
                         </td>
                     </tr>
@@ -83,9 +83,9 @@
                     <!-- Legal Footer -->
                     <tr>
                         <td style="padding:24px 32px; background-color:#0f172a; border-top:1px solid #334155; text-align:center; font-size:11px; color:#64748b; line-height:1.5;">
-                            <strong style="color:#94a3b8;">{{ config('services.company.name', 'INCHWARD LIMITED') }}</strong> &bull; {{ config('services.company.registration_number', 'UK Co. No. 16021412') }}<br>
-                            {{ config('services.company.address', 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom') }}<br>
-                            Official Invoice PDF attached to this email. &copy; {{ date('Y') }} Voltoria AI.
+                            <strong style="color:#94a3b8;">{{ config('services.company.name', 'FERNBLAKE LIMITED') }}</strong> &bull; {{ config('services.company.registration_number', '16020960') }}<br>
+                            {{ config('services.company.address', 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF') }}<br>
+                            Official Invoice PDF attached to this email. &copy; {{ date('Y') }} Zeltrionix AI.
                         </td>
                     </tr>
 

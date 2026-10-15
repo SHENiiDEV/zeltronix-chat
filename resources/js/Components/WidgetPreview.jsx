@@ -126,7 +126,8 @@ export default function WidgetPreview({
                     if (lower.includes('price') || lower.includes('cost') || lower.includes('тариф') || lower.includes('цена')) {
                         reply = "Our **Pro Plan** is €30/month for **50,000,000 AI tokens**, and **Enterprise** is €100/month for **175,000,000 AI tokens**!";
                     } else if (lower.includes('email') || lower.includes('support') || lower.includes('phone') || lower.includes('contact')) {
-                        reply = "You can contact human support at **support@zeltrionix.com** or billing inquiries at **billing@zeltrionix.com**.";
+                        const email = import.meta.env.VITE_COMPANY_EMAIL || 'info@zeltrionix.co.uk';
+                        reply = `You can contact human support at **${email}** or via our Contact page.`;
                     } else if (lower.includes('hello') || lower.includes('hi') || lower.includes('привет')) {
                         reply = "Hello there! How can I assist your business today?";
                     }

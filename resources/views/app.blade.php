@@ -28,6 +28,6 @@
         @inertia
 
         <!-- Zeltrionix Live AI Support Widget -->
-        <script src="https://www.zeltrionix.com/widget.js" data-bot-id="49bb37b4-1bac-44e4-b298-dfd2e51e11d0" async></script>
+        <script src="/widget.js" data-bot-id="49bb37b4-1bac-44e4-b298-dfd2e51e11d0" async></script>
     </body>
 </html>

@@ -4,7 +4,7 @@ import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
 import { ShieldAlert, ArrowLeft, RefreshCw, Moon, Lock, AlertTriangle, Wrench } from 'lucide-react';
 
 export default function Error({ status = 404, message, company }) {
-    const companyName = company?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED';
+    const companyName = company?.name || import.meta.env.VITE_COMPANY_NAME || 'FERNBLAKE LIMITED';
     const errorConfigs = {
         404: {
             code: '404',

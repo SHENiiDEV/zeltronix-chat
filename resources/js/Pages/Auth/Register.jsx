@@ -1,5 +1,5 @@
 import React from 'react';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import GuestLayout from '@/Layouts/GuestLayout';
 import ZeltrionixLogo from '@/Components/ZeltrionixLogo';
 import { COUNTRIES } from '@/constants/countries';
@@ -10,6 +10,7 @@ import {
 import { motion } from 'framer-motion';
 
 export default function Register() {
+    const { company } = usePage().props;
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         surname: '',
@@ -34,7 +35,7 @@ export default function Register() {
 
     return (
         <GuestLayout>
-            <Head title="Create Enterprise Account | FERNBLAKE LIMITED" />
+            <Head title={`Create Enterprise Account | ${company?.name || import.meta.env.VITE_COMPANY_NAME || 'FERNBLAKE LIMITED'}`} />
 
             <div className="relative min-h-[calc(100vh-160px)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-slate-950 overflow-hidden">
                 {/* Ambient Glows */}

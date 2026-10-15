@@ -19,7 +19,7 @@ export default function Show({ invoice, customer, company }) {
 
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100 font-sans p-4 sm:p-8 flex flex-col items-center">
-            <Head title={`Invoice ${refNumber} | Voltoria AI`} />
+            <Head title={`Invoice ${refNumber} | Zeltrionix AI`} />
 
             {/* Print Controls (Hidden when printing) */}
             <div className="w-full max-w-3xl flex items-center justify-between mb-6 print:hidden">
@@ -56,10 +56,10 @@ export default function Show({ invoice, customer, company }) {
                     <div>
                         <ZeltrionixLogo className="h-10 mb-3" />
                         <div className="text-xs text-slate-400 print:text-slate-600 space-y-1.5 mt-3">
-                            <p className="font-bold text-base text-slate-200 print:text-slate-900">{company?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED'}</p>
-                            <p className="flex items-center gap-1 text-[11px] text-slate-400 print:text-slate-600"><Building2 className="w-3.5 h-3.5 text-blue-400 print:hidden" /> {company?.registration_number || company?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || 'UK Co. No. 16021412'}</p>
-                            <p className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-blue-400 print:hidden" /> {company?.address || import.meta.env.VITE_COMPANY_ADDRESS || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom'}</p>
-                            <p className="flex items-center gap-1"><Mail className="w-3.5 h-3.5 text-blue-400 print:hidden" /> {company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk'}</p>
+                            <p className="font-bold text-base text-slate-200 print:text-slate-900">{company?.name || import.meta.env.VITE_COMPANY_NAME || 'FERNBLAKE LIMITED'}</p>
+                            <p className="flex items-center gap-1 text-[11px] text-slate-400 print:text-slate-600"><Building2 className="w-3.5 h-3.5 text-blue-400 print:hidden" /> {company?.registration_number || company?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || '16020960'}</p>
+                            <p className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-blue-400 print:hidden" /> {company?.address || import.meta.env.VITE_COMPANY_ADDRESS || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF'}</p>
+                            <p className="flex items-center gap-1"><Mail className="w-3.5 h-3.5 text-blue-400 print:hidden" /> {company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@zeltrionix.co.uk'}</p>
                         </div>
                     </div>
 
@@ -103,7 +103,7 @@ export default function Show({ invoice, customer, company }) {
                             <tr>
                                 <td className="p-4 font-medium">
                                     <div className="font-bold text-white print:text-slate-900">{invoice.service_name || invoice.description}</div>
-                                    <span className="text-[11px] text-slate-400 print:text-slate-500">Voltoria AI Infrastructure Deposit</span>
+                                    <span className="text-[11px] text-slate-400 print:text-slate-500">Zeltrionix AI Infrastructure Deposit</span>
                                 </td>
                                 <td className="p-4 text-center font-mono font-bold text-blue-400 print:text-blue-700">
                                     +{Number(invoice.tokens_credited || 0).toLocaleString()}
@@ -137,9 +137,9 @@ export default function Show({ invoice, customer, company }) {
                 {/* Invoice Footer */}
                 <div className="border-t border-slate-800 print:border-slate-300 pt-6 text-center text-xs text-slate-500 print:text-slate-600">
                     <p className="flex items-center justify-center gap-1.5 mb-1 font-semibold">
-                        <ShieldCheck className="w-4 h-4 text-blue-400 print:hidden" /> Thank you for choosing {company?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED'}!
+                        <ShieldCheck className="w-4 h-4 text-blue-400 print:hidden" /> Thank you for choosing {company?.name || import.meta.env.VITE_COMPANY_NAME || 'FERNBLAKE LIMITED'}!
                     </p>
-                    <p>If you have any questions regarding this B2B invoice, please contact {company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk'}</p>
+                    <p>If you have any questions regarding this B2B invoice, please contact {company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@zeltrionix.co.uk'}</p>
                 </div>
             </div>
         </div>

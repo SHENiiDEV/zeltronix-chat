@@ -32,7 +32,7 @@ class ContactController extends Controller
             'message' => 'required|string|min:10|max:5000',
         ]);
 
-        $recipient = config('services.company.support_email', 'info@voltoria.co.uk');
+        $recipient = config('services.company.email', config('services.company.support_email', 'info@zeltrionix.co.uk'));
 
         try {
             Mail::to($recipient)->send(new ContactMessageMail(

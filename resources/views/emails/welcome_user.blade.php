@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Voltoria AI</title>
+    <title>Welcome to Zeltrionix AI</title>
 </head>
 <body style="margin:0; padding:0; background-color:#0f172a; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing:antialiased;">
     <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#0f172a; padding:40px 10px;">
@@ -15,8 +15,8 @@
                     <!-- Header -->
                     <tr>
                         <td style="padding:32px 32px 24px 32px; background-color:#0f172a; border-bottom:1px solid #334155; text-align:center;">
-                            <div style="font-size:24px; font-weight:900; color:#ffffff; tracking-tight: -0.5px;">VOLTORIA AI</div>
-                            <div style="font-size:11px; color:#38bdf8; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-top:4px;">High-Ticket Business Plan Architect</div>
+                            <div style="font-size:24px; font-weight:900; color:#ffffff; tracking-tight: -0.5px;">ZELTRIONIX AI</div>
+                            <div style="font-size:11px; color:#38bdf8; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-top:4px;">Autonomous AI Support & Business Infrastructure</div>
                         </td>
                     </tr>
 
@@ -26,7 +26,7 @@
                             <h1 style="font-size:20px; font-weight:800; color:#ffffff; margin:0 0 16px 0;">Dear {{ $user->name }},</h1>
                             
                             <p style="margin:0 0 20px 0; color:#cbd5e1;">
-                                Welcome to <strong>Voltoria AI</strong>. Your enterprise account has been successfully provisioned. You now have full access to our autonomous AI support agents and high-ticket business planning infrastructure.
+                                Welcome to <strong>Zeltrionix AI</strong>. Your enterprise account has been successfully provisioned. You now have full access to our autonomous AI support agents and high-ticket business planning infrastructure.
                             </p>
 
                             <!-- Feature Card Box -->
@@ -55,7 +55,7 @@
                             </table>
 
                             <p style="margin:0; font-size:13px; color:#94a3b8;">
-                                If you have any questions or need technical support, contact our compliance desk at <a href="mailto:{{ config('services.company.support_email', 'info@voltoria.co.uk') }}" style="color:#38bdf8; text-decoration:underline;">{{ config('services.company.support_email', 'info@voltoria.co.uk') }}</a>.
+                                If you have any questions or need technical support, contact our compliance desk at <a href="mailto:{{ config('services.company.email', config('services.company.support_email', 'info@zeltrionix.co.uk')) }}" style="color:#38bdf8; text-decoration:underline;">{{ config('services.company.email', config('services.company.support_email', 'info@zeltrionix.co.uk')) }}</a>.
                             </p>
                         </td>
                     </tr>
@@ -63,9 +63,9 @@
                     <!-- Legal Footer -->
                     <tr>
                         <td style="padding:24px 32px; background-color:#0f172a; border-top:1px solid #334155; text-align:center; font-size:11px; color:#64748b; line-height:1.5;">
-                            <strong style="color:#94a3b8;">{{ config('services.company.name', 'INCHWARD LIMITED') }}</strong> &bull; {{ config('services.company.registration_number', 'UK Co. No. 16021412') }}<br>
-                            {{ config('services.company.address', 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom') }}<br>
-                            &copy; {{ date('Y') }} Voltoria AI. All rights reserved.
+                            <strong style="color:#94a3b8;">{{ config('services.company.name', 'FERNBLAKE LIMITED') }}</strong> &bull; {{ config('services.company.registration_number', '16020960') }}<br>
+                            {{ config('services.company.address', 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF') }}<br>
+                            &copy; {{ date('Y') }} Zeltrionix AI. All rights reserved.
                         </td>
                     </tr>
 

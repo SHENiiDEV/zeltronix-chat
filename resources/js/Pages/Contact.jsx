@@ -25,7 +25,7 @@ export default function Contact({ company }) {
 
     return (
         <GuestLayout>
-            <Head title="Contact Support & Executive Trade Desk | Voltoria AI" />
+            <Head title="Contact Support & Executive Trade Desk | Zeltrionix AI" />
 
             <div className="relative min-h-screen bg-slate-950 text-slate-100 py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
                 {/* Background Ambient Glow */}
@@ -67,8 +67,8 @@ export default function Contact({ company }) {
                                     <Building2 className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
                                     <div>
                                         <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Company Name & Registration</span>
-                                        <h4 className="font-bold text-white text-sm mt-0.5">{company?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED'}</h4>
-                                        <p className="text-slate-400 mt-0.5">{company?.registration_number || company?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || 'UK Co. No. 16021412'}</p>
+                                        <h4 className="font-bold text-white text-sm mt-0.5">{company?.name || import.meta.env.VITE_COMPANY_NAME || 'FERNBLAKE LIMITED'}</h4>
+                                        <p className="text-slate-400 mt-0.5">{company?.registration_number || company?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || '16020960'}</p>
                                     </div>
                                 </div>
 
@@ -77,7 +77,7 @@ export default function Contact({ company }) {
                                     <div>
                                         <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Registered Address</span>
                                         <p className="text-slate-300 font-medium leading-relaxed mt-0.5">
-                                            {company?.address || import.meta.env.VITE_COMPANY_ADDRESS || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom'}
+                                            {company?.address || import.meta.env.VITE_COMPANY_ADDRESS || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF'}
                                         </p>
                                     </div>
                                 </div>
@@ -86,8 +86,8 @@ export default function Contact({ company }) {
                                     <Mail className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
                                     <div>
                                         <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Official Email</span>
-                                        <a href={`mailto:${company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk'}`} className="font-bold text-blue-400 hover:underline text-sm block mt-0.5">
-                                            {company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk'}
+                                        <a href={`mailto:${company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@zeltrionix.co.uk'}`} className="font-bold text-blue-400 hover:underline text-sm block mt-0.5">
+                                            {company?.email || company?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@zeltrionix.co.uk'}
                                         </a>
                                     </div>
                                 </div>

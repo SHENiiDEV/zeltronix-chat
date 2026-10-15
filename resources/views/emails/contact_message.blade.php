@@ -14,7 +14,7 @@
                     <!-- Header -->
                     <tr>
                         <td style="padding:28px 32px; background-color:#0f172a; border-bottom:1px solid #334155; text-align:center;">
-                            <div style="font-size:22px; font-weight:900; color:#ffffff;">VOLTORIA AI</div>
+                            <div style="font-size:22px; font-weight:900; color:#ffffff;">ZELTRIONIX AI</div>
                             <div style="font-size:11px; color:#38bdf8; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-top:4px;">New Executive Support Ticket Received</div>
                         </td>
                     </tr>
@@ -43,7 +43,7 @@
                     <!-- Footer -->
                     <tr>
                         <td style="padding:20px 32px; background-color:#0f172a; border-top:1px solid #334155; text-align:center; font-size:11px; color:#64748b;">
-                            SLA Target: 24-48 Business Hours Response &bull; {{ config('services.company.name', 'INCHWARD LIMITED') }}
+                            SLA Target: 24-48 Business Hours Response &bull; {{ config('services.company.name', 'FERNBLAKE LIMITED') }}
                         </td>
                     </tr>
 

@@ -33,7 +33,7 @@ class WalletTopUpMail extends Mailable implements ShouldQueue
         $formattedAmount = number_format($this->payment->amount, 2);
 
         return new Envelope(
-            subject: "Voltoria AI — Wallet Top-Up Receipt ({$currencySymbol}{$formattedAmount})",
+            subject: "Zeltrionix AI — Wallet Top-Up Receipt ({$currencySymbol}{$formattedAmount})",
         );
     }
 

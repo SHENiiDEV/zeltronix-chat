@@ -24,7 +24,7 @@ export default function Index({ invoices = [] }) {
                 </div>
             }
         >
-            <Head title="Invoices & Billing History | Voltoria AI" />
+            <Head title="Invoices & Billing History | Zeltrionix AI" />
 
             <div className="bg-slate-900/90 rounded-3xl border border-slate-800 overflow-hidden shadow-2xl">
                 <div className="p-6 border-b border-slate-800 flex items-center justify-between">

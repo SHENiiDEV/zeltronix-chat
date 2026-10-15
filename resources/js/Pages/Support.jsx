@@ -10,9 +10,9 @@ import {
 export default function Support({ company }) {
     const { company: pageCompany } = usePage().props;
     const currentCompany = company || pageCompany;
-    const companyName = currentCompany?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED';
-    const companyRegNumber = currentCompany?.registration_number || currentCompany?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || 'UK Co. No. 16021412';
-    const companyEmail = currentCompany?.email || currentCompany?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk';
+    const companyName = currentCompany?.name || import.meta.env.VITE_COMPANY_NAME || 'FERNBLAKE LIMITED';
+    const companyRegNumber = currentCompany?.registration_number || currentCompany?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || '16020960';
+    const companyEmail = currentCompany?.email || currentCompany?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@zeltrionix.co.uk';
 
     const [openIndex, setOpenIndex] = useState(null);
 

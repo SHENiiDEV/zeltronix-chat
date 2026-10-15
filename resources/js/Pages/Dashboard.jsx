@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import { Bot, FileText, Layers, MessageSquare, TrendingUp, ArrowUpRight, Plus, ChevronRight, Coins, Sliders, Globe } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -21,6 +21,7 @@ const TOPUP_PACKAGES = [
 ];
 
 export default function Dashboard({ stats, chartData = [], recentBots }) {
+    const { company } = usePage().props;
     const [showTopUpModal, setShowTopUpModal] = useState(false);
     const [selectedCurrency, setSelectedCurrency] = useState(() => {
         return localStorage.getItem('zeltronix_currency') || 'EUR';
@@ -89,7 +90,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                 </div>
             }
         >
-            <Head title="Dashboard | INCHWARD LIMITED" />
+            <Head title={`Dashboard | ${company?.name || import.meta.env.VITE_COMPANY_NAME || 'Zeltrionix AI'}`} />
 
             {/* Metric Cards including Token Balance */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
@@ -319,7 +320,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                         </div>
 
                         <div className="flex justify-between items-center text-xs text-slate-500">
-                            <span>Official Invoice Issued by INCHWARD LIMITED</span>
+                            <span>Official Invoice Issued by {company?.name || import.meta.env.VITE_COMPANY_NAME || 'FERNBLAKE LIMITED'}</span>
                             <button
                                 type="button"
                                 onClick={() => setShowTopUpModal(false)}

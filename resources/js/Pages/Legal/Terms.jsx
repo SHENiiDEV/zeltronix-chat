@@ -5,10 +5,10 @@ import LegalLayout from '@/Layouts/LegalLayout';
 export default function Terms({ company }) {
     const { company: pageCompany } = usePage().props;
     const currentCompany = company || pageCompany;
-    const companyName = currentCompany?.name || import.meta.env.VITE_COMPANY_NAME || 'INCHWARD LIMITED';
-    const companyRegNumber = currentCompany?.registration_number || currentCompany?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || 'UK Co. No. 16021412';
-    const companyAddress = currentCompany?.address || import.meta.env.VITE_COMPANY_ADDRESS || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom';
-    const companyEmail = currentCompany?.email || currentCompany?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@voltoria.co.uk';
+    const companyName = currentCompany?.name || import.meta.env.VITE_COMPANY_NAME || 'FERNBLAKE LIMITED';
+    const companyRegNumber = currentCompany?.registration_number || currentCompany?.reg_number || import.meta.env.VITE_COMPANY_REG_NUMBER || '16020960';
+    const companyAddress = currentCompany?.address || import.meta.env.VITE_COMPANY_ADDRESS || 'Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF';
+    const companyEmail = currentCompany?.email || currentCompany?.support_email || import.meta.env.VITE_COMPANY_EMAIL || 'info@zeltrionix.co.uk';
 
     return (
         <LegalLayout

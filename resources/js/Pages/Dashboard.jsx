@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Head, Link, useForm, usePage } from '@inertiajs/react';
+import { Head, Link, usePage, router } from '@inertiajs/react';
 import AppLayout from '@/Layouts/AppLayout';
 import { Bot, FileText, Layers, MessageSquare, TrendingUp, ArrowUpRight, Plus, ChevronRight, Coins, Sliders, Globe } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -23,6 +23,7 @@ const TOPUP_PACKAGES = [
 export default function Dashboard({ stats, chartData = [], recentBots }) {
     const { company } = usePage().props;
     const [showTopUpModal, setShowTopUpModal] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [selectedCurrency, setSelectedCurrency] = useState(() => {
         return localStorage.getItem('zeltronix_currency') || 'EUR';
     });
@@ -36,25 +37,43 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
         return () => window.removeEventListener('zeltronix_currency_changed', handleStorageChange);
     }, []);
 
-    const { post, processing } = useForm();
-
     const curr = CURRENCIES[selectedCurrency] || CURRENCIES.EUR;
 
     const calcPrice = (tokens) => {
-        const baseEur = (tokens / 1000) * 1.00; // €1.00 per 1,000 tokens
-        return (baseEur * curr.rate).toFixed(2);
+        const numTokens = parseInt(tokens, 10) || 0;
+        const baseEur = (numTokens / 1000) * 1.00; // €1.00 per 1,000 tokens
+        const converted = baseEur * curr.rate;
+        if (numTokens > 0 && converted < 0.01) {
+            return '0.01';
+        }
+        return converted.toFixed(2);
     };
 
     const handleTopUpSubmit = (amountTokens) => {
-        const price = calcPrice(amountTokens);
-        post(route('topup.store', { 
-            tokens: amountTokens,
+        const numTokens = parseInt(amountTokens, 10);
+        if (!numTokens || numTokens < 1) {
+            toast.error('Please enter a valid token amount (minimum 1 token).');
+            return;
+        }
+
+        const price = calcPrice(numTokens);
+        setIsSubmitting(true);
+
+        router.post(route('topup.store'), { 
+            tokens: numTokens,
             currency: curr.code,
-            amount: price
-        }), {
+            amount: price,
+        }, {
+            preserveScroll: true,
             onSuccess: () => {
+                setIsSubmitting(false);
                 setShowTopUpModal(false);
-                toast.success(`Successfully added ${amountTokens.toLocaleString()} tokens (${curr.symbol}${price} ${curr.code})!`);
+                toast.success(`Successfully added ${numTokens.toLocaleString()} tokens (${curr.symbol}${price} ${curr.code})!`);
+            },
+            onError: (errors) => {
+                setIsSubmitting(false);
+                const firstError = Object.values(errors)[0] || 'Failed to deposit tokens. Please check your token amount.';
+                toast.error(firstError);
             }
         });
     };
@@ -270,8 +289,9 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                                 <button
                                     key={pIdx}
                                     type="button"
+                                    disabled={isSubmitting}
                                     onClick={() => handleTopUpSubmit(pkg.tokens)}
-                                    className={`bg-slate-950 border p-3 rounded-2xl text-left transition-all relative group hover:scale-[1.02] ${
+                                    className={`bg-slate-950 border p-3 rounded-2xl text-left transition-all relative group hover:scale-[1.02] disabled:opacity-50 disabled:pointer-events-none ${
                                         pkg.badge === 'Popular'
                                             ? 'border-blue-500/60 hover:border-blue-500 shadow-md shadow-blue-500/10'
                                             : pkg.badge === 'Enterprise'
@@ -301,20 +321,20 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                             <div className="flex gap-2">
                                 <input
                                     type="number"
-                                    min="100000"
-                                    max="500000000"
-                                    step="10000"
+                                    min="1"
+                                    max="100000000"
+                                    step="1"
                                     value={customTokenInput}
-                                    onChange={(e) => setCustomTokenInput(Number(e.target.value))}
+                                    onChange={(e) => setCustomTokenInput(e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value, 10) || 0))}
                                     className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-amber-500 font-mono"
                                 />
                                 <button
                                     type="button"
                                     onClick={() => handleTopUpSubmit(customTokenInput)}
-                                    disabled={processing}
-                                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition-all shadow-md shadow-blue-500/20 flex-shrink-0"
+                                    disabled={isSubmitting || !customTokenInput || customTokenInput < 1}
+                                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 disabled:opacity-50 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition-all shadow-md shadow-blue-500/20 flex-shrink-0"
                                 >
-                                    Purchase ({curr.symbol}{calcPrice(customTokenInput)})
+                                    {isSubmitting ? 'Processing...' : `Purchase (${curr.symbol}${calcPrice(customTokenInput)})`}
                                 </button>
                             </div>
                         </div>

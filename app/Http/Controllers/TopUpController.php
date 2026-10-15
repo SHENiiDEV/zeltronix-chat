@@ -16,7 +16,7 @@ class TopUpController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'tokens' => 'required|integer|min:1000|max:100000000',
+            'tokens' => 'required|integer|min:1|max:100000000',
             'currency' => 'nullable|string|in:EUR,USD,GBP',
             'amount' => 'nullable|numeric|min:0.01',
         ]);
@@ -38,11 +38,11 @@ class TopUpController extends Controller
         $multiplier = $rates[$currency] ?? 1.0;
         $symbol = $symbols[$currency] ?? '€';
 
-        // Base rate: 1,000 AI Tokens = €1.00 EUR
+        // Base rate: 1,000 AI Tokens = €1.00 EUR (minimum amount €0.01)
         $basePriceEur = ($tokens / 1000) * 1.00;
-        $calculatedAmount = isset($validated['amount']) 
-            ? (float) $validated['amount'] 
-            : round($basePriceEur * $multiplier, 2);
+        $calculatedAmount = isset($validated['amount']) && (float) $validated['amount'] >= 0.01
+            ? round((float) $validated['amount'], 2)
+            : max(0.01, round($basePriceEur * $multiplier, 2));
 
         $user = $request->user();
         $user->token_balance += $tokens;
@@ -74,6 +74,18 @@ class TopUpController extends Controller
         }
 
         $formattedTokens = number_format($tokens);
-        return back()->with('success', "Added {$formattedTokens} AI tokens to your balance ({$symbol}{$calculatedAmount} {$currency}) & issued Invoice #{$gatewayRef}!");
+        $message = "Added {$formattedTokens} AI tokens to your balance ({$symbol}{$calculatedAmount} {$currency}) & issued Invoice #{$gatewayRef}!";
+
+        if ($request->wantsJson() && !$request->header('X-Inertia')) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+                'tokens' => $user->token_balance,
+                'balance' => $user->balance,
+                'invoice' => $invoice,
+            ]);
+        }
+
+        return back()->with('success', $message);
     }
 }

@@ -45,6 +45,6 @@ class ContactController extends Controller
             Log::error('Contact ticket email dispatch failed: ' . $e->getMessage());
         }
 
-        return back()->with('success', 'Your support ticket has been submitted successfully! Our trade desk SLA target is 24-48 business hours.');
+        return back()->with('success', 'Your support ticket has been submitted successfully! Our support team target response time is 24-48 business hours.');
     }
 }

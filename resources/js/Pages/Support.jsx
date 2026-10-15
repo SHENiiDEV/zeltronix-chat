@@ -18,8 +18,12 @@ export default function Support({ company }) {
 
     const faqs = [
         {
+            q: 'How does creating a custom AI chatbot work?',
+            a: 'You simply sign up, create a new bot, and upload your company documentation (PDF, DOCX, TXT, CSV) such as FAQs, product sheets, price lists, or guides. Customize the widget colors and greeting message to match your brand, then copy and paste the 1-line script onto your website. Your bot answers customer questions 24/7 strictly using your company information.'
+        },
+        {
             q: 'What is included in Zeltrionix AI token infrastructure packages?',
-            a: 'Our 6 token packages (ranging from €649 up to €6,759) credit your digital wallet with high-capacity AI infrastructure tokens. Higher tier packages include multi-bot deployments, priority vector indexing, custom brand styling, advanced zero-hallucination guardrails, and dedicated SLA response.'
+            a: 'Our 6 token packages (ranging from €649 up to €6,759) credit your digital wallet with high-capacity AI tokens to power customer conversations. Packages include custom bot deployments, fast document vector indexing, custom brand styling, and zero-hallucination guardrails.'
         },
         {
             q: 'How does the 14-day money-back guarantee work?',
@@ -30,7 +34,7 @@ export default function Support({ company }) {
             a: `Invoices issued by ${companyName} (${companyRegNumber}) are processed under UK B2B rules and International Reverse Charge regulations (0% VAT). Official B2B PDF tax receipts stamped PAID & VERIFIED are automatically generated and attached to all top-up receipts.`
         },
         {
-            q: 'Who owns the Intellectual Property (IP) of uploaded documentation?',
+            q: 'Who owns the Intellectual Property (IP) of uploaded company documentation?',
             a: 'You retain 100% intellectual property ownership of all uploaded documentation (PDF, DOCX, TXT, CSV) and customer chat transcripts. Zeltrionix AI operates under a strict zero public foundation model training pledge.'
         },
         {
@@ -106,15 +110,15 @@ export default function Support({ company }) {
                             </Link>
                         </div>
 
-                        {/* Channel 3: Corporate Inquiries */}
+                        {/* Channel 3: Technical Help Desk */}
                         <div className="bg-slate-900/90 border border-slate-800 p-8 rounded-3xl shadow-xl flex flex-col justify-between hover:border-purple-500/50 transition-all">
                             <div>
                                 <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-6">
                                     <Building2 className="w-6 h-6" />
                                 </div>
-                                <h3 className="text-xl font-bold text-white mb-2">Corporate Inquiries</h3>
+                                <h3 className="text-xl font-bold text-white mb-2">Technical Help Desk</h3>
                                 <p className="text-xs text-slate-400 leading-relaxed mb-6">
-                                    Initiate formal trade desk support tickets with SLA response guaranteed within 24-48 hours.
+                                    Submit technical support tickets for help with bot setup, document uploads, or website widget embedding.
                                 </p>
                             </div>
                             <Link

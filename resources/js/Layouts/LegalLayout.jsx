@@ -140,7 +140,7 @@ export default function LegalLayout({ title, subtitle, lastUpdated = "August 5, 
                         <div className="md:col-span-4 space-y-3">
                             <ZeltrionixLogo className="h-7" showText={true} />
                             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-                                Autonomous AI Customer Support Chat Widget & Custom Knowledge Base RAG Infrastructure.
+                                Create your own custom AI customer support chatbot in minutes. Trained strictly on your company data.
                             </p>
                         </div>
 

@@ -24,10 +24,11 @@ export default function About({ company }) {
                             OUR CORPORATE MISSION
                         </div>
                         <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white mb-6 leading-tight">
-                            Empowering Modern Platforms with <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Zero-Hallucination AI Support</span>
+                            Build Your Own AI Chatbot <br />
+                            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Trained on Your Company Data</span>
                         </h1>
                         <p className="text-slate-300 text-base leading-relaxed">
-                            Zeltrionix AI was built to eliminate the cost and delays of traditional customer support. By feeding your existing documentation (PDF, DOCX, TXT, CSV) directly into our high-speed vector RAG engine, we enable businesses to deploy intelligent, accurate, and 24/7 automated support widgets in seconds.
+                            Zeltrionix AI enables any business to create and deploy its own intelligent customer support chatbot in minutes. No coding or complex setup required: simply upload your company information, product guides, price lists, or FAQs (PDF, DOCX, TXT, CSV), customize your widget, and paste one line of code onto your website. Your chatbot answers customer questions 24/7 strictly based on your company's data.
                         </p>
                     </div>
 

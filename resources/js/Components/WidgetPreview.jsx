@@ -9,7 +9,7 @@ export default function WidgetPreview({
     primaryColor = "#3b82f6",
     secondaryColor = "#a855f7",
     themeMode = "dark",
-    greetingMessage = "Hello! I am your AI Support Assistant trained on your business docs. Ask me anything!"
+    greetingMessage = "Hello! I am your AI Support Assistant trained on your company's documents. Ask me anything!"
 }) {
     const [messages, setMessages] = useState([
         { id: 1, sender: 'assistant', text: greetingMessage }
@@ -124,7 +124,7 @@ export default function WidgetPreview({
                     const lower = userText.toLowerCase();
 
                     if (lower.includes('price') || lower.includes('cost') || lower.includes('тариф') || lower.includes('цена')) {
-                        reply = "Our **Pro Plan** is €30/month for **50,000,000 AI tokens**, and **Enterprise** is €100/month for **175,000,000 AI tokens**!";
+                        reply = "Our AI Token packages start from **€649** (Starter Agent) up to **€6,759** (Enterprise Global) with transparent pay-as-you-go token infrastructure and official UK B2B tax invoices!";
                     } else if (lower.includes('email') || lower.includes('support') || lower.includes('phone') || lower.includes('contact')) {
                         const email = import.meta.env.VITE_COMPANY_EMAIL || 'info@zeltrionix.co.uk';
                         reply = `You can contact human support at **${email}** or via our Contact page.`;

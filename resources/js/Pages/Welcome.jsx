@@ -53,18 +53,18 @@ export default function Welcome({ auth }) {
                     <div className="text-center max-w-4xl mx-auto mb-10">
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-extrabold tracking-widest uppercase mb-6 shadow-lg backdrop-blur-md">
                             <Zap className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
-                            KNOWLEDGE BASE RAG & AUTONOMOUS AI SUPPORT CHAT WIDGET
+                            NO-CODE AI CHATBOT BUILDER & CUSTOM SUPPORT WIDGET
                         </div>
 
                         <h1 className="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-tight">
-                            Autonomous AI Support & <br />
+                            Build Your Own AI Chatbot <br />
                             <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-                                Custom Knowledge Base Architecture
+                                Trained on Your Company Data
                             </span>
                         </h1>
 
                         <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-8">
-                            Transform your business documentation (PDF, DOCX, TXT, CSV) into a 24/7 intelligent customer support agent. Embed on any website with a single line of JavaScript, resolve inquiries with zero hallucinations, and scale your support effortlessly.
+                            Create an intelligent 24/7 customer support chatbot for your website in minutes. Simply upload your company files (PDF, Word, TXT, CSV), customize your bot's style and welcome greeting, and paste one line of script onto your website. Your bot answers customer questions instantly and accurately using only your company information.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-12">
@@ -72,13 +72,13 @@ export default function Welcome({ auth }) {
                                 href={auth?.user ? route('dashboard') : route('register')}
                                 className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-extrabold text-sm px-8 py-3.5 rounded-2xl shadow-xl shadow-blue-500/25 transition-all flex items-center justify-center gap-2"
                             >
-                                Get Started Now <ArrowRight className="w-4 h-4" />
+                                Create Your Chatbot Now <ArrowRight className="w-4 h-4" />
                             </Link>
                             <a
                                 href="#pricing"
                                 className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-bold text-sm px-8 py-3.5 rounded-2xl transition-all text-center"
                             >
-                                View AI Token Packages
+                                View Token Packages
                             </a>
                         </div>
                     </div>
@@ -98,16 +98,16 @@ export default function Welcome({ auth }) {
                     {/* Trust Badges */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-slate-900 text-xs font-semibold text-slate-400">
                         <div className="flex items-center justify-center gap-2">
-                            <ShieldCheck className="w-4 h-4 text-emerald-400" /> Zero-Hallucination Architecture
+                            <ShieldCheck className="w-4 h-4 text-emerald-400" /> Trained on Your Documents
                         </div>
                         <div className="flex items-center justify-center gap-2">
-                            <Clock className="w-4 h-4 text-blue-400" /> &lt;60s Document Vectorization
+                            <Clock className="w-4 h-4 text-blue-400" /> 1-Line Website Embed
                         </div>
                         <div className="flex items-center justify-center gap-2">
-                            <Lock className="w-4 h-4 text-purple-400" /> 100% Private Data Isolation
+                            <Lock className="w-4 h-4 text-purple-400" /> 100% Private Company Data
                         </div>
                         <div className="flex items-center justify-center gap-2">
-                            <Coins className="w-4 h-4 text-amber-400" /> UK B2B PDF Tax Invoices
+                            <Coins className="w-4 h-4 text-amber-400" /> 24/7 Automated Answers
                         </div>
                     </div>
                 </div>
@@ -117,40 +117,40 @@ export default function Welcome({ auth }) {
             <section id="features" className="py-24 bg-slate-950 border-t border-slate-900">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Architectural Edge</h2>
+                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">How It Works</h2>
                         <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                            Infrastructure Built for Modern Customer Operations
+                            Create Your Own Chatbot in 3 Simple Steps
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div className="bg-slate-900/60 p-8 rounded-3xl border border-slate-800 hover:border-slate-700 transition-all">
-                            <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
-                                <Clock className="w-6 h-6" />
+                            <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-6">
+                                <FileText className="w-6 h-6" />
                             </div>
-                            <h3 className="text-xl font-bold mb-3 text-white">Traditional Support Overhead</h3>
+                            <h3 className="text-xl font-bold mb-3 text-white">1. Give Info About Your Company</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
-                                Slow response queues, expensive manual shifts, inconsistent replies, and repetitive basic inquiries that drain team productivity.
+                                Simply upload your documents: price lists, product catalogs, FAQs, and guides (PDF, DOCX, TXT, CSV). The AI reads and memorizes your company details in seconds.
                             </p>
                         </div>
 
                         <div className="bg-gradient-to-b from-slate-900 to-slate-950 p-8 rounded-3xl border border-blue-500/30 hover:border-blue-500/60 transition-all shadow-xl shadow-blue-500/5 relative">
-                            <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-6">
-                                <Brain className="w-6 h-6" />
+                            <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-6">
+                                <Sliders className="w-6 h-6" />
                             </div>
-                            <h3 className="text-xl font-bold mb-3 text-white">The Zeltrionix Way</h3>
+                            <h3 className="text-xl font-bold mb-3 text-white">2. Customize Your Chatbot</h3>
                             <p className="text-slate-300 text-sm leading-relaxed">
-                                High-density vector semantic search indexes your documentation into Pinecone. When customers ask questions, the agent delivers grounded, accurate replies in milliseconds.
+                                Choose your brand colors, set a friendly greeting message, and pick your preferred theme (Dark or Light). Your bot will answer strictly based on your files with zero false information.
                             </p>
                         </div>
 
                         <div className="bg-slate-900/60 p-8 rounded-3xl border border-slate-800 hover:border-slate-700 transition-all">
                             <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6">
-                                <TrendingUp className="w-6 h-6" />
+                                <Zap className="w-6 h-6" />
                             </div>
-                            <h3 className="text-xl font-bold mb-3 text-white">The Scaled Result</h3>
+                            <h3 className="text-xl font-bold mb-3 text-white">3. Embed on Your Website</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
-                                Up to 80% deflection of routine customer tickets, 24/7 multilingual support coverage, real-time token tracking, and official B2B PDF tax receipts.
+                                Copy a 1-line script and paste it into WordPress, Shopify, Webflow, or custom HTML. Your chatbot is live instantly, answering customer inquiries 24/7 in any language.
                             </p>
                         </div>
                     </div>

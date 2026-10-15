@@ -97,7 +97,7 @@ export default function Contact({ company }) {
                                         <ShieldCheck className="w-4 h-4 text-blue-400" /> Guaranteed SLA Standard
                                     </div>
                                     <p className="text-[11px] text-slate-300 leading-relaxed">
-                                        All support inquiries are logged and addressed by dedicated trade officers within 24-48 business hours.
+                                        All support inquiries are logged and answered by our dedicated technical support team within 24-48 business hours.
                                     </p>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@ export default function Contact({ company }) {
                             <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
                                 <MessageSquare className="w-5 h-5 text-blue-400" /> Send Support Ticket
                             </h3>
-                            <p className="text-xs text-slate-400 mb-6">Fill out the form below to initiate a ticket with our trade desk.</p>
+                            <p className="text-xs text-slate-400 mb-6">Fill out the form below to send a message to our support team.</p>
 
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

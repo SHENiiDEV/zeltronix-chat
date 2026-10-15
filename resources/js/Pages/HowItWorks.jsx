@@ -10,62 +10,62 @@ import {
 const STEPS = [
     {
         num: '01',
-        title: 'Instant Provisioning & Digital Wallet',
-        subtitle: 'Multi-Currency Balance & UK B2B Invoices',
-        desc: 'Instant account activation with zero forced monthly subscriptions. Fund your digital wallet with AI tokens in EUR (€), USD ($), or GBP (£) with a full 14-day unused balance refund guarantee and official UK B2B PDF tax invoices.',
+        title: 'Choose a Package & Create Your Account',
+        subtitle: 'Transparent AI Tokens & Instant Activation',
+        desc: 'Sign up in seconds and choose a token package that fits your website traffic. Your digital token balance directly powers your chatbot conversations — with zero locked-in subscriptions and a 14-day refund policy.',
         icon: Wallet,
-        tag: 'Infrastructure & Deposit',
+        tag: 'Step 1: Setup',
         color: 'from-blue-500 to-cyan-500',
         points: [
-            'Multi-Currency Support (EUR, USD, GBP)',
-            'No Mandatory Recurring Subscriptions',
-            '14-Day Money Back Refund Policy',
-            'Instant Official UK B2B PDF Invoices'
+            'Instant Account Provisioning',
+            'No Forced Monthly Subscriptions',
+            '14-Day Money-Back Guarantee',
+            'Official UK B2B PDF Tax Invoices'
         ]
     },
     {
         num: '02',
-        title: 'Feed Knowledge Base (PDF, DOCX, TXT, CSV)',
-        subtitle: 'Automated Semantic Chunking & Neural Vectorization',
-        desc: 'Simply upload your product documentation, manuals, pricing sheets, or FAQs. Our document parser extracts text into contextual chunks and indexes high-density vector embeddings in under 60 seconds.',
+        title: 'Give the Bot Your Company Information',
+        subtitle: 'Upload Documents: PDF, DOCX, TXT, CSV',
+        desc: 'Simply upload your company materials: product manuals, pricing sheets, FAQ lists, terms of service, and company guides. The AI reads and organizes your documents in seconds, memorizing everything about your business.',
         icon: Cpu,
-        tag: 'Knowledge Base & RAG',
+        tag: 'Step 2: Knowledge Base',
         color: 'from-purple-500 to-indigo-500',
         points: [
-            'Direct PDF, DOCX, TXT & CSV Ingestion',
-            'DeepSeek & OpenAI Embedding Vectorization',
-            'High-Speed Pinecone Semantic Search (<60ms)',
-            '100% Private Knowledge Base Data Isolation'
+            'Supports PDF, Word (DOCX), Text (TXT) & CSV',
+            'Instant Document Parsing & Indexing (<60s)',
+            '100% Private Data — Never Used for Public AI',
+            'Update or Add New Documents Anytime'
         ]
     },
     {
         num: '03',
-        title: 'Configure Bot Persona & Anti-Hallucination',
-        subtitle: 'Zero-Hallucination Guardrails & Human Escalation',
-        desc: 'Customize your assistant name, system prompt, brand accent color, and fallback instructions. The agent answers strictly from your uploaded files, escalating unknown queries to human support.',
+        title: 'Customize Your Bot & Widget Style',
+        subtitle: 'Brand Colors, Greeting & Strict Guardrails',
+        desc: 'Make the chat widget match your website look and feel. Customize the bot name, welcome greeting, brand colors, and light/dark theme. The bot will strictly answer only based on your uploaded company files, never inventing answers.',
         icon: Sliders,
-        tag: 'Agent Persona & Guardrails',
+        tag: 'Step 3: Customization',
         color: 'from-cyan-500 to-blue-600',
         points: [
-            'Strict Zero-Hallucination Answer Guardrails',
-            'Custom Brand Accent Colors & Welcome Copy',
-            'Automated Human Support Email Escalation',
-            'Full Multi-turn Conversation Context Memory'
+            'Custom Brand Accent Colors & Themes',
+            'Personalized Bot Name & Greeting Message',
+            'Strict Zero-Hallucination Answering Policy',
+            'Automatic Fallback to Human Email Support'
         ]
     },
     {
         num: '04',
-        title: '1-Line Embed Script & 24/7 Live Support',
-        subtitle: 'Drop-in JavaScript Widget on Any Website or CMS',
-        desc: 'Copy your unique 1-line script tag and paste it into WordPress, Shopify, Webflow, or custom React/HTML. Your AI assistant immediately begins resolving customer inquiries 24/7 across multiple languages.',
+        title: 'Embed 1 Line of Code on Your Website',
+        subtitle: 'Works on WordPress, Shopify, Webflow or Custom Sites',
+        desc: 'Copy your personalized 1-line script tag (<script src="/widget.js">) and paste it into your website. Your AI chatbot is live immediately, greeting visitors and answering questions 24/7 in any language.',
         icon: FileText,
-        tag: 'Deployment & Live Support',
+        tag: 'Step 4: Go Live',
         color: 'from-emerald-500 to-teal-600',
         points: [
             'Single-Line Embed Script (widget.js)',
-            'Mobile-Responsive Glassmorphic UI',
-            'Real-Time AI Token Usage Accounting',
-            '100% IP Retention & Zero Public Training'
+            'Works on Any CMS or Custom Website',
+            'Mobile-Friendly Responsive Design',
+            '24/7 Live Automated Customer Support'
         ]
     }
 ];
@@ -144,7 +144,7 @@ const PACKAGES = [
         desc: 'High-throughput corporate support & knowledge base sync',
         badge: null,
         features: [
-            'Dedicated Trade Desk Manager',
+            'Priority Setup & Dedicated Support',
             '5,299,000 AI Token Balance',
             'Unlimited Document Vector Embeddings',
             '100% Private Knowledge Base Space',
@@ -272,7 +272,7 @@ export default function HowItWorks({ auth }) {
                 </div>
             </section>
 
-            {/* SUPPLY PACKAGES CARDS SECTION (6 PACKAGES €649 to €6759) */}
+            {/* TOKEN PACKAGES CARDS SECTION (6 PACKAGES €649 to €6759) */}
             <section className="py-24 bg-slate-950 border-t border-slate-900 text-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-12">

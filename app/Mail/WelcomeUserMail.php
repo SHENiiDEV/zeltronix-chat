@@ -21,7 +21,7 @@ class WelcomeUserMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Welcome to Zeltrionix AI — High-Ticket Business Plan Architect',
+            subject: 'Welcome to Zeltrionix AI — Autonomous AI Support & Knowledge Base',
         );
     }
 

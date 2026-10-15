@@ -18,8 +18,8 @@ export default function Support({ company }) {
 
     const faqs = [
         {
-            q: 'What is included in Zeltrionix AI sourcing packages?',
-            a: 'Our 6 sourcing packages (ranging from €649 up to €6,759) credit your digital wallet with high-capacity AI infrastructure tokens. Higher tier packages include 6-page institutional investment dossiers, bilingual English/Chinese factory negotiation scripts, sea freight tariff calculations, and direct Shenzhen/Ningbo OEM supplier matches.'
+            q: 'What is included in Zeltrionix AI token infrastructure packages?',
+            a: 'Our 6 token packages (ranging from €649 up to €6,759) credit your digital wallet with high-capacity AI infrastructure tokens. Higher tier packages include multi-bot deployments, priority vector indexing, custom brand styling, advanced zero-hallucination guardrails, and dedicated SLA response.'
         },
         {
             q: 'How does the 14-day money-back guarantee work?',
@@ -30,8 +30,8 @@ export default function Support({ company }) {
             a: `Invoices issued by ${companyName} (${companyRegNumber}) are processed under UK B2B rules and International Reverse Charge regulations (0% VAT). Official B2B PDF tax receipts stamped PAID & VERIFIED are automatically generated and attached to all top-up receipts.`
         },
         {
-            q: 'Who owns the Intellectual Property (IP) of generated dossiers?',
-            a: 'You retain 100% intellectual property ownership of all uploaded documentation, project briefs, and generated dossiers. Zeltrionix AI operates under a zero public foundation model training pledge.'
+            q: 'Who owns the Intellectual Property (IP) of uploaded documentation?',
+            a: 'You retain 100% intellectual property ownership of all uploaded documentation (PDF, DOCX, TXT, CSV) and customer chat transcripts. Zeltrionix AI operates under a strict zero public foundation model training pledge.'
         },
         {
             q: 'How can I download official PDF invoices for my accounting team?',
@@ -56,13 +56,13 @@ export default function Support({ company }) {
                     <div className="text-center max-w-3xl mx-auto">
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-extrabold tracking-widest uppercase mb-4 shadow-lg backdrop-blur-md">
                             <HelpCircle className="w-3.5 h-3.5 text-purple-400" />
-                            HELP CENTER & EXECUTIVE DISPATCH
+                            HELP CENTER & TECHNICAL DESK
                         </div>
                         <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white mb-4">
                             Support & Help Desk
                         </h1>
                         <p className="text-slate-400 text-sm leading-relaxed">
-                            Everything you need to know about our OEM factory vector engine, B2B invoicing, and wallet refund policies.
+                            Everything you need to know about our AI chat widget, knowledge base vector engine, B2B invoicing, and refund policies.
                         </p>
                     </div>
 
@@ -74,9 +74,9 @@ export default function Support({ company }) {
                                 <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-6">
                                     <Mail className="w-6 h-6" />
                                 </div>
-                                <h3 className="text-xl font-bold text-white mb-2">Executive Email Support</h3>
+                                <h3 className="text-xl font-bold text-white mb-2">Technical Email Support</h3>
                                 <p className="text-xs text-slate-400 leading-relaxed mb-6">
-                                    Direct line to our compliance and trade support desk for complex sourcing inquiries.
+                                    Direct line to our technical support and compliance desk for any platform inquiries.
                                 </p>
                             </div>
                             <a

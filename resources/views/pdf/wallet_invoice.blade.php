@@ -169,7 +169,7 @@
         <tr>
             <td>
                 <div class="brand-title">ZELTRIONIX AI</div>
-                <div class="brand-subtitle">Autonomous AI Support & Business Planning Infrastructure</div>
+                <div class="brand-subtitle">Autonomous AI Support & Knowledge Base RAG Infrastructure</div>
             </td>
             <td style="text-align: right;">
                 <div class="badge-paid">&#10003; PAID & VERIFIED</div>
@@ -223,7 +223,7 @@
                         @if(($payment->tokens_credited ?? 0) > 0)
                             Quota Credited: +{{ number_format($payment->tokens_credited) }} AI Tokens
                         @else
-                            Automated High-Ticket Business Plan & Document Generation
+                            Autonomous AI Support Widget & Knowledge Base Setup
                         @endif
                     </div>
                 </td>

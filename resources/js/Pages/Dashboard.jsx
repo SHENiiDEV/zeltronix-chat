@@ -12,9 +12,9 @@ const CURRENCIES = {
 };
 
 const TOPUP_PACKAGES = [
-    { name: 'Starter Sourcing', tokens: 649000, eurPrice: 649, badge: 'Entry' },
-    { name: 'Standard Sourcing', tokens: 1249000, eurPrice: 1249, badge: null },
-    { name: 'Pro Sourcing', tokens: 2499000, eurPrice: 2499, badge: 'Popular' },
+    { name: 'Starter Agent', tokens: 649000, eurPrice: 649, badge: 'Entry' },
+    { name: 'Standard Agent', tokens: 1249000, eurPrice: 1249, badge: null },
+    { name: 'Pro Support', tokens: 2499000, eurPrice: 2499, badge: 'Popular' },
     { name: 'Growth Infrastructure', tokens: 3899000, eurPrice: 3899, badge: null },
     { name: 'Institutional Scale', tokens: 5299000, eurPrice: 5299, badge: null },
     { name: 'Enterprise Global', tokens: 6759000, eurPrice: 6759, badge: 'Enterprise' },
@@ -254,7 +254,7 @@ export default function Dashboard({ stats, chartData = [], recentBots }) {
                             <Coins className="w-6 h-6 text-amber-400" /> Digital Wallet Token Top-Up
                         </h3>
                         <p className="text-xs text-slate-400 mb-6">
-                            Select a high-volume supply package or specify custom token deposits. Official B2B PDF tax invoice generated instantly.
+                            Select an AI token infrastructure package or specify custom token deposits. Official B2B PDF tax invoice generated instantly.
                         </p>
 
                         <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800 mb-6 flex items-center justify-between">

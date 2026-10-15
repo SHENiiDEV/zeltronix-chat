@@ -195,7 +195,7 @@ export default function GuestLayout({ children }) {
                         <div className="md:col-span-4 space-y-3">
                             <ZeltrionixLogo className="h-8" showText={true} />
                             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-                                Autonomous AI Support Infrastructure & Direct OEM Sourcing Architecture.
+                                Autonomous AI Customer Support Chat Widget & Custom Knowledge Base RAG Infrastructure.
                             </p>
                         </div>
 

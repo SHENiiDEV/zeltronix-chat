@@ -16,7 +16,7 @@
                     <tr>
                         <td style="padding:32px 32px 24px 32px; background-color:#0f172a; border-bottom:1px solid #334155; text-align:center;">
                             <div style="font-size:24px; font-weight:900; color:#ffffff; tracking-tight: -0.5px;">ZELTRIONIX AI</div>
-                            <div style="font-size:11px; color:#38bdf8; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-top:4px;">Autonomous AI Support & Business Infrastructure</div>
+                            <div style="font-size:11px; color:#38bdf8; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-top:4px;">Autonomous AI Customer Support & Knowledge Base Infrastructure</div>
                         </td>
                     </tr>
 
@@ -26,7 +26,7 @@
                             <h1 style="font-size:20px; font-weight:800; color:#ffffff; margin:0 0 16px 0;">Dear {{ $user->name }},</h1>
                             
                             <p style="margin:0 0 20px 0; color:#cbd5e1;">
-                                Welcome to <strong>Zeltrionix AI</strong>. Your enterprise account has been successfully provisioned. You now have full access to our autonomous AI support agents and high-ticket business planning infrastructure.
+                                Welcome to <strong>Zeltrionix AI</strong>. Your enterprise account has been successfully provisioned. You now have full access to our autonomous AI customer support agents, document vectorization (Pinecone RAG), and embeddable chat widget.
                             </p>
 
                             <!-- Feature Card Box -->
@@ -35,9 +35,9 @@
                                     <td style="padding:20px;">
                                         <div style="font-size:12px; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px;">Platform Core Capabilities</div>
                                         <ul style="margin:0; padding-left:18px; color:#94a3b8; font-size:13px; line-height:1.8;">
-                                            <li><strong style="color:#ffffff;">6-Page Institutional Memorandum:</strong> Automated PDF export with financial metrics.</li>
-                                            <li><strong style="color:#ffffff;">3-Year P&L Financial Forecasting:</strong> Unit Economics, EBITDA, & IRR modeling.</li>
-                                            <li><strong style="color:#ffffff;">Zero Hallucination RAG Engine:</strong> Trained strictly on your documentation.</li>
+                                            <li><strong style="color:#ffffff;">Zero-Hallucination RAG Engine:</strong> Grounded strictly in your uploaded PDF/DOCX documentation.</li>
+                                            <li><strong style="color:#ffffff;">1-Line Embed Script:</strong> Drop our glassmorphic widget directly onto any web platform.</li>
+                                            <li><strong style="color:#ffffff;">Autonomous 24/7 Support:</strong> Deflect 80%+ tier-1 repetitive inquiries instantly.</li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -48,7 +48,7 @@
                                 <tr>
                                     <td align="center">
                                         <a href="{{ url('/dashboard') }}" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; font-size:14px; font-weight:800; text-decoration:none; padding:14px 28px; border-radius:10px; box-shadow:0 4px 12px rgba(37,99,235,0.3);">
-                                            Create Your First Business Plan Brief &rarr;
+                                            Launch Your Support Agent &rarr;
                                         </a>
                                     </td>
                                 </tr>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Business Plan & Document Payment Confirmation</title>
+    <title>Service Package Payment Confirmation</title>
 </head>
 <body style="margin:0; padding:0; background-color:#0f172a; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing:antialiased;">
     @php
@@ -25,7 +25,7 @@
                     <tr>
                         <td style="padding:32px 32px 20px 32px; background-color:#0f172a; border-bottom:1px solid #334155; text-align:center;">
                             <div style="font-size:24px; font-weight:900; color:#ffffff; tracking-tight:-0.5px;">ZELTRIONIX AI</div>
-                            <div style="font-size:11px; color:#a855f7; font-weight:800; text-transform:uppercase; letter-spacing:1px; margin-top:4px;">&#10003; Business Plan Unlocked</div>
+                            <div style="font-size:11px; color:#a855f7; font-weight:800; text-transform:uppercase; letter-spacing:1px; margin-top:4px;">&#10003; Service Package Provisioned</div>
                         </td>
                     </tr>
 
@@ -35,7 +35,7 @@
                             <p style="margin:0 0 16px 0; color:#cbd5e1;">Dear <strong>{{ $user->name }}</strong>,</p>
 
                             <p style="margin:0 0 20px 0; color:#cbd5e1;">
-                                Thank you for your payment. Your <strong>{{ $payment->service_name ?? ($payment->description ?? 'Pro Venture Institutional Memorandum') }}</strong> is unlocked and ready.
+                                Thank you for your payment. Your <strong>{{ $payment->service_name ?? ($payment->description ?? 'AI Customer Support Package') }}</strong> has been unlocked and activated.
                             </p>
 
                             <!-- Document / Service Card -->
@@ -43,7 +43,7 @@
                                 <tr>
                                     <td style="padding:20px;">
                                         <div style="font-size:11px; font-weight:800; color:#a855f7; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Service Purchased</div>
-                                        <div style="font-size:18px; font-weight:900; color:#ffffff;">{{ $payment->service_name ?? ($payment->description ?? 'Pro Venture Institutional Memorandum') }}</div>
+                                        <div style="font-size:18px; font-weight:900; color:#ffffff;">{{ $payment->service_name ?? ($payment->description ?? 'AI Customer Support Package') }}</div>
                                         @if(!empty($projectName))
                                             <div style="font-size:12px; color:#38bdf8; margin-top:4px;"><strong>Project:</strong> {{ $projectName }}</div>
                                         @endif
@@ -72,7 +72,7 @@
                                 <tr>
                                     <td align="center">
                                         <a href="{{ url('/dashboard') }}" target="_blank" style="display:inline-block; background-color:#9333ea; color:#ffffff; font-size:14px; font-weight:800; text-decoration:none; padding:14px 28px; border-radius:10px; box-shadow:0 4px 12px rgba(147,51,234,0.3);">
-                                            View &amp; Download 6-Page PDF &rarr;
+                                            Open Platform Dashboard &rarr;
                                         </a>
                                     </td>
                                 </tr>

@@ -16,12 +16,12 @@ const CURRENCIES = {
 };
 
 const WELCOME_PACKAGES = [
-    { name: 'Starter Sourcing', eurPrice: 649, tokens: 649000, tag: 'Entry Tier', desc: 'Initial OEM product sourcing & supplier verification', badge: null },
-    { name: 'Standard Sourcing', eurPrice: 1249, tokens: 1249000, tag: 'Standard Tier', desc: 'HS Code tariff calculations & RFQ negotiation scripts', badge: null },
-    { name: 'Pro Sourcing', eurPrice: 2499, tokens: 2499000, tag: 'Institutional', desc: 'Full 6-page institutional Memorandum & RFQ scripts', badge: 'Most Popular' },
-    { name: 'Growth Infrastructure', eurPrice: 3899, tokens: 3899000, tag: 'Growth Scaled', desc: 'Multi-product OEM negotiations & container FCL routing', badge: null },
-    { name: 'Institutional Scale', eurPrice: 5299, tokens: 5299000, tag: 'Scale Tier', desc: 'Dedicated Trade Desk & custom factory sample audits', badge: null },
-    { name: 'Enterprise Global', eurPrice: 6759, tokens: 6759000, tag: 'Enterprise', desc: 'Full turnkey supply chain architecture & unlimited exports', badge: 'Enterprise' },
+    { name: 'Starter Agent', eurPrice: 649, tokens: 649000, tag: 'Entry Tier', desc: 'Initial custom AI agent & knowledge base setup', badge: null },
+    { name: 'Standard Agent', eurPrice: 1249, tokens: 1249000, tag: 'Standard Tier', desc: 'Real-time vector search & multilingual support', badge: null },
+    { name: 'Pro Support', eurPrice: 2499, tokens: 2499000, tag: 'Pro Tier', desc: 'Advanced anti-hallucination guardrails & SLA', badge: 'Most Popular' },
+    { name: 'Growth Infrastructure', eurPrice: 3899, tokens: 3899000, tag: 'Growth Scaled', desc: 'Multi-site deployment & high-volume inquiries', badge: null },
+    { name: 'Institutional Scale', eurPrice: 5299, tokens: 5299000, tag: 'Scale Tier', desc: 'High-throughput corporate support & knowledge base sync', badge: null },
+    { name: 'Enterprise Global', eurPrice: 6759, tokens: 6759000, tag: 'Enterprise', desc: 'Maximum enterprise throughput & dedicated engineering', badge: 'Enterprise' },
 ];
 
 export default function Welcome({ auth }) {
@@ -42,7 +42,7 @@ export default function Welcome({ auth }) {
 
     return (
         <GuestLayout>
-            <Head title="Zeltrionix AI — Autonomous AI Support Infrastructure & Direct OEM Sourcing" />
+            <Head title="Zeltrionix AI — Autonomous AI Support Widget & Knowledge Base RAG" />
 
             {/* 1. HERO SECTION WITH EMBEDDED LIVE AI CHAT WIDGET */}
             <section className="relative overflow-hidden pt-16 pb-24 bg-slate-950 text-white">
@@ -53,18 +53,18 @@ export default function Welcome({ auth }) {
                     <div className="text-center max-w-4xl mx-auto mb-10">
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-extrabold tracking-widest uppercase mb-6 shadow-lg backdrop-blur-md">
                             <Zap className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
-                            DIRECT OEM FACTORY SOURCING & AI AGENT INFRASTRUCTURE
+                            KNOWLEDGE BASE RAG & AUTONOMOUS AI SUPPORT CHAT WIDGET
                         </div>
 
                         <h1 className="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-tight">
                             Autonomous AI Support & <br />
                             <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-                                Direct OEM Sourcing Architecture
+                                Custom Knowledge Base Architecture
                             </span>
                         </h1>
 
                         <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-8">
-                            Bypass 30–40% trading broker markups. Connect your business directly to 1,200+ audited Shenzhen, Ningbo & Vietnam OEM factories with autonomous RAG vector intelligence and 6-page institutional dossiers in &lt;60s.
+                            Transform your business documentation (PDF, DOCX, TXT, CSV) into a 24/7 intelligent customer support agent. Embed on any website with a single line of JavaScript, resolve inquiries with zero hallucinations, and scale your support effortlessly.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-12">
@@ -78,7 +78,7 @@ export default function Welcome({ auth }) {
                                 href="#pricing"
                                 className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-bold text-sm px-8 py-3.5 rounded-2xl transition-all text-center"
                             >
-                                View Sourcing Packages
+                                View AI Token Packages
                             </a>
                         </div>
                     </div>
@@ -90,7 +90,7 @@ export default function Welcome({ auth }) {
                                 <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
                                 <span className="text-xs font-bold text-white uppercase tracking-wider">Live AI Support Assistant</span>
                             </div>
-                            <span className="text-[11px] text-blue-400 font-mono">DeepSeek-R1 Vector RAG Engine</span>
+                            <span className="text-[11px] text-blue-400 font-mono">DeepSeek & OpenAI RAG Vector Engine</span>
                         </div>
                         <WidgetPreview />
                     </div>
@@ -98,13 +98,13 @@ export default function Welcome({ auth }) {
                     {/* Trust Badges */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-slate-900 text-xs font-semibold text-slate-400">
                         <div className="flex items-center justify-center gap-2">
-                            <ShieldCheck className="w-4 h-4 text-emerald-400" /> 1,200+ OEM Factories Audited
+                            <ShieldCheck className="w-4 h-4 text-emerald-400" /> Zero-Hallucination Architecture
                         </div>
                         <div className="flex items-center justify-center gap-2">
-                            <Clock className="w-4 h-4 text-blue-400" /> &lt;60s Vector Dossier Match
+                            <Clock className="w-4 h-4 text-blue-400" /> &lt;60s Document Vectorization
                         </div>
                         <div className="flex items-center justify-center gap-2">
-                            <Lock className="w-4 h-4 text-purple-400" /> 100% IP Ownership Retention
+                            <Lock className="w-4 h-4 text-purple-400" /> 100% Private Data Isolation
                         </div>
                         <div className="flex items-center justify-center gap-2">
                             <Coins className="w-4 h-4 text-amber-400" /> UK B2B PDF Tax Invoices
@@ -119,7 +119,7 @@ export default function Welcome({ auth }) {
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Architectural Edge</h2>
                         <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                            Infrastructure Built for Scaling B2B Platforms
+                            Infrastructure Built for Modern Customer Operations
                         </p>
                     </div>
 
@@ -128,9 +128,9 @@ export default function Welcome({ auth }) {
                             <div className="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
                                 <Clock className="w-6 h-6" />
                             </div>
-                            <h3 className="text-xl font-bold mb-3 text-white">Traditional Middlemen</h3>
+                            <h3 className="text-xl font-bold mb-3 text-white">Traditional Support Overhead</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
-                                Overseas trading brokers mark up factory unit costs by 30–40%, conceal actual OEM factory contacts, and delay RFQ negotiation cycles.
+                                Slow response queues, expensive manual shifts, inconsistent replies, and repetitive basic inquiries that drain team productivity.
                             </p>
                         </div>
 
@@ -140,7 +140,7 @@ export default function Welcome({ auth }) {
                             </div>
                             <h3 className="text-xl font-bold mb-3 text-white">The Zeltrionix Way</h3>
                             <p className="text-slate-300 text-sm leading-relaxed">
-                                Autonomous vector search maps your requirements directly to audited OEM manufacturers in Shenzhen and Ningbo with reverse landed cost calculation.
+                                High-density vector semantic search indexes your documentation into Pinecone. When customers ask questions, the agent delivers grounded, accurate replies in milliseconds.
                             </p>
                         </div>
 
@@ -148,22 +148,22 @@ export default function Welcome({ auth }) {
                             <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6">
                                 <TrendingUp className="w-6 h-6" />
                             </div>
-                            <h3 className="text-xl font-bold mb-3 text-white">The Institutional Result</h3>
+                            <h3 className="text-xl font-bold mb-3 text-white">The Scaled Result</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
-                                Average 58.4% profit margin gain, 6-page institutional investment dossiers, and official UK B2B PDF tax receipts stamped PAID & VERIFIED.
+                                Up to 80% deflection of routine customer tickets, 24/7 multilingual support coverage, real-time token tracking, and official B2B PDF tax receipts.
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* 3. SOURCING PACKAGES */}
+            {/* 3. TOKEN PACKAGES */}
             <section id="pricing" className="py-24 bg-slate-950 border-t border-slate-900">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-12">
-                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Sourcing Packages & Token Infrastructure</h2>
+                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Token Infrastructure Packages</h2>
                         <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                            Transparent Sourcing Packages
+                            Transparent Token Infrastructure
                         </p>
                         <p className="text-slate-400 text-sm mt-3">
                             Digital wallet deposits backed by 14-day unused balance refund policy and UK B2B PDF invoices.

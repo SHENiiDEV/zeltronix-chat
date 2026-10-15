@@ -12,110 +12,111 @@ const STEPS = [
         num: '01',
         title: 'Instant Provisioning & Digital Wallet',
         subtitle: 'Multi-Currency Balance & UK B2B Invoices',
-        desc: 'Instant account activation with zero forced recurring subscriptions. Fund your digital wallet in EUR (€), USD ($), or GBP (£) with full 14-day unused balance refund guarantee and official UK B2B PDF tax invoices.',
+        desc: 'Instant account activation with zero forced monthly subscriptions. Fund your digital wallet with AI tokens in EUR (€), USD ($), or GBP (£) with a full 14-day unused balance refund guarantee and official UK B2B PDF tax invoices.',
         icon: Wallet,
         tag: 'Infrastructure & Deposit',
         color: 'from-blue-500 to-cyan-500',
         points: [
             'Multi-Currency Support (EUR, USD, GBP)',
-            'No Monthly Mandatory Subscriptions',
+            'No Mandatory Recurring Subscriptions',
             '14-Day Money Back Refund Policy',
             'Instant Official UK B2B PDF Invoices'
         ]
     },
     {
         num: '02',
-        title: 'Neural Factory Discovery & Intelligence',
-        subtitle: '1,200+ Verified OEM/ODM Suppliers Scan',
-        desc: 'Our neural RAG vector engine scans over 1,200+ audited tier-1 manufacturers across Shenzhen, Ningbo, Dongguan, and Vietnam in under 60 seconds, evaluating production capacity, ISO certifications, and MOQ boundaries.',
+        title: 'Feed Knowledge Base (PDF, DOCX, TXT, CSV)',
+        subtitle: 'Automated Semantic Chunking & Neural Vectorization',
+        desc: 'Simply upload your product documentation, manuals, pricing sheets, or FAQs. Our document parser extracts text into contextual chunks and indexes high-density vector embeddings in under 60 seconds.',
         icon: Cpu,
-        tag: 'Sourcing & Discovery',
+        tag: 'Knowledge Base & RAG',
         color: 'from-purple-500 to-indigo-500',
         points: [
-            'Deep Shenzhen & Ningbo OEM Directory',
-            'Autonomous RAG Vector Match (<60s)',
-            'Audited ISO & BSCI Compliance Verification',
-            'Tier-1 Factory Direct Sourcing'
+            'Direct PDF, DOCX, TXT & CSV Ingestion',
+            'DeepSeek & OpenAI Embedding Vectorization',
+            'High-Speed Pinecone Semantic Search (<60ms)',
+            '100% Private Knowledge Base Data Isolation'
         ]
     },
     {
         num: '03',
-        title: 'Reverse Landed Cost & Customs Tariffs',
-        subtitle: 'HS Code & Container Freight Calculation',
-        desc: 'Automated HS Code classification, sea freight FCL/LCL tariff calculations, customs duty modeling, and turnkey landed cost estimation per unit before issuing initial RFQ purchase orders.',
-        icon: Calculator,
-        tag: 'Financial Economics',
+        title: 'Configure Bot Persona & Anti-Hallucination',
+        subtitle: 'Zero-Hallucination Guardrails & Human Escalation',
+        desc: 'Customize your assistant name, system prompt, brand accent color, and fallback instructions. The agent answers strictly from your uploaded files, escalating unknown queries to human support.',
+        icon: Sliders,
+        tag: 'Agent Persona & Guardrails',
         color: 'from-cyan-500 to-blue-600',
         points: [
-            'Automated HS Code Tariff Matching',
-            'Sea Freight & Air Cargo Rate Calculations',
-            'Turnkey Landed Unit Cost Modeling',
-            'Customs & Import Duty Estimates'
+            'Strict Zero-Hallucination Answer Guardrails',
+            'Custom Brand Accent Colors & Welcome Copy',
+            'Automated Human Support Email Escalation',
+            'Full Multi-turn Conversation Context Memory'
         ]
     },
     {
         num: '04',
-        title: 'Turnkey Dossiers & B2B Invoices',
-        subtitle: 'Bilingual RFQ Scripts & Downloadable PDF',
-        desc: 'Generate 6-page institutional investment dossiers, bilingual English/Chinese factory negotiation scripts, and download official PDF receipts stamped with PAID & VERIFIED verification.',
+        title: '1-Line Embed Script & 24/7 Live Support',
+        subtitle: 'Drop-in JavaScript Widget on Any Website or CMS',
+        desc: 'Copy your unique 1-line script tag and paste it into WordPress, Shopify, Webflow, or custom React/HTML. Your AI assistant immediately begins resolving customer inquiries 24/7 across multiple languages.',
         icon: FileText,
-        tag: 'Execution & Deliverables',
+        tag: 'Deployment & Live Support',
         color: 'from-emerald-500 to-teal-600',
         points: [
-            '6-Page Institutional Dossiers (PDF)',
-            'Bilingual English/Chinese Factory RFQ Scripts',
-            'Stamped PAID & VERIFIED Receipts',
-            '100% IP Ownership Retention'
+            'Single-Line Embed Script (widget.js)',
+            'Mobile-Responsive Glassmorphic UI',
+            'Real-Time AI Token Usage Accounting',
+            '100% IP Retention & Zero Public Training'
         ]
     }
 ];
 
 const PACKAGES = [
     {
-        name: 'Starter Sourcing',
+        name: 'Starter Agent',
         eurPrice: 649,
         tokens: 649000,
         tag: 'Entry Tier',
-        desc: 'Ideal for initial product sourcing & supplier verification',
+        desc: 'Ideal for small business websites & knowledge base setup',
         badge: null,
         features: [
-            'Up to 3 Shenzhen OEM Factory Matches',
+            'Up to 3 Custom AI Bots',
             '649,000 AI Token Balance',
-            'Basic Reverse Landed Cost Model',
+            'PDF, DOCX, TXT & CSV Knowledge Base',
+            '1-Line Embeddable Chat Widget',
             'Downloadable PDF Invoice Stamped PAID',
             '14-Day Money Back Guarantee'
         ],
         btnColor: 'bg-slate-800 hover:bg-slate-700'
     },
     {
-        name: 'Standard Sourcing',
+        name: 'Standard Agent',
         eurPrice: 1249,
         tokens: 1249000,
         tag: 'Standard Tier',
-        desc: 'Comprehensive HS Code tariff calculations & RFQ scripts',
+        desc: 'For growing platforms with high customer chat volume',
         badge: null,
         features: [
-            'Up to 7 OEM Factory Vector Matches',
+            'Up to 7 Custom AI Bots',
             '1,249,000 AI Token Balance',
-            'Bilingual English/Chinese RFQ Scripts',
-            'Sea Freight Container Duty Tariff Calculator',
+            'Real-Time RAG Vector Semantic Search',
+            'Multi-Language Automated Inquiries',
             'Downloadable PDF Invoice Stamped PAID'
         ],
         btnColor: 'bg-slate-800 hover:bg-slate-700'
     },
     {
-        name: 'Pro Sourcing',
+        name: 'Pro Support',
         eurPrice: 2499,
         tokens: 2499000,
-        tag: 'Institutional Sourcing',
-        desc: 'Full 6-page institutional Memorandum & bilingual scripts',
+        tag: 'Pro Tier',
+        desc: 'For scaling e-commerce & SaaS client customer operations',
         badge: 'Most Popular',
         features: [
-            'Full 6-Page Institutional Memorandum',
+            'Up to 15 Custom AI Bots',
             '2,499,000 AI Token Balance',
-            'Bilingual English/Chinese Negotiation Scripts',
-            'Sea Freight & Air Cargo Rate Calculations',
-            'Priority Executive Support (24-48h SLA)'
+            'Advanced Anti-Hallucination Guardrails',
+            'Custom Brand Accent Colors & Persona',
+            'Priority Support Desk (24-48h SLA)'
         ],
         btnColor: 'bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-500/25'
     },
@@ -124,14 +125,14 @@ const PACKAGES = [
         eurPrice: 3899,
         tokens: 3899000,
         tag: 'Growth Scaled',
-        desc: 'Multi-product OEM negotiations & container FCL routing',
+        desc: 'Multi-site deployment & high-volume customer inquiries',
         badge: null,
         features: [
-            'Multi-Line OEM Factory Audits',
+            'Unlimited Custom AI Bots',
             '3,899,000 AI Token Balance',
-            'Turnkey Landed Cost & Customs Tariffs',
+            'Deep Semantic Vector Knowledge Retrieval',
             'Dedicated Account Manager',
-            'Unlimited RAG Vector Search'
+            '100% IP Data Privacy Guarantee'
         ],
         btnColor: 'bg-slate-800 hover:bg-slate-700'
     },
@@ -140,14 +141,14 @@ const PACKAGES = [
         eurPrice: 5299,
         tokens: 5299000,
         tag: 'Institutional Scale',
-        desc: 'Dedicated Trade Desk & custom factory sample audits',
+        desc: 'High-throughput corporate support & knowledge base sync',
         badge: null,
         features: [
             'Dedicated Trade Desk Manager',
             '5,299,000 AI Token Balance',
-            'Custom Factory Sample Verification',
-            '100% IP Ownership Retention',
-            'Direct Factory Executive Dispatch'
+            'Unlimited Document Vector Embeddings',
+            '100% Private Knowledge Base Space',
+            'VIP SLA Direct Technical Support'
         ],
         btnColor: 'bg-purple-600 hover:bg-purple-500 shadow-lg shadow-purple-500/25'
     },
@@ -156,14 +157,14 @@ const PACKAGES = [
         eurPrice: 6759,
         tokens: 6759000,
         tag: 'Enterprise Maximum',
-        desc: 'Full turnkey supply chain architecture & unlimited exports',
+        desc: 'Maximum enterprise throughput with dedicated engineering dispatch',
         badge: 'Enterprise',
         features: [
-            'Unlimited Vector Dossier Exports',
             '6,759,000 AI Token Balance',
+            'Unlimited Bots & Custom Domains',
             'Custom Multi-Currency B2B Invoicing',
-            'Full Audited Shenzhen/Ningbo OEM Directory',
-            'VIP SLA Direct Trade Line'
+            'Zero Public Model Training Guarantee',
+            'VIP SLA Direct Engineering Line'
         ],
         btnColor: 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 shadow-lg shadow-purple-500/30'
     }
@@ -182,7 +183,7 @@ export default function HowItWorks({ auth }) {
 
     return (
         <GuestLayout>
-            <Head title="How It Works — Step-by-Step AI Sourcing & B2B Invoices | Zeltrionix AI" />
+            <Head title="How It Works — Step-by-Step AI Chat Widget & Knowledge Base RAG | Zeltrionix AI" />
 
             {/* HERO SECTION */}
             <section className="relative overflow-hidden pt-16 pb-24 bg-slate-950 text-white">
@@ -192,16 +193,16 @@ export default function HowItWorks({ auth }) {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-extrabold tracking-widest uppercase mb-6 shadow-lg backdrop-blur-md">
                         <Zap className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
-                        INSTANT AI PROVISIONING WORKFLOW
+                        INSTANT AI SUPPORT WIDGET WORKFLOW
                     </div>
 
                     <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-                        How <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Zeltrionix AI</span> Powers Your <br />
-                        Global Supply Chain Architecture
+                        How <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Zeltrionix AI</span> Automates <br />
+                        Your Customer Support Operations
                     </h1>
 
                     <p className="text-lg text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-8">
-                        From instant multi-currency digital wallet funding to autonomous Shenzhen OEM factory discovery and 6-page institutional dossiers in under 60 seconds.
+                        From document ingestion (PDF, DOCX, TXT, CSV) to semantic Pinecone vector indexing and 1-line website widget embedding in under 60 seconds.
                     </p>
                 </div>
             </section>
@@ -212,7 +213,7 @@ export default function HowItWorks({ auth }) {
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Architectural Blueprint</h2>
                         <p className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-                            4 Steps to Direct OEM Factory Sourcing & PDF Dossiers
+                            4 Steps to Deploy Your Autonomous AI Chatbot
                         </p>
                     </div>
 
@@ -253,7 +254,7 @@ export default function HowItWorks({ auth }) {
                                     {/* Right Key Points List */}
                                     <div className="lg:col-span-7 bg-slate-950/80 border border-slate-800 rounded-2xl p-6">
                                         <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                                            <IconComponent className="w-4 h-4 text-blue-400" /> Executive Highlights
+                                            <IconComponent className="w-4 h-4 text-blue-400" /> Platform Highlights
                                         </h4>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                             {step.points.map((pt, pIdx) => (
@@ -275,9 +276,9 @@ export default function HowItWorks({ auth }) {
             <section className="py-24 bg-slate-950 border-t border-slate-900 text-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-12">
-                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Sourcing Packages</h2>
+                        <h2 className="text-blue-500 font-bold uppercase tracking-wider text-xs mb-2">Token Infrastructure Packages</h2>
                         <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                            Select Your Supply Chain Package
+                            Select Your AI Infrastructure Package
                         </p>
                         <p className="text-slate-400 text-sm mt-3">
                             Instant credit to your digital wallet with official UK B2B PDF tax invoice.

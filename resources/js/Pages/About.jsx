@@ -10,7 +10,7 @@ import {
 export default function About({ company }) {
     return (
         <GuestLayout>
-            <Head title="About Us — Destroying Middleman Markups & Direct OEM Sourcing | Zeltrionix AI" />
+            <Head title="About Us — Autonomous AI Support & Knowledge Base RAG | Zeltrionix AI" />
 
             <div className="relative min-h-screen bg-slate-950 text-slate-100 py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
                 {/* Background Ambient Glow */}
@@ -24,10 +24,10 @@ export default function About({ company }) {
                             OUR CORPORATE MISSION
                         </div>
                         <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white mb-6 leading-tight">
-                            Eliminating <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">30–40% Trader Markups</span> Through AI Neural Sourcing
+                            Empowering Modern Platforms with <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Zero-Hallucination AI Support</span>
                         </h1>
                         <p className="text-slate-300 text-base leading-relaxed">
-                            Zeltrionix AI was built to bypass intermediary trading brokers, connecting global brand owners directly to Tier-1 OEM/ODM manufacturing facilities in Shenzhen, Ningbo, Dongguan, and Vietnam.
+                            Zeltrionix AI was built to eliminate the cost and delays of traditional customer support. By feeding your existing documentation (PDF, DOCX, TXT, CSV) directly into our high-speed vector RAG engine, we enable businesses to deploy intelligent, accurate, and 24/7 automated support widgets in seconds.
                         </p>
                     </div>
 
@@ -36,11 +36,11 @@ export default function About({ company }) {
                         {/* Stat 1 */}
                         <div className="bg-gradient-to-b from-slate-900 to-slate-950 p-6 rounded-3xl border border-blue-500/30 shadow-xl relative overflow-hidden">
                             <div className="w-10 h-10 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-4">
-                                <Building2 className="w-5 h-5" />
+                                <CheckCircle2 className="w-5 h-5" />
                             </div>
-                            <div className="text-4xl font-black text-white mb-1">1,200+</div>
-                            <span className="text-xs font-bold uppercase tracking-wider text-blue-400">Audited Factories</span>
-                            <p className="text-[11px] text-slate-400 mt-2">Shenzhen, Ningbo & Vietnam tier-1 verified OEM manufacturers.</p>
+                            <div className="text-4xl font-black text-white mb-1">99.9%</div>
+                            <span className="text-xs font-bold uppercase tracking-wider text-blue-400">Grounded Accuracy</span>
+                            <p className="text-[11px] text-slate-400 mt-2">Answers derived strictly from your verified knowledge base documents.</p>
                         </div>
 
                         {/* Stat 2 */}
@@ -48,9 +48,9 @@ export default function About({ company }) {
                             <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4">
                                 <TrendingUp className="w-5 h-5" />
                             </div>
-                            <div className="text-4xl font-black text-white mb-1">58.4%</div>
-                            <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Avg Margin Gain</span>
-                            <p className="text-[11px] text-slate-400 mt-2">Direct factory unit cost reduction vs middleman trading brokers.</p>
+                            <div className="text-4xl font-black text-white mb-1">80%</div>
+                            <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">Support Deflection</span>
+                            <p className="text-[11px] text-slate-400 mt-2">Direct reduction in routine customer inquiries and repetitive tickets.</p>
                         </div>
 
                         {/* Stat 3 */}
@@ -59,8 +59,8 @@ export default function About({ company }) {
                                 <Cpu className="w-5 h-5" />
                             </div>
                             <div className="text-4xl font-black text-white mb-1">&lt; 60s</div>
-                            <span className="text-xs font-bold uppercase tracking-wider text-purple-400">Match & Dossier</span>
-                            <p className="text-[11px] text-slate-400 mt-2">RAG vector match and 6-page institutional dossier generation.</p>
+                            <span className="text-xs font-bold uppercase tracking-wider text-purple-400">Setup & Ingestion</span>
+                            <p className="text-[11px] text-slate-400 mt-2">Instant document vectorization and single-line embed widget.</p>
                         </div>
 
                         {/* Stat 4 */}
@@ -69,8 +69,8 @@ export default function About({ company }) {
                                 <Lock className="w-5 h-5" />
                             </div>
                             <div className="text-4xl font-black text-white mb-1">100%</div>
-                            <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">IP Retention</span>
-                            <p className="text-[11px] text-slate-400 mt-2">Zero public model training guarantee for your proprietary designs.</p>
+                            <span className="text-xs font-bold uppercase tracking-wider text-cyan-400">Data Isolation</span>
+                            <p className="text-[11px] text-slate-400 mt-2">Zero public model training guarantee for your proprietary documentation.</p>
                         </div>
                     </div>
 

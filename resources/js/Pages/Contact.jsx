@@ -25,7 +25,7 @@ export default function Contact({ company }) {
 
     return (
         <GuestLayout>
-            <Head title="Contact Support & Executive Trade Desk | Zeltrionix AI" />
+            <Head title="Contact Support & Technical Help Desk | Zeltrionix AI" />
 
             <div className="relative min-h-screen bg-slate-950 text-slate-100 py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
                 {/* Background Ambient Glow */}
@@ -39,10 +39,10 @@ export default function Contact({ company }) {
                             SLA TARGET: 24-48 BUSINESS HOURS RESPONSE
                         </div>
                         <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white mb-4">
-                            Executive Trade Desk & Support
+                            Technical Help Desk & Support
                         </h1>
                         <p className="text-slate-400 text-sm leading-relaxed">
-                            Have questions regarding factory discovery, custom B2B invoices, or digital wallet deposits? Our trade desk team is ready to assist.
+                            Have questions regarding custom bot integration, document indexing, B2B invoices, or digital token top-ups? Our support team is ready to assist.
                         </p>
                     </div>
 
@@ -152,7 +152,7 @@ export default function Contact({ company }) {
                                         value={data.subject}
                                         onChange={(e) => setData('subject', e.target.value)}
                                         required
-                                        placeholder="Inquiry regarding Shenzhen Factory Dossiers & Invoicing"
+                                        placeholder="Inquiry regarding AI Chatbot Integration & Invoicing"
                                         className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-all"
                                     />
                                     {errors.subject && <p className="mt-1 text-xs text-rose-400">{errors.subject}</p>}
@@ -167,7 +167,7 @@ export default function Contact({ company }) {
                                         value={data.message}
                                         onChange={(e) => setData('message', e.target.value)}
                                         required
-                                        placeholder="Describe your inquiry or sourcing requirements in detail..."
+                                        placeholder="Describe your inquiry or integration requirements in detail..."
                                         className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-all"
                                     />
                                     {errors.message && <p className="mt-1 text-xs text-rose-400">{errors.message}</p>}

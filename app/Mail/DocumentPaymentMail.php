@@ -34,7 +34,7 @@ class DocumentPaymentMail extends Mailable implements ShouldQueue
         $formattedAmount = number_format($this->payment->amount, 2);
 
         return new Envelope(
-            subject: "Zeltrionix AI — Official Invoice & Business Plan Unlocked ({$currencySymbol}{$formattedAmount})",
+            subject: "Zeltrionix AI — Official Invoice & Service Package Activated ({$currencySymbol}{$formattedAmount})",
         );
     }
 
